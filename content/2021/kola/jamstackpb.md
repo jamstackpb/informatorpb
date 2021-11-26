@@ -1,6 +1,6 @@
 ---
 name: JamStackPB
-description: Koło oparte o tworzenie stron w metodyce JAMStack
+website: jamstackpb.pl
 ---
 
 Koło oparte o tworzenie stron w metodyce JAMStack
