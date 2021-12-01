@@ -1,5 +1,5 @@
 ---
-section: Politechnika w liczbach
+section: Table of contents
 bgcImage: /images
 pageNumber: 3
 ---

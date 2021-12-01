@@ -1,5 +1,5 @@
 ---
-section: Politechnika w liczbach
+section: Rekrutacja na Politechnikę Białostocką
 bgcImage: /images
 pageNumber: 9
 ---
