@@ -1,5 +1,5 @@
 ---
-section: Politechnika w liczbach
+section: Jak zapisać się na studia
 bgcImage: /images
 pageNumber: 22
 ---

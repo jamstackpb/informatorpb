@@ -1,5 +1,5 @@
 ---
-section: Wzory rekrutacyjne
+section: Jak obliczyć punkty
 bgcImage: /images
 pageNumber: 26
 ---

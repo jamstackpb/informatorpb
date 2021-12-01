@@ -1,5 +1,5 @@
 ---
-section: Politechnika w liczbach
+section: Opis kierunków studiów
 bgcImage: /images
 pageNumber: 11
 ---
