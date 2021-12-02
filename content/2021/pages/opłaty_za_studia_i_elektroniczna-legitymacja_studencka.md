@@ -33,5 +33,3 @@ ELS może, po odpowiednim aktywowaniu, posiadać dodatkowe funkcje:
 - karty bibliotecznej. Szczegóły na: [biblioteka.pb.edu.pl](http://biblioteka.pb.edu.pl)
 - karty płatniczej do Konta Przekorzystnego założonego w Banku Pekao S.A. Szczegóły na: [pekao.com.pl](https://www.pekao.com.pl)
 - Białostockiej Karty Miejskiej (ELS może być nośnikiem elektronicznego biletu okresowego). Szczegóły na: [komunikacja.bialystok.pl](https://komunikacja.bialystok.pl)
-
-[32]

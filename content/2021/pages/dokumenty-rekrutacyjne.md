@@ -39,5 +39,3 @@ important:
 9. > zgoda rodzica/opiekuna prawnego na podjęcie studiów przez osobę niepełnoletnią
 
 10. > poświadczona przez Politechnikę Białostocką kserokopia dokumentu uprawniającego do zwolnienia z opłat zgodnie z art. 324 ust. 2 ustawy Prawo o szkolnictwie wyższym i nauce – w przypadku cudzoziemców ubiegających się o przyjęcie na studia stacjonarne prowadzone w języku polskim
-
-[28]

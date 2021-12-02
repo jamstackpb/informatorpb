@@ -46,5 +46,3 @@ Stypendium na wyższych latach może otrzymać student, który uzyskał wyróżn
 ### sypendium socjalne
 
 Podstawą przyznania stypendium socjalnego jest trudna sytuacja materialna studenta, określona wysokością dochodu na osobę w rodzinie studenta. Próg dochodu uprawniający do ubiegania się o stypendium socjalne ustala rektor w porozumieniu z uczelnianym organem samorządu studenckiego, w granicach od 668,20 zł do 1051,70 zł netto miesięcznie na osobę w rodzinie. W Politechnice Białostockiej próg ten od kilku lat ustalany jest na poziomie 1043,90 zł. Oznacza to, że każdy
-
-[33]

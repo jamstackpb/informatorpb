@@ -33,5 +33,3 @@ Studenci z aktualnymi orzeczeniami mogą złożyć wniosek o stypendium dla osó
 - konsultanta ds. procesu studiowania.
 
 Udzielaniem wsparcia zajmuje się Biuro ds. Osób z Niepełnosprawnościami oraz Opiekunowie Osób z Niepełnosprawnościami działający na wydziałach, w Bibliotece, w Studium Języków Obcych, Studium Wychowania Fizycznego i Sportu. Informacje o stypendiach, szkoleniach, wydarzeniach, konkursach skierowanych do niepełnosprawnych studentów i doktorantów są umieszczane a stronie: [pb.edu.pl/bon](https://pb.edu.pl/bon/).
-
-[34]

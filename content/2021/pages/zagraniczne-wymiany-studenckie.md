@@ -32,5 +32,3 @@ Z wymiany w ramach MOSTECH mogą skorzystać studenci 5. i 6. semestru studiów 
 Ze względu na pandemię działalność programu MOSTECH została zawieszona. Od semestru letniego roku akademickiego 2021/2022 planowane jest wznowienie jego działalności.
 
 [![Oni też wyjechali w ramach Erasmus+!](/images/YT.jpg "Obejrzyj wideo: https://www.youtube.com/watch?v=_OhbSiZAhDo&t=2s")](https://www.youtube.com/watch?v=_OhbSiZAhDo&t=2s)
-
-[35]
