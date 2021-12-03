@@ -17,6 +17,6 @@ maturaSubjects:
   - geografia
   - informatyka
   - WOS
-equation: 0,5MP + 1,25MR + 1,75FR + 0,25OP + 0,75OR
+equation: 0,5*MP + 1,25*MR + 1,75*FR + 0,25*OP + 0,75*OR
 ---
 W trakcie studiów zdobędziesz interdyscyplinarną wiedzę m.in. z zakresu ekonomii, geografii turystycznej, zarządzania przedsiębiorstwem turystycznym, socjologii czasu wolnego, zrównoważonego gospodarowania środowiskiem, która pozwoli Ci rozwinąć umiejętności profesjonalnego zarządzania turystyką, w tym samodzielnego planowania i projektowania dokumentacji turystycznej, organizacji oraz realizacji przedsięwzięć w zakresie turystyki i rekreacji.

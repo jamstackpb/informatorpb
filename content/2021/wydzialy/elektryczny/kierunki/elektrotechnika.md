@@ -18,7 +18,7 @@ jobPerspectives:
 maturaSubjects:
   - fizyka
   - informatyka
-equation: 0,5MP + 1,25MR + 1,75*FR + 0,25OP + 0,75OR
+equation: 0,5*MP + 1,25*MR + 1,75*FR + 0,25*OP + 0,75*OR
 ---
 
 Na tym kierunku zdobędziesz wiedzę z zakresu elektrotechniki teoretycznej, elektroniki, informatyki użytkowej, komputerowych metod obliczeniowych, techniki cyfrowej, systemów automatyki i sterowania, miernictwa elektrycznego. Będziesz potrafił projektować, wdrażać i eksploatować układy oraz urządzenia elektryczne, energoelektroniczne, instalacje oświetleniowe, przemysłowe sterowniki cyfrowe, układy napędowe i układy automatyki przemysłowej.

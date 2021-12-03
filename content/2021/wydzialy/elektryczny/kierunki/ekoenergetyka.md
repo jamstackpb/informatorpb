@@ -17,7 +17,7 @@ maturaSubjects:
   - fizyka
   - chemia
   - informatyka
-equation: 0,5MP + 1,25MR + 1,75*FR + 0,25OP + 0,75OR
+equation: 0,5*MP + 1,25*MR + 1,75*FR + 0,25*OP + 0,75*OR
 ---
 Kierunek przypisany do dyscyplin: automatyka, elektronika i elektrotechnika (wiodąca), inżynieria mechaniczna, inżynieria środowiska, górnictwo i energetyka. Zajęcia prowadzone na Wydziale Budownictwa i Nauk o Środowisku, Wydziale Elektrycznym oraz Wydziale Mechanicznym.
 

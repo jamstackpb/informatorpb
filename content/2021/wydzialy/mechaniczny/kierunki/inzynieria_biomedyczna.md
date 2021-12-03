@@ -19,6 +19,6 @@ maturaSubjects:
   - chemia
   - biologia
   - informatyka
-equation: 0,5MP + 1,25MR + WR*FR + 0,25OP + 0,75OR
+equation: 0,5*MP + 1,25*MR + WR*FR + 0,25*OP + 0,75*OR
 ---
 Na tym kierunku zdobędziesz wiedzę z zakresu konstrukcji medycznych, informatyki medycznej, biomechaniki i inżynierii biomateriałów, ortotyki i protetyki. Nauczysz się korzystania z nowoczesnej aparatury oraz systemów diagnostycznych i terapeutycznych. Będziesz przygotowany do współpracy z lekarzami w zakresie wspomagania komputerowego w medycynie, integracji, eksploatacji, obsługi i konserwacji aparatury medycznej. Zdobędziesz wiedzę i umiejętności niezbędne do wytwarzania i projektowania aparatury medycznej oraz udziału w pracach naukowo-badawczych związanych z inżynierią biomedyczną.

@@ -19,7 +19,7 @@ maturaSubjects:
   - fizyka
   - chemia
   - informatyka
-equation: 0,5MP + 1,25MR + 1,75*FR + 0,25OP + 0,75OR
+equation: 0,5*MP + 1,25*MR + 1,75*FR + 0,25*OP + 0,75*OR
 ---
 
 Na tym kierunku zdobędziesz wiedzę i umiejętności z zakresu realizowania różnego typu obiektów budowlanych, projektowania, technologii i organizacji
