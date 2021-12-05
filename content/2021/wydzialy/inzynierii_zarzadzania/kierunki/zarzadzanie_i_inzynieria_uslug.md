@@ -17,6 +17,6 @@ jobPerspectives:
 maturaSubjects:
   - fizyka
   - informatyka
-equation: 0,5MP + 1,25MR + 1,75FR + 0,25OP + 0,75OR
+equation: 0,5*MP + 1,25*MR + 1,75*FR + 0,25*OP + 0,75*OR
 ---
 W trakcie studiów zdobędziesz wiedzę z zakresu planowania biznesowego uwzględniającego sfery: techniczną, organizacyjną, marketingową i finansową. Poznasz narzędzia informatyczne wykorzystywane w projektowaniu, planowaniu, realizacji i zarządzaniu usługami. Będziesz potrafił konfigurować i wdrażać rozwiązania informatyczne z różnych dziedzin, które mają zastosowanie w działalności usługowej. 

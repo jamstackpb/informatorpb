@@ -19,7 +19,7 @@ jobPerspectives:
 maturaSubjects:
   - fizyka
   - informatyka
-equation: 0,5MP + 2MR + FR + 0,25OP + 0,75OR
+equation: 0,5*MP + 2*MR + FR + 0,25*OP + 0,75*OR
 ---
 
 Na tym kierunku zdobędziesz wiedzę z zakresu matematyki i jej zastosowań oraz umiejętności posługiwania się narzędziami informatycznymi przy rozwiązywaniu teoretycznych i aplikacyjnych problemów matematycznych oraz samodzielnego pogłębiania wiedzy matematycznej.

@@ -19,7 +19,7 @@ maturaSubjects:
   - geografia
   - historia
   - historia sztuki
-equation: 0,5MP + 1,25MR + 1,75*FR + 0,25OP + 0,75OR + 4R
+equation: 0,5*MP + 1,25*MR + 1,75*FR + 0,25*OP + 0,75*OR + 4*R
 ---
 
 Na tym kierunku zdobędziesz wiedzę z zakresu historii sztuki, grafiki, estetyki i tworzenia prac artystycznych oraz projektów graficznych. Zapoznasz się z różnorodnymi technikami graficznymi, warsztatowymi, rysunkowymi i malarskimi. Rozwiniesz indywidualne zdolności twórcze. Będziesz tworzyć artystyczne prace graficzne, rysunkowe, malarskie oraz projekty graficzne, w tym autorskie ilustracje, projekty wydawnicze, kreatywne identyfikacje wizualne, artystyczne animacje.
