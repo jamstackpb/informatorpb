@@ -17,7 +17,7 @@ maturaSubjects:
   - geografia
   - historia
   - historia sztuki
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR + 4*R
+equation: 0,5*MP + 1,25*MR + 1,75*FR + 0,25*OP + 0,75*OR + 4*R
 ---
 
 Na tym kierunku zdobędziesz wiedzę z zakresu historii i teorii architektury wnętrz i sztuk pięknych, a także niezbędną wiedzę inżynierską związaną z zagadnieniami statyki, konstrukcji, materiałoznawstwa, ustrojami i rozwiązaniami budowlanymi, instalacyjnymi, oświetleniowymi. Jako absolwent architektury wnętrz będziesz umiał projektować wnętrza o różnym charakterze i przeznaczeniu. Rozwiniesz umiejętności warsztatowe, w tym znajomość komputerowych programów graficznych i CAD. Ponadto nabędziesz umiejętność projektowania i tworzenia funkcjonalnych form użytkowych, np. mebli.

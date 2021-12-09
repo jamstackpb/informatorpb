@@ -17,6 +17,6 @@ jobPerspectives:
 maturaSubjects:
   - fizyka
   - informatyka
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR
+equation: 0,5*MP + 1,25*MR + 1,75*FR + 0,25*OP + 0,75*OR
 ---
 Na tym kierunku zdobędziesz gruntowne przygotowanie teoretyczne i praktyczne o charakterze inżynierskim, w szczególności wiedzę i umiejętności niezbędne do zarządzania logistycznego na poziomie operacyjnym i zarządzania podmiotami gospodarczymi. Poznasz techniczne aspekty procesów logistycznych, marketingu, organizacji transportu oraz sterowania przepływami towarów i informacji w przedsiębiorstwie. Nauczysz się rozwiązywać realne problemy biznesowe oraz zdobędziesz unikalne kompetencje, biorąc udział w zajęciach prowadzonych przez praktyków biznesu

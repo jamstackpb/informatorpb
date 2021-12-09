@@ -18,7 +18,7 @@ jobPerspectives:
 maturaSubjects:
   - fizyka
   - informatyka
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR
+equation: 0,5*MP + 1,25*MR + 1,75*FR + 0,25*OP + 0,75*OR
 ---
 
 Studia o profilu praktycznym, prowadzone z udziałem przedsiębiorstw – partnerów kształcenia praktycznego. Kształcenie odbywa się przemiennie w formie zajęć dydaktycznych realizowanych w uczelni i w formie płatnych praktyk odbywanych u pracodawcy:

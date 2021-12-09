@@ -19,7 +19,7 @@ maturaSubjects:
   - fizyka
   - biologia
   - chemia
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR
+equation: 0,5*MP + 1,25*MR + 1,75*FR + 0,25*OP + 0,75*OR
 ---
 
 Na tym kierunku uzyskasz wiedzę i kompetencje związane z systemami zaopatrzenia w wodę, oczyszczania i odprowadzania ścieków, sieci i instalacji gazowych, a także systemów wentylacji, klimatyzacji, urządzeń do oczyszczania powietrza i ciepłownictwa. Jako absolwent będziesz przygotowany do projektowania, wykonawstwa i eksploatacji urządzeń i obiektów technicznych, w tym do badań eksploatacyjnych, pomiarów diagnostycznych oraz kontroli jakości stosowanych technologii i urządzeń.

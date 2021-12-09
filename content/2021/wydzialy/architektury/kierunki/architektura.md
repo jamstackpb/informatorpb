@@ -18,7 +18,7 @@ maturaSubjects:
   - geografia
   - historia
   - historia sztuki
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR + 4*R
+equation: 0,5*MP + 1,25*MR + 1,75*FR + 0,25*OP + 0,75*OR + 4*R
 ---
 
 Na tym kierunku zdobędziesz wiedzę i umiejętności w zakresie projektowania architektonicznego i urbanistycznego, teorii i historii architektury i urbanistyki, sztuk pięknych, budownictwa i technologii budowlanych, mechaniki, konstrukcji oraz fizyki budowli i infrastruktury. Poznasz uwarunkowania prawne i ekonomiczne działalności projektowej. Nauczysz się
