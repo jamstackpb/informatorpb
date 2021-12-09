@@ -20,7 +20,7 @@ jobPerspectives:
 maturaSubjects:
   - fizyka
   - informatyka
-equation: 0,5*MP + 1,25*MR + 1,75*FR + 0,25*OP + 0,75*OR
+equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR
 ---
 
 Na tym kierunku zdobędziesz wiedzę z zakresu elektroniki, telemetrii i telekomunikacji oraz użytkowych technologii informatycznych stosowanych w tych obszarach. Będziesz umiał wykorzystać techniki programowania oraz profesjonalne aplikacje stosowane przy opracowaniu układów elektronicznych i mikroprocesorowych oraz w systemach telekomunikacji przewodowej i bezprzewodowej. Poznasz zasady projektowania, konstrukcji, wytwarzania i eksploatacji urządzeń elektronicznych. Będziesz potrafić wykorzystać poznane metody numeryczne i symulacje komputerowe do analizy podstawowych zagadnień inżynierskich oraz opracować dokumentację techniczną. 
