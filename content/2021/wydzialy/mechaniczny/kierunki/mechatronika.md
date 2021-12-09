@@ -20,7 +20,7 @@ maturaSubjects:
   - chemia
   - biologia
   - informatyka
-equation: 0,5*MP + 1,25*MR + WR*FR + 0,25*OP + 0,75*OR
+equation: 0.5*MP + 1.25*MR + WR*FR + 0.25*OP + 0.75*OR
 ---
 
 Na tym kierunku nauczysz się pro-jektowania, wytwarzania oraz wyko-rzystania nowoczesnych urządzeń mechanicznych. Dzięki zajęciom z elektroniki, programowania, sterowa-nia i robotyki dowiesz się, jak umiejęt-nie połączyć te dziedziny, aby stworzone przez Ciebie rozwiązania stały się SMART. Na specjalności projektowanie i sterowanie mikromaszyn nauczysz się technik modelowania CAD, projektowa-nia układów elektronicznych i progra-mowania sterowników PLC w praktyce inżynierskiej; na specjalności konstrukcje inteligentne przygotujesz się do twórczej pracy inżynierskiej przy rozwiązywaniu interdyscyplinarnych problemów tech-nicznych i organizacyjnych z wykorzystaniem metod i technik komputerowych oraz do kierowania zespołami ludzkimi. Po studiach będziesz przygotowany na wyzwania Przemysłu 4.0, poznasz systemy IoT oraz instalacje inteligent-nych budynków
