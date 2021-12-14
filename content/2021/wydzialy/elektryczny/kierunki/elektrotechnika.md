@@ -11,7 +11,7 @@ specialities:
   - name: Elektroenergetyka i technika świetlna
   - name: inżynieria elektryczna (na studiach niestacjonarnych)
 jobPerspectives:
-  - praca w przedsiębiorstwach zajmujących się projektowaniem, eksploatacją, diagnostyką oraz problematyką bezpieczeństwa i niezawodności urządzeń i systemów elektrycznych
+- praca w przedsiębiorstwach zajmujących się projektowaniem, eksploatacją, diagnostyką oraz problematyką bezpieczeństwa i niezawodności urządzeń i systemów elektrycznych
 - w firmach związanych z wytwarzaniem, przetwarzaniem, przesyłaniem i dystrybucją energii
 - w przedsiębiorstwach produkujących, wdrażających i integrujących przemysłowe systemy sterowania oraz systemy pomiarowo-kontrolne
 - wykonywanie samodzielnych funkcji technicznych (projektowanie, kierowanie pracami) w budownictwie w zakresie sieci, instalacji i urządzeń elektrycznych i elektroenergetycznych

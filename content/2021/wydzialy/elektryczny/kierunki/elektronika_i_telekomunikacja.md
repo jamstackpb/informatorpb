@@ -11,7 +11,7 @@ specialities:
   - name: Teleinformatyka i optoelektronika
   - name: aparatura elektroniczna(na studiach niestacjonarnych)
 jobPerspectives:
-  - stanowiska obsługi i utrzymania ruchu systemów i urządzeń produkcyjnych
+- stanowiska obsługi i utrzymania ruchu systemów i urządzeń produkcyjnych
 - obsługa energoelektronicznych układów zasilania energią elektryczną
 - projektowanie systemów przetwarzania, transmisji i udostępniania informacji
 - praca w przedsiębiorstwach produkujących przemysłowe układy sterowania
