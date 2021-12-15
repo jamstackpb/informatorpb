@@ -1,7 +1,7 @@
 module.exports = {
     mode: 'jit',
     darkMode: false, // or 'media' or 'class'
-    purge: ['./src/pages/**/*.{ts,tsx}', './ssg/**/*.{ts,tsx}'],
+    purge: ['./src/**/*.{ts,tsx}', './ssg/**/*.{ts,tsx}'],
     theme: {
         extend: {
             colors: {

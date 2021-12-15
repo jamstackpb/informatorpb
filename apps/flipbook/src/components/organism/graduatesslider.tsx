@@ -23,7 +23,7 @@ export const GraduateSlider : React.FC<PFlipBook> = ({ graduate }) => {
     })
     return (
         <div className="w-full">
-            <div className="flex flex-row gap-5 justify-center" id="zdjecia">
+            <div className="flex flex-wrap sm:flex-row gap-5 justify-center" id="zdjecia">
             </div>
         </div>
     )
