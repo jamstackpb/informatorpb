@@ -9,7 +9,7 @@ master:
 specialities:
   - name: Automatyka przemysłowa
 jobPerspectives:
-  - praca w przedsiębiorstwach zajmujących się projektowaniem, eksploatacją, diagnostyką oraz problematyką bezpieczeństwa i niezawodności urządzeń i systemów elektrycznych
+- praca w przedsiębiorstwach zajmujących się projektowaniem, eksploatacją, diagnostyką oraz problematyką bezpieczeństwa i niezawodności urządzeń i systemów elektrycznych
 - w zakładach związanych z wytwarzaniem, przetwarzaniem, przesyłaniem i dystrybucją energii
 - w przedsiębiorstwach produkujących, wdrażających i integrujących przemysłowe systemy sterowania oraz systemy pomiarowo-kontrolne
 - na stanowiskach obsługi i utrzymania ruchu systemów i urządzeń produkcyjnych

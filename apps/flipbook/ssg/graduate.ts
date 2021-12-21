@@ -4,8 +4,8 @@ import matter from 'gray-matter';
 import { marked } from 'marked';
 import DOMPurify from 'isomorphic-dompurify';
 
-export const getFlipBook = () => {
-    const pathToFolderProjects = path.join(process.cwd(), '..', '..', 'content', '2021', 'pages');
+export const Graduate = () => {
+    const pathToFolderProjects = path.join(process.cwd(), '..', '..', 'content', '2021', 'absolwenci');
     const projectsDirectoryFiles = fs.readdirSync(pathToFolderProjects);
 
     const withGrayMatter = projectsDirectoryFiles.map((adf) => {
@@ -17,8 +17,8 @@ export const getFlipBook = () => {
             const dirty = marked(content);
             const clean = DOMPurify.sanitize(dirty);
             return {
-                changedToMatter,
-                clean,
+            changedToMatter,
+            clean,
             };
         } else return null;
     });

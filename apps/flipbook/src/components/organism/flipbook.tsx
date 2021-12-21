@@ -1,17 +1,22 @@
+import styled from '@emotion/styled';
 import { PageFlip } from 'page-flip';
-import { useEffect, useState } from 'react';
-import { Wrapper } from './styles/styleBook';
-import { MarkdownContentPages }from './styles/styleMD';
+import { useEffect } from 'react';
+import { Wrapper, Btn, LogoPB } from '../../styles/styleBook';
+import { MarkdownContentPages }from '../../styles/styleMD';
 interface IFlipBook {
     pages: Array<{
         clean: string;
         changedToMatter: {
             [key: string]: any;
         };
-    }>;
+    } | any>;
 }
-
-
+enum SizeType {
+    /** Dimensions are fixed */
+    FIXED = "fixed",
+    /** Dimensions are calculated based on the parent element */
+    STRETCH = "stretch"
+}
 export const FlipBook: React.FC<IFlipBook> = ({ pages }) => {
     useEffect(() => {
         const pageFlip = new PageFlip(document.getElementById('flipbook-container')!, {
@@ -22,16 +27,16 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages }) => {
             flippingTime: 800,
             autoSize: true,
             startZIndex: 0,
+            swipeDistance: 15,
             mobileScrollSupport: true,
+            size: SizeType.STRETCH,
+            minWidth: 280,
+            maxWidth: 800,
+            minHeight: 300,
+            maxHeight: 800,
+            disableFlipByClick: true,
         });
-
-        pages.sort((a, b) => a.changedToMatter.pageNumber - b.changedToMatter.pageNumber);
-        pages.map((page) => {
-            console.log(page.changedToMatter.pageNumber);
-        });
-
-    
-
+        pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
         let loc = document.getElementById('page-storage')
         for (let i = 0; i < pages.length; i++)
         {
@@ -41,22 +46,15 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages }) => {
             page.className = 'page'
             pageContent.className = 'page-content'
             pageText.className = 'page-text'
-            pageText.innerHTML = pages[i].clean
+            pageText.innerHTML = pages[i]?.clean
             pageContent.appendChild(pageText)
             page.appendChild(pageContent)
             loc!.appendChild(page)
         }
-        pageFlip.on('changeState', (e) => {
-            if(e.data === 'fold_corner')
-            {
-                console.log(pageFlip.getCurrentPageIndex());
-            }
-        });
         pageFlip.on('changeState', () => {
             loc = document.getElementById('page-current');
             loc!.innerHTML = (pageFlip.getCurrentPageIndex()+1).toString();
         });
-
         loc = document.getElementById('page-total')
         loc!.innerHTML = (pages.length+2).toString();
         let prev = document.getElementById('prev');
@@ -75,20 +73,17 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages }) => {
         })
         pageFlip.loadFromHTML(document.querySelectorAll('.page')); 
     });
-
     return (
         <Wrapper>
-            <div className="container stop-scrolling">
+            <div className="stop-scrolling max-w-full">
                 <MarkdownContentPages>
                     <div id="flipbook-container">
-                        <div className="page page-cover page-cover-top" data-density="hard">
-                            <div className="page-content">
-                               <h1>Informator Politechniki Białostockiej</h1>
-                            </div>
+                        <div className="page page-cover" data-density="hard">
+                            <h1>
+                            <LogoPB src="images/logo_pb.png" />
+                            </h1>    
                         </div>
-
                         <div id="page-storage"></div>
-
                         <div className="page page-cover page-cover-bottom" data-density="hard">
                             <div className="page-content">
                                 <h1>THE END</h1>
@@ -96,11 +91,16 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages }) => {
                         </div>
                     </div>
                 </MarkdownContentPages>
-
-                <div id="page-counter">
-                    <button id="prev">Wstecz</button>
-                    Strona <div id="page-current">1</div> z <div id="page-total">-</div>
-                    <button id="next">Naprzód</button>
+                <div className="flex flex-row " id="page-counter">
+                    <Btn className="mr-4" id="prev">
+                        Wstecz
+                    </Btn>
+                    <div className="flex flex-row gap-1 mt-6">
+                        Strona <div id="page-current">1</div> z <div id="page-total">-</div>
+                    </div>
+                    <Btn className="ml-4" id="next">
+                        Naprzód
+                    </Btn>
                 </div>
             </div>
         </Wrapper>
