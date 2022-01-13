@@ -20,7 +20,7 @@
         "gray-matter": "^4.0.3",
         "isomorphic-dompurify": "^0.17.0",
         "marked": "^4.0.6",
-        "next": "^11.0.1",
+        "next": "^12.0.8",
         "next-compose-plugins": "^2.2.1",
         "next-optimized-images": "^3.0.0-canary.10",
         "optimized-images-loader": "^0.4.0",
@@ -32,12 +32,13 @@
         "remark-html": "^12.0.0"
     },
     "devDependencies": {
+        "@tailwindcss/typography": "^0.5.0",
         "@types/node": "^14.17.6",
         "@types/react": "^17.0.15",
-        "autoprefixer": "^9.8.8",
+        "autoprefixer": "^10.4.2",
         "graphql-zeus": "^3.1.0",
-        "postcss": "^7.0.39",
-        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
+        "postcss": "^8.4.5",
+        "tailwindcss": "^3.0.13",
         "typescript": "^4.3.5"
     }
 }

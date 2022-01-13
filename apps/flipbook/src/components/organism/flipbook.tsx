@@ -2,76 +2,74 @@ import styled from '@emotion/styled';
 import { PageFlip } from 'page-flip';
 import { useEffect } from 'react';
 import { Wrapper, Btn, LogoPB } from '../../styles/styleBook';
-import { MarkdownContentPages }from '../../styles/styleMD';
+import { MarkdownContentPages } from '../../styles/styleMD';
 interface IFlipBook {
-    pages: Array<{
-        clean: string;
-        changedToMatter: {
-            [key: string]: any;
-        };
-    } | any>;
+    pages: Array<
+        | {
+              clean: string;
+              changedToMatter: {
+                  [key: string]: any;
+              };
+          }
+        | any
+    >;
 }
 enum SizeType {
     /** Dimensions are fixed */
-    FIXED = "fixed",
+    FIXED = 'fixed',
     /** Dimensions are calculated based on the parent element */
-    STRETCH = "stretch"
+    STRETCH = 'stretch',
 }
 export const FlipBook: React.FC<IFlipBook> = ({ pages }) => {
     useEffect(() => {
         const pageFlip = new PageFlip(document.getElementById('flipbook-container')!, {
-            width: 800,
-            height: 800,
+            width: 1280 / 2.0,
+            height: 720,
             showCover: true,
             drawShadow: true,
             flippingTime: 800,
-            autoSize: true,
             startZIndex: 0,
             swipeDistance: 15,
             mobileScrollSupport: true,
-            size: SizeType.STRETCH,
-            minWidth: 280,
-            maxWidth: 800,
-            minHeight: 300,
-            maxHeight: 800,
             disableFlipByClick: true,
+            usePortrait: true,
+            autoSize: true,
         });
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
-        let loc = document.getElementById('page-storage')
-        for (let i = 0; i < pages.length; i++)
-        {
-            let page = document.createElement('div')
-            let pageContent = document.createElement('div')
-            let pageText = document.createElement('div')
-            page.className = 'page'
-            pageContent.className = 'page-content'
-            pageText.className = 'page-text'
-            pageText.innerHTML = pages[i]?.clean
-            pageContent.appendChild(pageText)
-            page.appendChild(pageContent)
-            loc!.appendChild(page)
+        let loc = document.getElementById('page-storage');
+        for (let i = 0; i < pages.length; i++) {
+            let page = document.createElement('div');
+            let pageContent = document.createElement('div');
+            let pageText = document.createElement('div');
+            page.className = 'page';
+            pageContent.className = 'page-content';
+            pageText.className = 'page-text';
+            pageText.innerHTML = pages[i]?.clean;
+            pageContent.appendChild(pageText);
+            page.appendChild(pageContent);
+            loc!.appendChild(page);
         }
         pageFlip.on('changeState', () => {
             loc = document.getElementById('page-current');
-            loc!.innerHTML = (pageFlip.getCurrentPageIndex()+1).toString();
+            loc!.innerHTML = (pageFlip.getCurrentPageIndex() + 1).toString();
         });
-        loc = document.getElementById('page-total')
-        loc!.innerHTML = (pages.length+2).toString();
+        loc = document.getElementById('page-total');
+        loc!.innerHTML = (pages.length + 2).toString();
         let prev = document.getElementById('prev');
         prev?.addEventListener('click', () => {
-            pageFlip.turnToPrevPage()
+            pageFlip.turnToPrevPage();
             loc = document.getElementById('page-current');
             loc!.innerHTML = (pageFlip.getCurrentPageIndex() + 1).toString();
-        })
+        });
         let next = document.getElementById('next');
         next?.addEventListener('click', () => {
-            if (pageFlip.getCurrentPageIndex() < pages.length + 1){
+            if (pageFlip.getCurrentPageIndex() < pages.length + 1) {
                 pageFlip.turnToNextPage();
             }
             loc = document.getElementById('page-current');
             loc!.innerHTML = (pageFlip.getCurrentPageIndex() + 1).toString();
-        })
-        pageFlip.loadFromHTML(document.querySelectorAll('.page')); 
+        });
+        pageFlip.loadFromHTML(document.querySelectorAll('.page'));
     });
     return (
         <Wrapper>
@@ -80,12 +78,12 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages }) => {
                     <div id="flipbook-container">
                         <div className="page page-cover" data-density="hard">
                             <h1>
-                            <LogoPB src="images/logo_pb.png" />
-                            </h1>    
+                                <LogoPB src="/logo_pb.png" />
+                            </h1>
                         </div>
                         <div id="page-storage"></div>
                         <div className="page page-cover page-cover-bottom" data-density="hard">
-                            <div className="page-content">
+                            <div className="page-content prose">
                                 <h1>THE END</h1>
                             </div>
                         </div>
