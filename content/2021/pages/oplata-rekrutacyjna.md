@@ -14,6 +14,8 @@ samego kierunku wnosi jedną opłatę rekrutacyjną. Opłata rekrutacyjna wynosi
 
 Opłata rekrutacyjna wnoszona jest na indywidualny numer rachunku dostępny w IRK i powinna być widoczna na koncie kandydata najpóźniej w dniu zakończenia rejestracji na studia.
 
+@newPage
+
 ### Dokonanie opłaty rekrutacyjnej po terminie jest jednoznaczne z wykluczeniem udziału w rekrutacji na studia.
 
 Opłata rekrutacyjna nie podlega zwrotowi. Jest zwracana w przypadku:

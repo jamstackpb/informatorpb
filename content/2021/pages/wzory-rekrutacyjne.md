@@ -16,6 +16,8 @@ pageNumber: 26
   stosowana: L = 0,5M $_P$ + 2M $_R$ + F $_R$ + 0,25O $_P$ + 0,75O $_R$
 - dla kandydatów ubiegających się o przyjęcie na pozostałe kierunki: L = 0,5M $_P$ + 1,25M $_R$ + 1,75F $_R$ + 0,25O $_P$ + 0,75O $_R$
 
+@newPage
+
 ## gdzie:
 
 M $_P$ - liczba punktów uzyskanych na egzaminie maturalnym z matematyki na poziomie podstawowym  

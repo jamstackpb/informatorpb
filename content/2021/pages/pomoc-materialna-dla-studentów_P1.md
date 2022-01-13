@@ -4,20 +4,20 @@ bgcImage: /images
 pageNumber: 33
 onImgContent:
   - first:
-      - head: Ile wynoszą stypendia dla studentó?
+      - head: Ile wynoszą stypendia dla studentów?
       - content: Dokładną kwotę stypendium każda uczelnia ustala indywidualnie. Należy pamiętać, że wysokość stypendiów ustalana jest na okres roku akademickiego i może ulegać zmianie. Wysokość stypendiów uzależniona jest od wysokości środków, jakie uczelnia otrzymuje na ten cel z budżetu państwa.
-- second:
-    - head: Przykładowa wysokość stypendiów w roku akademickim 2020/2021: 
-    - content1: stypendium rektora
-    - value1: 1300 zł
-    - content2: stypendium socjalne
-    - value2: 950 zł
-    - content3: zapomoga
-    - value3: 750 zł
-    - content4: stypendium dla osób z niepełnosprawnościami
-    - value4: 2600 zł
-    - content5: zwiększenie stypendium socjalnego
-    - value5: 210 zł
+  - second:
+      - head: Przykładowa wysokość stypendiów w roku akademickim 2020/2021
+      - content1: stypendium rektora
+      - value1: 1300 zł
+      - content2: stypendium socjalne
+      - value2: 950 zł
+      - content3: zapomoga
+      - value3: 750 zł
+      - content4: stypendium dla osób z niepełnosprawnościami
+      - value4: 2600 zł
+      - content5: zwiększenie stypendium socjalnego
+      - value5: 210 zł
 ---
 
 ## Pomoc materialna dla studentów
@@ -30,6 +30,8 @@ Stypendia przyznawane są na semestr lub rok akademicki (na 9 miesięcy). Jeśli
 
 Student studiujący równocześnie na kilku kierunkach studiów może otrzymać świadczenia tylko na jednym, wybranym przez siebie kierunku, przy czym może otrzymywać wszystkie wymienione stypendia jednocześnie, jeśli spełni przesłanki do ich otrzymywania.
 
+@newPage
+
 Student ma również możliwość otrzymania stypendium ministra za znaczące osiągnięcia naukowe, artystyczne lub sportowe. Może też aplikować o stypendium w Programie Odkrywcy Diamentów – inicjatywie Politechniki Białostockiej, której celem jest wspieranie studentów uzyskujących sukcesy w konkursach i innowacyjnych projektach.
 
 Szczegółowy regulamin ustalania wysokości, przyznawania i wypłacania stypendiów dla studentów ustala rektor w porozumieniu z uczelnianym organem samorządu studenckiego w postaci Regulaminu przyznawania świadczeń,który dostępny jest na stronie internetowej uczelni: [pb.edu.pl/dssd/finanse-studenta](https://pb.edu.pl/dssd/finanse-studenta).
@@ -40,6 +42,8 @@ Ustawa gwarantuje obligatoryjne przyznanie przez uczelnię stypendium rektora, j
 
 - laureatem olimpiady międzynarodowej albo laureatem lub finalistą olimpiady stopnia centralnego, o których mowa w przepisach o systemie oświaty,
 - medalistą co najmniej współzawodnictwa sportowego o tytuł Mistrza Polski w danym sporcie, o którym mowa w przepisach o sporcie.
+
+@newPage
 
 Stypendium na wyższych latach może otrzymać student, który uzyskał wyróżniające wyniki w nauce, ma osiągnięcia naukowe, artystyczne lub osiągnięcia sportowe we współzawodnictwie co najmniej na poziomie krajowym. Stypendium rektora przyznaje się nie więcej niż 10% studentów na określonym kierunku studiów.
 

@@ -10,6 +10,8 @@ Oprócz tradycyjnych zajęć dydaktycznych na uczelni Politechnika Białostocka 
 
 W związku z tym, aby w pełni korzystać z kształcenia zdalnego oraz e-zasobów naszej uczelni (m.in. Platforma Edukacyjna CKZ, platformy wydziałowe, Microsoft Teams oraz publikacje Oficyny Wydawniczej PB w wersjach PDF), naszym studentom zalecamy posiadanie: komputera/laptopa, kamerki, mikrofonu, stałego łącza internetowego.
 
+@newPage
+
 [Platforma Edukacyjna CKZ]()
 
 Podstawowym narzędziem do zapewnienia ciągłości procesu kształcenia naszych studentów jest Platforma Edukacyjna Centrum Kształcenia Zdalnego PB, czyli portal edukacyjny „Eduportal”. Serwis ma pełne wsparcie standardu WCAG 2.0 na poziomie AA, które umożliwia korzystanie z portalu także osobom z niepełnosprawnościami. Logowanie do portalu edukacyjnego Eduportal następuje ze strony ckz.pb.edu.pl. Dane do logowania są takie same jak do systemu USOSweb.
@@ -17,6 +19,8 @@ Podstawowym narzędziem do zapewnienia ciągłości procesu kształcenia naszych
 Platforma umożliwia współpracę między użytkownikami – wymianę pomysłów, doświadczeń i materiałów edukacyjnych, a także tworzenie i zarządzanie szkoleniami, testami i egzaminami dla studentów. To wszystko zapewnia warunki do realizacji kształcenia w szerokim zakresie synchronicznej i asynchronicznej teleedukacji. Nauczyciele akademiccy mogą tu prowadzić zajęcia online, udostępniać materiały dydaktyczne, prowadzić konsultacje, czaty i wirtualne klasy. Studenci, oprócz korzystania z tych użyteczności, mogą wypełniać interaktywne kursy i testy, uczestniczyć w wideokonferencjach i grupach dyskusyjnych.
 
 Trwają intensywne prace nad rozszerzeniem funkcjonalności platformy CKZ i opracowaniem autorskiego systemu kształcenia zdalnego na Politechnice Białostockiej.
+
+@newPage
 
 [Platformy wydziałowe]()
 

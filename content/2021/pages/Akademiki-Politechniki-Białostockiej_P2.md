@@ -15,6 +15,8 @@ Wzory dokumentów i cennik znajdują się na stronie akademiki.bialystok.pl.
 
 Wysokość opłat miesięcznych wnoszonych przez mieszkańców Domów Studenta wg cennika obowiązującego od 1.10.2021 r. za pokój wyposażony w chłodziarko-zamrażarkę.
 
+@newPage
+
 A L F A, B E T A, G A M M A
 
 2-osobowy

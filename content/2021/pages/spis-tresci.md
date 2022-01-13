@@ -4,4 +4,4 @@ bgcImage: /images
 pageNumber: 3
 ---
 
-# #SPIS TREŚCI
+# SPIS TREŚCI
