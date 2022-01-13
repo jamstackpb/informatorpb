@@ -15,11 +15,16 @@ wymiany studenckiej:]()
 - studia na uczelni zagranicznej w jednym z 26 oferowanych krajów. Wymagania: średnia ocen z dwóch ostatnich semestrów minimum 3,2 oraz znajomość języka angielskiego na poziomie B1 lub wyższym (poświadczona przez: wewnętrzny egzamin organizowany przez BWM, wynik z egzaminu maturalnego z języka angielskiego na poziomie podstawowym min. 80% lub odpowiedni certyfikat),
 - praktyki za granicą (również dla absolwentów) ze stypendium w wysokości od 550 do 620 euro miesięcznie,
 - wyjazd na szkołę letnią,
+
+@newPage
+
 - wyjazd w ramach tzw. podwójnego dyplomowania, czyli możliwość uzyskania dwóch dyplomów: Politechniki Białostockiej i uczelni partnerskiej. PB współpracuje z 16 ośrodkami akademickimi: w Chinach, Danii, Francji, Hiszpanii, Portugalii, Ukrainie, Kazachstanie, Kirgistanie, Uzbekistanie i Rosji
 - wyjazd w ramach działalności studenckich kół naukowych, promocji uczelni, reprezentowania w zawodach, turniejach, prowadzenia badań naukowych, udziału w konferencjach, seminariach i innych.
 
 W dopełnieniu formalności związanych z mobilnością studentów pomaga Biuro ds. Współpracy Międzynarodowej Politechniki Białostockiej (BWM).[Informacje: pb.edu.pl/bwm](https://pb.edu.pl/bwm/)
 [FB: facebook.pl/pb.bwm](https://www.facebook.com/pb.bwm)
+
+@newPage
 
 ### Wymiany studenckie w Polsce
 

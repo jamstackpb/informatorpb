@@ -4,13 +4,15 @@ bgcImage: /images
 pageNumber: 46
 ---
 
-### Poliyechnika białostocka - dołącz do nas
+### Politechnika białostocka - dołącz do nas
 
 W czasie studiów warto odnaleźć osoby o podobnych pasjach i zainteresowaniach. Chcesz spełniać się społecznie? Dołącz do Samorządu Studentów Politechniki Białostockiej, który broni interesów żaków i prowadzi różnorodne akcje kulturalne i społeczne. Dzięki zaangażowaniu w prace organizacji studenckich, zwłaszcza samorządu, już od początku studiów możesz tworzyć ciekawe projekty.
 
 Chcesz rozwijać się naukowo? Dołącz do jednego z licznych studenckich kół naukowych. Jest ich blisko 60! Wspólnie macie szansę zrealizować projekty, o których będzie głośno w całym świecie (łaziki marsjańskie, bolidy, roboty walk sumo).Możesz również dołączyć do organizacji studenckich, takich jak: Chór Politechniki Białostockiej, Studencka Agencja Fotograficzna, Niezależne Zrzeszenie Studentów, Erasmus Student Network, Business Centre Club, AEGEE.
 
 W kilkunastu sekcjach Klubu Uczelnianego Akademickiego Związku Sportowego swoje pasje rozwija ponad 400 studentów Politechniki Białostockiej. Dołącz do treningów: lekkiej atletyki, siatkówki, koszykówki, trójboju siłowego, pływania, judo, tenisa stołowego, ergometru wioślarskiego czy kolarstwa górskiego. Więcej na: azs.pb.edu.pl
+
+@newPage
 
 JUWENALIA
 

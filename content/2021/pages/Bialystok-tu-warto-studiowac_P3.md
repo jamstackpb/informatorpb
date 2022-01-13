@@ -13,7 +13,11 @@ Ubezpieczenie od następstw nieszczęśliwych wypadków (NNW) nie jest obowiązk
 
 ### Bary, restauracje
 
-W naszym mieście znajdziesz zarówno miejsca, w których serwowane są domowe obiady, jak i restauracje proponujące kuchnię z różnych stron świata, w których można zjeść sushi, lasagne czy kebab. Bardzo popularne są też knajpy z potrawami regionalnymi, takimi jak babka i kiszka ziemniaczana, kartacze. Miejscem, w którym studenci nie wydadzą zbyt wiele pieniędzy, są różnego rodzaju pizzerie. W Białymstoku, w różnych częściach miasta, funkcjonuje ich wiele. Bez problemu można też skorzystać z usługi dowozu. Studenci, którzy nie chcą przepłacać za jedzenie, mogą skorzystać z kuponów obniżających ceny posiłków. Najczęściej są one udostępniane w specjalnych aplikacjach. Studiując na Politechnice Białostockiej, możesz stołować się w barach znajdujących się w niektórych budynkach wydziałowych. Smacznie i niedrogo zjesz też w najbliższych okolicach kampusu.
+W naszym mieście znajdziesz zarówno miejsca, w których serwowane są domowe obiady, jak i restauracje proponujące kuchnię z różnych stron świata, w których można zjeść sushi, lasagne czy kebab. Bardzo popularne są też knajpy z potrawami regionalnymi, takimi jak babka i kiszka ziemniaczana, kartacze.
+
+@newPage
+
+Miejscem, w którym studenci nie wydadzą zbyt wiele pieniędzy, są różnego rodzaju pizzerie.W Białymstoku, w różnych częściach miasta, funkcjonuje ich wiele. Bez problemu można też skorzystać z usługi dowozu. Studenci, którzy nie chcą przepłacać za jedzenie, mogą skorzystać z kuponów obniżających ceny posiłków. Najczęściej są one udostępniane w specjalnych aplikacjach. Studiując na Politechnice Białostockiej, możesz stołować się w barach znajdujących się w niektórych budynkach wydziałowych. Smacznie i niedrogo zjesz też w najbliższych okolicach kampusu.
 
 ### Rowery miejskie, skutery, hulajnogi
 

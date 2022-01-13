@@ -10,9 +10,13 @@ important:
 # Dokumenty rekrytacyjne
 
 Kandydat na studia pierwszego stopnia powinien dostarczyć następujące dokumenty:
+
 1. > ankieta osobowa
 2. > podanie o elektroniczną legitymację studencką PB (ELS PB) – w przypadku, gdy kandydat jej nie posiada
 3. > świadectwo dojrzałości (lub świadectwo dojrzałości i zaświadczenie o wynikach egzaminu maturalnego z poszczególnych przedmiotów, o których mowa w ustawie o systemie oświaty lub w przypadku osób zdających maturę przed 2007 rokiem świadectwo dojrzałości i świadectwo ukończenia szkoły średniej lub inny dokument, o którym mowa w art. 69 ust. 2 ustawy Prawo o szkolnictwie wyższym i nauce)
+
+@newPage
+
 4. > przy ubieganiu się o przyjęcie na studia na podstawie dokumentu potwierdzającego uzyskane wykształcenie wydanego za granicą dokument ten musi być:
    >
    > - zalegalizowany lub opatrzony apostille,
@@ -24,6 +28,9 @@ Kandydat na studia pierwszego stopnia powinien dostarczyć następujące dokumen
    > - uczestnika lub medalisty zawodów sportowych,
    > - laureata konkursu międzynarodowego,
    > - laureata konkursu organizowanego przez Politechnikę Białostocką
+
+@newPage
+
 6. > dowód wniesienia opłaty za legitymację, gdy kandydat nie posiada ELS PB
 7. > oświadczenie kandydata w sprawie posiadania numeru albumu Politechniki Białostockiej
 8. > zaświadczenie o braku przeciwwskazań do nauki na kierunkach studiów, na których zaświadczenie jest wymagane; zaświadczenie wydane przez lekarza medycyny pracy kandydat ma obowiązek złożyć we właściwej wydziałowej komisji rekrutacyjnej lub we właściwym dziekanacie najpóźniej do dnia rozpoczęcia zajęć dydaktycznych

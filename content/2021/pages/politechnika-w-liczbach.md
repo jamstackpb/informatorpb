@@ -17,6 +17,8 @@ Programy naszych kierunków były konsultowane z największymi pracodawcami regi
 
 Blisko 60 aktywnych kół naukowych i organizacji studenckich.
 
+@newPage
+
 ## Wsparcie materialne
 
 Studenci Politechniki Białostockiej mogą starać się o stypendium rektora, stypendia socjalne, stypendium mieszkaniowe „Akademiki za dobre wyniki”, stypendium Programu „Odkrywcy Diamentów”.
@@ -26,6 +28,8 @@ Studenci Politechniki Białostockiej mogą starać się o stypendium rektora, st
 Umiędzynarodowienie studiów i rozwijanie współpracy z uczelniami partnerskimi na całym świecie to zadanie priorytetowe Politechniki Białostockiej. Prowadzimy intensywną współpracę z Chinami, a dzięki
 ponad 300 aktywnym porozumieniom w programie wymiany studenckiej Erasmus+ nasi studenci mogą podjąć naukę w uczelniach na całym świecie. Aktualnie mamy 23 umowy o podwójnym dyplomowaniu z uczelniami w Chinach, Danii, Francji, Hiszpanii, Portugalii, Ukrainie, Kazachstanie, Kirgistanie i Rosji. Organizujemy międzynarodowe szkoły letnie z zakresu logistyki, architektury krajobrazu, budownictwa i inżynierii środowiska.
 Obejrzyj wideo: [https://bit.ly/studia_bez_granic](https://bit.ly/studia_bez_granic)
+
+@newPage
 
 ## 630 nauczycieli akademickich
 
@@ -41,6 +45,8 @@ Polskim Towarzystwem Elektrotechniki Teoretycznej i Stosowanej, Polskim Związki
 Cztery domy studenta położone są na kampusie głównym przy ul. Zwierzynieckiej. To centrum Białegostoku! W sąsiedztwie akademików jest park Zwierzyniecki ze ścieżkami spacerowymi i trasami biegowymi.
 Obejrzyj wideo:
 [https://bit.ly/akademiki-PB](https://bit.ly/akademiki-PB)
+
+@newPage
 
 ## Studia do potęgi
 

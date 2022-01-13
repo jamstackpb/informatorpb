@@ -16,6 +16,8 @@ e-mail: rekrutacja@pb.edu.pl
 Niezbędne informacje znajdziesz również na stronie
 [pb.edu.pl/kandydaci.](https://pb.edu.pl/kandydaci)
 
+@newPage
+
 🔍 zapoznaj się z ofertą kierunków
 
 💻 zarejestruj się w systemie Internetowej Rejestracji Kandydatów irk.pb.edu.pl i wprowadź dane osobowe

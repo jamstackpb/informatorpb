@@ -16,6 +16,8 @@ Jeśli student nie zaliczy jakiegoś przedmiotu, uczelnia pobiera opłatę za po
 
 Poza opłatą za powtarzanie oraz za czesne Politechnika Białostocka pobiera opłaty za usługi edukacyjne związane z:
 
+@newPage
+
 - kształceniem na studiach w języku obcym,
 - prowadzeniem zajęć nieobjętych programem studiów,
 - kształceniem cudzoziemców na studiach stacjonarnych w języku polskim.

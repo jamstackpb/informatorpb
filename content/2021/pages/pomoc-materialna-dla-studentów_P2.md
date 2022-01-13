@@ -15,7 +15,11 @@ Zapomogę może otrzymać student, który znalazł się przejściowo w trudnej s
 
 ### Stypendium ministra
 
-O stypendium ministra może ubiegać się student wykazujący się znaczącymi osiągnięciami naukowymi lub artystycznymi związanymi ze studiami lub znaczącymi osiągnięciami sportowymi. Przyznawanie tego stypendium określają przepisy Ministerstwa Nauki i Szkolnictwa Wyższego. Maksymalna wysokość stypendium wynosi 17 000 zł. Stypendium wypłaca się jednorazowo, ze środków finansowych przekazanych uczelni na ten cel przez ministra.
+O stypendium ministra może ubiegać się student wykazujący się znaczącymi osiągnięciami naukowymi lub artystycznymi związanymi ze studiami lub znaczącymi osiągnięciami sportowymi. Przyznawanie tego stypendium określają przepisy Ministerstwa Nauki i Szkolnictwa Wyższego. Maksymalna wysokość stypendium wynosi 17 000 zł.
+
+@newPage
+
+Stypendium wypłaca się jednorazowo, ze środków finansowych przekazanych uczelni na ten cel przez ministra.
 
 ### Stypendium dla studentów niepełnosprawnych
 
@@ -27,6 +31,9 @@ Studenci z aktualnymi orzeczeniami mogą złożyć wniosek o stypendium dla osó
 - alternatywnych zajęć z wychowania fizycznego dostosowanych do możliwości,
 - wydłużenia i zmiany formy zaliczenia/egzaminu,
 - udostępnienia sprzętu specjalistycznego z wypożyczalni uczelnianej,
+
+@newPage
+
 - dostosowania materiałów dydaktycznych,
 - pomocy psychologa,
 - pomocy doradców zawodowych,
