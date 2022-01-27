@@ -14,8 +14,9 @@ jobs:
         with:
           node-version: "14.x"
           registry-url: "https://registry.npmjs.org"
-      - run: cd apps/flipbook
-      - run: npm i
-      - run: npm run build:ci
-      - run: npm i surge
-      - run: npx surge --project ./out --domain informatorpb-flipbook.surge.sh
+      - run: >
+          cd apps/flipbook && 
+          npm i && 
+          npm run build:ci &&
+          npm i surge &&
+          npx surge --project ./out --domain informatorpb-flipbook.surge.sh
