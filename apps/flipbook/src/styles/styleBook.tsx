@@ -1,7 +1,4 @@
-import { Img } from '@/src/components/atoms/img';
 import styled from '@emotion/styled';
-
-export const LogoPB: React.FC<{ src: string }> = ({ src }) => <Img src={src} />;
 
 export const Btn = styled.button`
     color: white;

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { PageFlip } from 'page-flip';
 import { useEffect } from 'react';
-import { Wrapper, Btn, LogoPB } from '../../styles/styleBook';
+import { Wrapper, Btn } from '../../styles/styleBook';
 import { MarkdownContentPages } from '../../styles/styleMD';
 interface IFlipBook {
     pages: Array<
@@ -77,9 +77,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages }) => {
                 <MarkdownContentPages>
                     <div id="flipbook-container">
                         <div className="page page-cover" data-density="hard">
-                            <h1>
-                                <LogoPB src="/logo_pb.png" />
-                            </h1>
+                            <h1>PB</h1>
                         </div>
                         <div id="page-storage"></div>
                         <div className="page page-cover page-cover-bottom" data-density="hard">
