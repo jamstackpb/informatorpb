@@ -6,8 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SURGE_TOKEN: ${secrets.SURGE_TOKEN}
-      SURGE_LOGIN: ${secrets.SURGE_LOGIN}
+      SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+      SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
