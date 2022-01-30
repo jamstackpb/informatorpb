@@ -5,26 +5,31 @@ export const LogoPB: React.FC<{ src: string }> = ({ src }) => <Img src={src} />;
 
 export const Btn = styled.button`
     color: white;
-    background-color: #012404;
+    background-color: rgb(20 83 45);
     height: 2rem;
     width: 5rem;
     margin-top: 20px;
     margin-bottom: 40px;
     border-radius: 5rem;
-    border: 2px solid;
-    border-color: black;
     :hover {
         opacity: 0.5;
     }
 `;
-
+export const WrapperMobile = styled.div`
+@media (min-width: 650px) {
+    display: none;
+}
+`
 export const Wrapper = styled.div`
     width: 100%;
     height: 100%;
+    @media (max-width: 650px) {
+        display: none;
+    }
     .stop-scrolling {
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
+        @media (max-width: 1280px) {
+            overflow: hidden;
+        }
     }
     #page-counter {
         display: flex;
@@ -32,33 +37,31 @@ export const Wrapper = styled.div`
         justify-content: center;
         gap: 4px;
     }
-    .conatiner {
-        width: 100%;
-        height: 100%;
-    }
     #flipbook-container {
-        display: none;
+        display: flex;
         background-size: cover;
-        margin-right: auto;
-        margin-left: auto;
+        margin: auto;
         height: 100%;
         width: 100%;
+        box-shadow: 0px 5px 15px 15px rgba(0, 0, 0, 0.1);
     }
 
     .page {
         background-color: white;
-        border: solid 1px #012404;
         overflow: auto;
+        & > div {
+            padding-left: 10px;
+        }
         &.--left {
             // for left page (property will be added automatically)
-            border-right: 0;
-            box-shadow: inset -7px 0 30px -7px rgba(0, 0, 0, 0.4);
+            border-right: 2px solid rgba(0, 0, 0, 0.1);
+            box-shadow: inset 5px 0px 0px 1px rgba(0, 0, 0, 0.1);
         }
 
         &.--right {
             // for right page (property will be added automatically)
             border-left: 0;
-            box-shadow: inset 7px 0 30px -7px rgba(0, 0, 0, 0.4);
+            box-shadow: inset 5px 0px 0px 1px rgba(0, 0, 0, 0.1);
 
             .page-footer {
                 text-align: right;
@@ -72,10 +75,8 @@ export const Wrapper = styled.div`
         }
 
         &.page-cover {
-            background-color: #012404;
+            background-color: rgb(20 83 45);
             color: white;
-            border: solid 1px #012404;
-
             h1 {
                 width: 50%;
                 height: 50%;
@@ -85,11 +86,11 @@ export const Wrapper = styled.div`
             }
 
             &.page-cover-top {
-                box-shadow: inset 0px 0 30px 0px rgba(36, 10, 3, 0.5), -2px 0 5px 2px rgba(0, 0, 0, 0.4);
+                box-shadow: inset 0px 0 30px 0px rgba(36, 10, 3, 0.3), -2px 0 5px 2px rgba(0, 0, 0, 0.1);
             }
 
             &.page-cover-bottom {
-                box-shadow: inset 0px 0 30px 0px rgba(36, 10, 3, 0.5), 10px 0 8px 0px rgba(0, 0, 0, 0.4);
+                box-shadow: inset 0px 0 30px 0px rgba(36, 10, 3, 0.3), 10px 0 8px 0px rgba(0, 0, 0, 0.1);
             }
         }
     }
