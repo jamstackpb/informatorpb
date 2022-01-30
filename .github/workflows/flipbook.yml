@@ -1,0 +1,22 @@
+on:
+  push:
+    tags:
+      - "flipbook-[0-9]+.[0-9]+.[0-9]+"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+      SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+          registry-url: "https://registry.npmjs.org"
+      - run: >
+          cd apps/flipbook && 
+          npm i && 
+          npm run build:ci &&
+          npm i surge &&
+          npx surge --project ./out --domain informatorpb-flipbook.surge.sh

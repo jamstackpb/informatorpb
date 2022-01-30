@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Wrapper, Btn, LogoPB, WrapperMobile } from '../../styles/styleBook';
 import { AddFrontPage } from '../atoms/AddFrontPage';
 import { AddPage, AddPageImage } from '../atoms/AddPage';
+
 interface IFlipBook {
     pages: Array<
         | {

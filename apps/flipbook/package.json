@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "dotenv -e .env.development -- next dev",
+        "build:ci": "next build && next export",
         "build:development": "dotenv -e .env.development -- next build && next export",
         "build:production": "dotenv -e .env.production -- next build && next export",
         "start": "next start",
