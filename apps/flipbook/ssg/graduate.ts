@@ -3,24 +3,30 @@ import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 import DOMPurify from 'isomorphic-dompurify';
-
+interface GraduateMatter {
+    academicTitle: string;
+    name: string;
+    job: string;
+    faculty: string;
+    image: string;
+}
 export const Graduate = () => {
     const pathToFolderProjects = path.join(process.cwd(), '..', '..', 'content', '2021', 'absolwenci');
     const projectsDirectoryFiles = fs.readdirSync(pathToFolderProjects);
 
-    const withGrayMatter = projectsDirectoryFiles.map((adf) => {
-        if (path.extname(adf) == ".md")
-        {
+    return projectsDirectoryFiles
+        .filter((adf) => {
+            return path.extname(adf) === '.md';
+        })
+        .map((adf) => {
             const realPath = path.join(pathToFolderProjects, adf);
             const fileContents = fs.readFileSync(realPath).toString('utf-8');
-            const { data: changedToMatter, content } = matter(fileContents);
+            const { data, content } = matter(fileContents);
             const dirty = marked(content);
             const clean = DOMPurify.sanitize(dirty);
             return {
-            changedToMatter,
-            clean,
+                changedToMatter: data as GraduateMatter,
+                clean,
             };
-        } else return null;
-    });
-    return withGrayMatter;
+        });
 };

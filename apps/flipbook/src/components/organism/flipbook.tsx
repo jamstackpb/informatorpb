@@ -1,5 +1,6 @@
+import { Graduate } from '@/ssg/graduate';
 import { PageFlip } from 'page-flip';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Wrapper, Btn, LogoPB, WrapperMobile } from '../../styles/styleBook';
 import { AddFrontPage } from '../atoms/AddFrontPage';
 import { AddPage, AddPageImage } from '../atoms/AddPage';
@@ -14,12 +15,7 @@ interface IFlipBook {
           }
         | any
     >;
-    graduate: Array<{
-        changedToMatter: {
-            [key: string]: any;
-        };
-        clean: string;
-    } | null>;
+    graduate: ReturnType<typeof Graduate>;
     science: Array<{
         changed: {
             [key: string]: any;
@@ -51,18 +47,33 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
         });
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
         let loc = document.getElementById('page-storage');
-        pages.map((p)=> {
-            AddPage('', 'prose flex flex-col ml-4 mt-4', '', p?.clean)
-        })
-        AddFrontPage('', 'prose h-full w-full flex flex-col py-[49%]', 'text-white text-4xl text-center', 'Nasi Absolwenci', '')
-        graduate.map((g) => {
-            AddPageImage('', 'prose flex flex-col ml-4', 'mt-4', g!.clean, 'w-96 h-auto mx-auto mt-4', g!.changedToMatter.image);
+        pages.map((p) => {
+            AddPage('', 'prose flex flex-col ml-4 mt-4', '', p?.clean);
         });
-        AddFrontPage('', 'prose w-full h-full flex flex-col py-[49%]', 'text-white text-4xl text-center', 'Koła naukowe na naszej uczelni!','')
+        AddFrontPage(
+            '',
+            'prose h-full w-full flex flex-col py-[49%]',
+            'text-white text-4xl text-center',
+            'Nasi Absolwenci',
+            '',
+        );
+        graduate.map((g) => {
+            AddPageImage({
+                content: g.clean,
+                src: g.changedToMatter.image,
+            });
+        });
+        AddFrontPage(
+            '',
+            'prose w-full h-full flex flex-col py-[49%]',
+            'text-white text-4xl text-center',
+            'Koła naukowe na naszej uczelni!',
+            '',
+        );
         science.map((g) => {
-            g.cleaned.map((c)=>{
-                AddPage('','prose flex flex-col ml-4 mt-4', 'flex justify-center', c)
-            })
+            g.cleaned.map((c) => {
+                AddPage('', 'prose flex flex-col ml-4 mt-4', 'flex justify-center', c);
+            });
         });
         pageFlip.on('changeState', () => {
             loc = document.getElementById('page-current');
@@ -71,7 +82,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
         pageFlip.on('init', () => {
             loc = document.getElementById('page-total');
             loc!.innerHTML = pageFlip.getPageCount().toString();
-        })
+        });
         let prev = document.getElementById('prev');
         prev?.addEventListener('click', () => {
             pageFlip.turnToPrevPage();
@@ -90,11 +101,13 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
     }, [pages, graduate, science]);
     return (
         <div>
-        <WrapperMobile>
-            <div className="p-2 text-3xl font-bold">Niestety wersja mobilna flipbooka nie jest dostępna w tej chwili</div>
-        </WrapperMobile>
-        <Wrapper className="container mx-auto">
-            <div className="mt-12 max-w-full">
+            <WrapperMobile>
+                <div className="p-2 text-3xl font-bold">
+                    Niestety wersja mobilna flipbooka nie jest dostępna w tej chwili
+                </div>
+            </WrapperMobile>
+            <Wrapper className="container mx-auto">
+                <div className="mt-12 max-w-full">
                     <div id="flipbook-container" className="mt-[-2%] stop-scrolling">
                         <div className="page page-cover" data-density="hard">
                             <h1>
@@ -103,9 +116,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
                         </div>
                         <div id="page-storage"></div>
                         <div className="page page-cover page-cover-bottom" data-density="hard">
-                            <div className="page-content">
-                                
-                            </div>
+                            <div className="page-content"></div>
                         </div>
                     </div>
                     <div className="flex flex-row relative mt-10" id="page-counter">
@@ -119,8 +130,8 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
                             Naprzód
                         </Btn>
                     </div>
-            </div>
-        </Wrapper>
+                </div>
+            </Wrapper>
         </div>
     );
 };
