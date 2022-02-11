@@ -3,18 +3,15 @@ import { PageFlip } from 'page-flip';
 import React, { useEffect, useState } from 'react';
 import { Wrapper, Btn, LogoPB, WrapperMobile } from '../../styles/styleBook';
 import { AddFrontPage } from '../atoms/AddFrontPage';
-import { AddPage, AddPageImage } from '../atoms/AddPage';
+import { AddPage, AddPageImage, AddPlainPage } from '../atoms/AddPage';
 
 interface IFlipBook {
-    pages: Array<
-        | {
-              clean: string;
-              changedToMatter: {
-                  [key: string]: any;
-              };
-          }
-        | any
-    >;
+    pages: Array<{
+        clean: string;
+        changedToMatter: {
+            [key: string]: any;
+        };
+    }>;
     graduate: ReturnType<typeof Graduate>;
     science: Array<{
         changed: {
@@ -45,10 +42,12 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
             autoSize: true,
             size: SizeType.FIXED,
         });
+        let index = 0;
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
         let loc = document.getElementById('page-storage');
         pages.map((p) => {
-            AddPage('', 'prose flex flex-col ml-4 mt-4', '', p?.clean);
+            AddPlainPage({ content: p.clean, right: index % 2 === 0 });
+            index++;
         });
         AddFrontPage(
             '',
@@ -57,11 +56,13 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
             'Nasi Absolwenci',
             '',
         );
+        index++;
         graduate.map((g) => {
             AddPageImage({
                 content: g.clean,
                 src: g.changedToMatter.image,
             });
+            index++;
         });
         AddFrontPage(
             '',
@@ -70,9 +71,11 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
             'Koła naukowe na naszej uczelni!',
             '',
         );
+        index++;
         science.map((g) => {
             g.cleaned.map((c) => {
                 AddPage('', 'prose flex flex-col ml-4 mt-4', 'flex justify-center', c);
+                index++;
             });
         });
         pageFlip.on('changeState', () => {

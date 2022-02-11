@@ -19,19 +19,40 @@ export const AddPage = (
     loc!.appendChild(page);
 };
 
-const PageImageComponent: React.FC<{ src: string; content: string }> = ({ content, src }) => {
+const FlipBookPage: React.FC<{ right?: boolean }> = ({ right, children }) => {
     return (
         <div className="page">
-            <div className="prose flex flex-col ml-4">
-                <img src={src} />
-                <div dangerouslySetInnerHTML={{ __html: content }}></div>
-            </div>
+            <div className={`prose flex flex-col p-8 ${right ? 'pr-12' : 'pl-12'}`}>{children}</div>
         </div>
     );
 };
-export const AddPageImage = ({ content, src }: { content: string; src: string }) => {
+
+const PlainPage: React.FC<{ content: string; right?: boolean }> = ({ content, right }) => {
+    return (
+        <FlipBookPage right={right}>
+            <div dangerouslySetInnerHTML={{ __html: content }}></div>
+        </FlipBookPage>
+    );
+};
+
+const PageImageComponent: React.FC<{ src: string; content: string }> = ({ content, src }) => {
+    return (
+        <FlipBookPage>
+            <img src={src} />
+            <div dangerouslySetInnerHTML={{ __html: content }}></div>
+        </FlipBookPage>
+    );
+};
+
+const AddReactPage = ({ element }: { element: React.ReactElement }) => {
     let loc = document.getElementById('page-storage');
     let page = document.createElement('div');
-    page.innerHTML = ReactDOMServer.renderToString(<PageImageComponent content={content} src={src} />);
+    page.innerHTML = ReactDOMServer.renderToString(element);
     loc!.appendChild(page);
+};
+
+export const AddPageImage = ({ content, src }: { content: string; src: string }) =>
+    AddReactPage({ element: <PageImageComponent content={content} src={src} /> });
+export const AddPlainPage = ({ content, right }: { content: string; right?: boolean }) => {
+    AddReactPage({ element: <PlainPage right={right} content={content} /> });
 };

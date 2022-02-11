@@ -16,10 +16,10 @@ export const Btn = styled.button`
     }
 `;
 export const WrapperMobile = styled.div`
-@media (min-width: 650px) {
-    display: none;
-}
-`
+    @media (min-width: 650px) {
+        display: none;
+    }
+`;
 export const Wrapper = styled.div`
     width: 100%;
     height: 100%;
@@ -49,8 +49,13 @@ export const Wrapper = styled.div`
     .page {
         background-color: white;
         overflow: auto;
-        & > div {
-            padding-left: 10px;
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-top: 0;
         }
         &.--left {
             // for left page (property will be added automatically)
