@@ -9,8 +9,9 @@ export const getFlipBook = () => {
     const pathToFolderProjects = path.join(process.cwd(), '..', '..', 'content', '2021', 'pages');
     const projectsDirectoryFiles = fs.readdirSync(pathToFolderProjects);
 
-    const withGrayMatter = projectsDirectoryFiles.flatMap((adf) => {
-        if (path.extname(adf) == '.md') {
+    const withGrayMatter = projectsDirectoryFiles
+        .filter((adf) => path.extname(adf) === '.md')
+        .flatMap((adf) => {
             const realPath = path.join(pathToFolderProjects, adf);
             const fileContents = fs.readFileSync(realPath).toString('utf-8');
             const { data: changedToMatter, content } = matter(fileContents);
@@ -21,7 +22,6 @@ export const getFlipBook = () => {
                 changedToMatter,
                 clean: p,
             }));
-        } else return null;
-    });
+        });
     return withGrayMatter;
 };
