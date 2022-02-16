@@ -19,17 +19,19 @@ export const AddPage = (
     loc!.appendChild(page);
 };
 
-const FlipBookPage: React.FC<{ right?: boolean }> = ({ right, children }) => {
+const FlipBookPage: React.FC = ({ children }) => {
     return (
         <div className="page">
-            <div className={`prose flex flex-col p-8 m-0 max-w-none ${right ? 'pr-12' : 'pl-12'}`}>{children}</div>
+            <div className="max-w-none flex">
+                <div className={`prose flex flex-col p-8 m-0`}>{children}</div>
+            </div>
         </div>
     );
 };
 
-const PlainPage: React.FC<{ content: string; right?: boolean }> = ({ content, right }) => {
+const PlainPage: React.FC<{ content: string }> = ({ content }) => {
     return (
-        <FlipBookPage right={right}>
+        <FlipBookPage>
             <div dangerouslySetInnerHTML={{ __html: content }}></div>
         </FlipBookPage>
     );
@@ -53,6 +55,6 @@ const AddReactPage = ({ element }: { element: React.ReactElement }) => {
 
 export const AddPageImage = ({ content, src }: { content: string; src: string }) =>
     AddReactPage({ element: <PageImageComponent content={content} src={src} /> });
-export const AddPlainPage = ({ content, right }: { content: string; right?: boolean }) => {
-    AddReactPage({ element: <PlainPage right={right} content={content} /> });
+export const AddPlainPage = ({ content }: { content: string }) => {
+    AddReactPage({ element: <PlainPage content={content} /> });
 };
