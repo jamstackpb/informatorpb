@@ -46,7 +46,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
         let loc = document.getElementById('page-storage');
         pages.map((p) => {
-            AddPlainPage({ content: p.clean, right: index % 2 === 0 });
+            AddPlainPage({ content: p.clean });
             index++;
         });
         AddFrontPage(

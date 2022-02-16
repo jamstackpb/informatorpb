@@ -4,5 +4,4 @@
 
 .page-content {
     @apply prose;
-    padding-left: 20px;
 }
