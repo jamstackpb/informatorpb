@@ -22,7 +22,7 @@ export const AddPage = (
 const FlipBookPage: React.FC<{ right?: boolean }> = ({ right, children }) => {
     return (
         <div className="page">
-            <div className={`prose flex flex-col p-8 ${right ? 'pr-12' : 'pl-12'}`}>{children}</div>
+            <div className={`prose flex flex-col p-8 m-0 max-w-none ${right ? 'pr-12' : 'pl-12'}`}>{children}</div>
         </div>
     );
 };
