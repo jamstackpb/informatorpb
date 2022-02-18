@@ -7,14 +7,16 @@ export const Btn = styled.button`
     color: white;
     background-color: rgb(20 83 45);
     height: 2rem;
-    width: 5rem;
+    width: 2rem;
     margin-top: 20px;
     margin-bottom: 40px;
-    border-radius: 5rem;
+    border-radius: 1rem;
+    justify-content: space-around;
     :hover {
         opacity: 0.5;
     }
 `;
+
 export const WrapperMobile = styled.div`
     @media (min-width: 650px) {
         display: none;
