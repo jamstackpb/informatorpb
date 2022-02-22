@@ -1,9 +1,10 @@
+import { getFieldsOfStudy } from '@/ssg/fieldofstudy';
 import { Graduate } from '@/ssg/graduate';
 import { PageFlip } from 'page-flip';
 import React, { useEffect, useState } from 'react';
 import { Wrapper, Btn, LogoPB, WrapperMobile } from '../../styles/styleBook';
 import { AddFrontPage } from '../atoms/AddFrontPage';
-import { AddPage, AddPageImage, AddPlainPage } from '../atoms/AddPage';
+import { AddPage, AddFOSPage, AddPageImage, AddPlainPage } from '../atoms/AddPage';
 import { Chevron } from '../atoms/chevron';
 
 interface IFlipBook {
@@ -20,6 +21,7 @@ interface IFlipBook {
         };
         cleaned: string[];
     }>;
+    foStudy: ReturnType<typeof getFieldsOfStudy>;
 }
 enum SizeType {
     /** Dimensions are fixed */
@@ -27,7 +29,7 @@ enum SizeType {
     /** Dimensions are calculated based on the parent element */
     STRETCH = 'stretch',
 }
-export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
+export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy }) => {
     useEffect(() => {
         const pageFlip = new PageFlip(document.getElementById('flipbook-container')!, {
             width: 1280 / 2,
@@ -46,6 +48,10 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
         let index = 0;
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
         let loc = document.getElementById('page-storage');
+        foStudy.map((g) => {
+            AddFOSPage(g);
+            index++;
+        });
         pages.map((p) => {
             AddPlainPage({ content: p.clean });
             index++;
@@ -58,6 +64,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
             '',
         );
         index++;
+
         graduate.map((g) => {
             AddPageImage({
                 content: g.clean,

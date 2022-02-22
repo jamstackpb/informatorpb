@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { marked } from 'marked';
 import DOMPurify from 'isomorphic-dompurify';
 import remark from 'remark';
 import remarkHtml from 'remark-html';
