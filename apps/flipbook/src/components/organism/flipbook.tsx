@@ -1,24 +1,29 @@
 import { Graduate } from '@/ssg/graduate';
+import { getScienceContent } from '@/ssg/science';
 import { PageFlip } from 'page-flip';
 import React, { useEffect, useState } from 'react';
 import { Wrapper, Btn, LogoPB, WrapperMobile } from '../../styles/styleBook';
 import { AddFrontPage } from '../atoms/AddFrontPage';
-import { AddPage, AddPageImage, AddPlainPage } from '../atoms/AddPage';
+import { AddPage, AddPagesWithContent, AddPlainPage } from '../atoms/AddPage';
 
 interface IFlipBook {
     pages: Array<{
-        clean: string;
+        
         changedToMatter: {
             [key: string]: any;
         };
+        clean: string;
     }>;
     graduate: ReturnType<typeof Graduate>;
-    science: Array<{
-        changed: {
-            [key: string]: any;
-        };
-        cleaned: string[];
-    }>;
+    science: ReturnType<typeof getScienceContent>
+
+    // science: Array<{
+    //     matter: {
+    //         [key: string]: string;
+    //     },
+    //     content: string;
+    // }>;
+    // science: Array<{matter:{name: string, website:string, video:string, pageType: string}}>
 }
 enum SizeType {
     /** Dimensions are fixed */
@@ -58,12 +63,10 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
         );
         index++;
         graduate.map((g) => {
-            AddPageImage({
-                content: g.clean,
-                src: g.changedToMatter.image,
-            });
+            AddPagesWithContent(g)            
             index++;
         });
+
         AddFrontPage(
             '',
             'prose w-full h-full flex flex-col py-[49%]',
@@ -72,12 +75,13 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
             '',
         );
         index++;
+        
+        
         science.map((g) => {
-            g.cleaned.map((c) => {
-                AddPage('', 'prose flex flex-col ml-4 mt-4', 'flex justify-center', c);
-                index++;
-            });
+            AddPagesWithContent(g) 
+            index++;            
         });
+        
         pageFlip.on('changeState', () => {
             loc = document.getElementById('page-current');
             loc!.innerHTML = (pageFlip.getCurrentPageIndex() + 1).toString();
