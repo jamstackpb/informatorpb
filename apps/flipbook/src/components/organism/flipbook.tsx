@@ -4,7 +4,12 @@ import { PageFlip } from 'page-flip';
 import React, { useEffect, useState } from 'react';
 import { Wrapper, Btn, LogoPB, WrapperMobile } from '../../styles/styleBook';
 import { AddFrontPage } from '../atoms/AddFrontPage';
+
 import { AddPage, AddPagesWithContent, AddPlainPage } from '../atoms/AddPage';
+
+
+import { Chevron } from '../atoms/chevron';
+ main
 
 interface IFlipBook {
     pages: Array<{
@@ -128,13 +133,13 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science }) => {
                     </div>
                     <div className="flex flex-row relative mt-10" id="page-counter">
                         <Btn className="mr-4" id="prev">
-                            Wstecz
+                            <Chevron className="rotate-180" color="white" />
                         </Btn>
                         <div className="flex flex-row gap-1 mt-6">
                             Strona <div id="page-current">1</div> z <div id="page-total">-</div>
                         </div>
                         <Btn className="ml-4" id="next">
-                            Naprzód
+                            <Chevron className="" color="white" />
                         </Btn>
                     </div>
                 </div>
