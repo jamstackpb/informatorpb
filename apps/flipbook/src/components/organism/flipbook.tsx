@@ -9,7 +9,7 @@ import { AddPage, AddPagesWithContent, AddPlainPage } from '../atoms/AddPage';
 
 
 import { Chevron } from '../atoms/chevron';
- main
+
 
 interface IFlipBook {
     pages: Array<{
