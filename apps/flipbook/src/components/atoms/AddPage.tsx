@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { MatterInterface } from '@/src/utils/matterInterface';
 import ReactDOMServer from 'react-dom/server';
 
 interface typOfStudy {
@@ -116,12 +117,16 @@ export const AddPage = (
     page.appendChild(pageContent);
     loc!.appendChild(page);
 };
+enum PageType {
+    ABSOLWENT = 'absolwent',
+    KOLO_NAUKOWE = 'kolo_naukowe',
+}
 
 const FlipBookPage: React.FC = ({ children }) => {
     return (
         <div className="page">
-            <div className="max-w-none flex">
-                <div className={`prose flex flex-col p-8 m-0`}>{children}</div>
+            <div className="max-w-none flex justify-center">
+                <div className={`prose flex flex-col w-max p-8 m-0`}>{children}</div>
             </div>
         </div>
     );
@@ -135,24 +140,49 @@ const PlainPage: React.FC<{ content: string }> = ({ content }) => {
     );
 };
 
-const PageImageComponent: React.FC<{ src: string; content: string }> = ({ content, src }) => {
-    return (
+const PagesSection: React.FC<MatterInterface> = ({ matter, content }) => {
+    return matter.pageType === PageType.ABSOLWENT ? (
         <FlipBookPage>
-            <img src={src} />
+            <div className="flex flex-row items-center">
+                <img width={250} height={250} src={matter.image} />
+                <div className="pl-5">
+                    <div>
+                        <span className="font-extrabold">{matter.faculty}</span>{' '}
+                    </div>
+                    <div>
+                        <span className="font-extrabold">{matter.academicTitle} </span> {matter.name}
+                    </div>
+
+                    <div>
+                        <span className="font-extrabold">Zawód:</span> {matter.job}
+                    </div>
+                </div>{' '}
+            </div>
             <div dangerouslySetInnerHTML={{ __html: content }}></div>
         </FlipBookPage>
-    );
+    ) : matter.pageType === PageType.KOLO_NAUKOWE ? (
+        <FlipBookPage>
+            <h1 className=" w-max">{matter.name}</h1>
+            {matter.video !== '---' && (
+                <div className="flex justify-center">
+                    <iframe className="aspect-video" src={matter.video} />
+                </div>
+            )}
+            <div> {matter.website !== '---' && `Sprawdź nas na ${matter.website}`}</div>
+        </FlipBookPage>
+    ) : null;
 };
 
-const AddReactPage = ({ element }: { element: React.ReactElement }) => {
+const AddReactPage = ({ element }: { element: React.ReactElement<MatterInterface> }) => {
     let loc = document.getElementById('page-storage');
     let page = document.createElement('div');
     page.innerHTML = ReactDOMServer.renderToString(element);
     loc!.appendChild(page);
 };
 
-export const AddPageImage = ({ content, src }: { content: string; src: string }) =>
-    AddReactPage({ element: <PageImageComponent content={content} src={src} /> });
+export const AddPagesWithContent = ({ matter, content }: MatterInterface) =>
+    AddReactPage({ element: <PagesSection matter={matter} content={content} /> });
+
 export const AddPlainPage = ({ content }: { content: string }) => {
     AddReactPage({ element: <PlainPage content={content} /> });
 };

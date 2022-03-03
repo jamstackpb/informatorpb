@@ -1,26 +1,22 @@
+import { MatterInterface } from '@/src/utils/matterInterface';
 import { getFieldsOfStudy } from '@/ssg/fieldofstudy';
 import { Graduate } from '@/ssg/graduate';
 import { PageFlip } from 'page-flip';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Wrapper, Btn, LogoPB, WrapperMobile } from '../../styles/styleBook';
 import { AddFrontPage } from '../atoms/AddFrontPage';
-import { AddPage, AddFOSPage, AddPageImage, AddPlainPage } from '../atoms/AddPage';
+import { AddFOSPage, AddPagesWithContent, AddPlainPage } from '../atoms/AddPage';
 import { Chevron } from '../atoms/chevron';
 
 interface IFlipBook {
     pages: Array<{
-        clean: string;
         changedToMatter: {
             [key: string]: any;
         };
+        clean: string;
     }>;
     graduate: ReturnType<typeof Graduate>;
-    science: Array<{
-        changed: {
-            [key: string]: any;
-        };
-        cleaned: string[];
-    }>;
+    science: Array<MatterInterface>;
     foStudy: ReturnType<typeof getFieldsOfStudy>;
 }
 enum SizeType {
@@ -66,12 +62,10 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         index++;
 
         graduate.map((g) => {
-            AddPageImage({
-                content: g.clean,
-                src: g.changedToMatter.image,
-            });
+            AddPagesWithContent(g);
             index++;
         });
+
         AddFrontPage(
             '',
             'prose w-full h-full flex flex-col py-[49%]',
@@ -80,12 +74,12 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             '',
         );
         index++;
+
         science.map((g) => {
-            g.cleaned.map((c) => {
-                AddPage('', 'prose flex flex-col ml-4 mt-4', 'flex justify-center', c);
-                index++;
-            });
+            AddPagesWithContent(g);
+            index++;
         });
+
         pageFlip.on('changeState', () => {
             loc = document.getElementById('page-current');
             loc!.innerHTML = (pageFlip.getCurrentPageIndex() + 1).toString();
