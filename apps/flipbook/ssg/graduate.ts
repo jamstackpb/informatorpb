@@ -1,19 +1,16 @@
+import { MatterInterface } from './../src/utils/matterInterface';
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 import DOMPurify from 'isomorphic-dompurify';
-interface GraduateMatter {
-    academicTitle: string;
-    name: string;
-    job: string;
-    faculty: string;
-    image: string;
-}
+
+
 export const Graduate = () => {
     const pathToFolderProjects = path.join(process.cwd(), '..', '..', 'content', '2021', 'absolwenci');
     const projectsDirectoryFiles = fs.readdirSync(pathToFolderProjects);
-
+   
     return projectsDirectoryFiles
         .filter((adf) => {
             return path.extname(adf) === '.md';
@@ -25,8 +22,10 @@ export const Graduate = () => {
             const dirty = marked(content);
             const clean = DOMPurify.sanitize(dirty);
             return {
-                changedToMatter: data as GraduateMatter,
-                clean,
-            };
+                 
+                    matter: data,
+                    content: clean
+                
+            } as MatterInterface;
         });
 };
