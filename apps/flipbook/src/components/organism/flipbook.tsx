@@ -18,6 +18,7 @@ interface IFlipBook {
     graduate: ReturnType<typeof Graduate>;
     science: Array<MatterInterface>;
     foStudy: ReturnType<typeof getFieldsOfStudy>;
+    whichPage?: number;
 }
 enum SizeType {
     /** Dimensions are fixed */
@@ -25,7 +26,8 @@ enum SizeType {
     /** Dimensions are calculated based on the parent element */
     STRETCH = 'stretch',
 }
-export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy }) => {
+
+export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy, whichPage }) => {
     useEffect(() => {
         const pageFlip = new PageFlip(document.getElementById('flipbook-container')!, {
             width: 1280 / 2,
@@ -40,6 +42,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             usePortrait: true,
             autoSize: true,
             size: SizeType.FIXED,
+            startPage: whichPage ? whichPage - 1 : 0,
         });
         let index = 0;
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
@@ -86,6 +89,8 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         });
         pageFlip.on('init', () => {
             loc = document.getElementById('page-total');
+            let loc1 = document.getElementById('page-current');
+            loc1!.innerHTML = (pageFlip.getCurrentPageIndex() + 1).toString();
             loc!.innerHTML = pageFlip.getPageCount().toString();
         });
         let prev = document.getElementById('prev');
@@ -104,6 +109,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         });
         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
     }, [pages, graduate, science]);
+
     return (
         <div>
             <WrapperMobile>
@@ -129,7 +135,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                             <Chevron className="rotate-180" color="white" />
                         </Btn>
                         <div className="flex flex-row gap-1 mt-6">
-                            Strona <div id="page-current">1</div> z <div id="page-total">-</div>
+                            Strona <div id="page-current"></div> z <div id="page-total">-</div>
                         </div>
                         <Btn className="ml-4" id="next">
                             <Chevron className="" color="white" />

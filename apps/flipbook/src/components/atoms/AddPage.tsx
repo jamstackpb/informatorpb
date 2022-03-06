@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
 import { MatterInterface } from '@/src/utils/matterInterface';
 import ReactDOMServer from 'react-dom/server';
-
+import { Absolwent } from './Absolwent';
+import { KoloNaukowe } from './KoloNaukowe';
 interface typOfStudy {
     stationary: boolean;
     partTime: boolean;
@@ -143,32 +144,18 @@ const PlainPage: React.FC<{ content: string }> = ({ content }) => {
 const PagesSection: React.FC<MatterInterface> = ({ matter, content }) => {
     return matter.pageType === PageType.ABSOLWENT ? (
         <FlipBookPage>
-            <div className="flex flex-row items-center">
-                <img width={250} height={250} src={matter.image} />
-                <div className="pl-5">
-                    <div>
-                        <span className="font-extrabold">{matter.faculty}</span>{' '}
-                    </div>
-                    <div>
-                        <span className="font-extrabold">{matter.academicTitle} </span> {matter.name}
-                    </div>
-
-                    <div>
-                        <span className="font-extrabold">Zawód:</span> {matter.job}
-                    </div>
-                </div>{' '}
-            </div>
-            <div dangerouslySetInnerHTML={{ __html: content }}></div>
+            <Absolwent
+                image={matter.image}
+                faculty={matter.faculty}
+                academicTitle={matter.academicTitle}
+                name={matter.name}
+                job={matter.job}
+                content={content}
+            />
         </FlipBookPage>
     ) : matter.pageType === PageType.KOLO_NAUKOWE ? (
         <FlipBookPage>
-            <h1 className=" w-max">{matter.name}</h1>
-            {matter.video !== '---' && (
-                <div className="flex justify-center">
-                    <iframe className="aspect-video" src={matter.video} />
-                </div>
-            )}
-            <div> {matter.website !== '---' && `Sprawdź nas na ${matter.website}`}</div>
+            <KoloNaukowe name={matter.name} video={matter.video} website={matter.website} content={content} />
         </FlipBookPage>
     ) : null;
 };
