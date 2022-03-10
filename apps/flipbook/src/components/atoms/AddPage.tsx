@@ -25,8 +25,10 @@ interface fosData {
 export const AddFOSPage = (fos: fosData) => {
     const loc = document.getElementById('page-storage');
     const page = document.createElement('div');
+    const calculator = document.createElement('div');
     const title = document.createElement('h1');
     const faculty = document.createElement('h2');
+    const n1 = document.createElement('input');
     const table = document.createElement('table');
     const thead = document.createElement('thead');
     const tbody = document.createElement('tbody');
@@ -50,6 +52,17 @@ export const AddFOSPage = (fos: fosData) => {
     title.innerText = fos.changedToMatter.name;
     faculty.innerText = 'Wydział ' + fos.faculty;
     pageContent.className = 'prose ml-4 mt-4 flex flex-col';
+    calculator.className = 'h-24 bg-cyan-500';
+    n1.type = 'number';
+    n1.min = '0';
+    n1.max = '100';
+    n1.placeholder = '60';
+    n1.id = 'nr1';
+    n1.step = '1';
+    n1.className = 'h-8 text-slate-700';
+    n1.name = 'numer1';
+
+    calculator.appendChild(n1);
 
     pageText.className = 'flex justify-center';
     pageText.innerHTML = fos.clean;
@@ -93,6 +106,7 @@ export const AddFOSPage = (fos: fosData) => {
     pageContent.appendChild(title);
     pageContent.appendChild(faculty);
     pageContent.appendChild(table);
+    pageContent.appendChild(calculator);
     pageContent.appendChild(pageText);
     page.appendChild(pageContent);
     loc!.appendChild(page);

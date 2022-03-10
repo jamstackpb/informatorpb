@@ -140,6 +140,9 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                         <Btn className="ml-4" id="next">
                             <Chevron className="" color="white" />
                         </Btn>
+                        <div>
+                            <input type="number" className="h-12 w-12 text-slate-700"></input>
+                        </div>
                     </div>
                 </div>
             </Wrapper>
