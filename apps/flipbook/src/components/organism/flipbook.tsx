@@ -1,8 +1,9 @@
 import { MatterInterface } from '@/src/utils/matterInterface';
 import { getFieldsOfStudy } from '@/ssg/fieldofstudy';
 import { Graduate } from '@/ssg/graduate';
+import { useRouter } from 'next/router';
 import { PageFlip } from 'page-flip';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Wrapper, Btn, LogoPB, WrapperMobile } from '../../styles/styleBook';
 import { AddFrontPage } from '../atoms/AddFrontPage';
 import { AddFOSPage, AddPagesWithContent, AddPlainPage } from '../atoms/AddPage';
@@ -18,6 +19,7 @@ interface IFlipBook {
     graduate: ReturnType<typeof Graduate>;
     science: Array<MatterInterface>;
     foStudy: ReturnType<typeof getFieldsOfStudy>;
+    whichPage?: string;
 }
 enum SizeType {
     /** Dimensions are fixed */
@@ -25,9 +27,14 @@ enum SizeType {
     /** Dimensions are calculated based on the parent element */
     STRETCH = 'stretch',
 }
-export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy }) => {
+
+export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy, whichPage }) => {
+    let pageFlip: PageFlip;
+    let router = useRouter();
+    const [state, setstate] = useState('');
+
     useEffect(() => {
-        const pageFlip = new PageFlip(document.getElementById('flipbook-container')!, {
+        pageFlip = new PageFlip(document.getElementById('flipbook-container')!, {
             width: 1280 / 2,
             height: 720,
             showCover: true,
@@ -86,6 +93,8 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         });
         pageFlip.on('init', () => {
             loc = document.getElementById('page-total');
+            let loc1 = document.getElementById('page-current');
+            loc1!.innerHTML = (pageFlip.getCurrentPageIndex() + 1).toString();
             loc!.innerHTML = pageFlip.getPageCount().toString();
         });
         let prev = document.getElementById('prev');
@@ -103,7 +112,16 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             loc!.innerHTML = (pageFlip.getCurrentPageIndex() + 1).toString();
         });
         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+        router.query.page && pageFlip.turnToPage(parseInt(router.query.page as string));
     }, [pages, graduate, science]);
+
+    useEffect(() => {
+        setstate(router.query.page as string);
+
+        pageFlip.turnToPage(parseInt(state));
+    }, [router.query.page]);
+
+    const handleClick = () => {};
     return (
         <div>
             <WrapperMobile>
@@ -125,11 +143,11 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                         </div>
                     </div>
                     <div className="flex flex-row relative mt-10" id="page-counter">
-                        <Btn className="mr-4" id="prev">
+                        <Btn onClick={() => handleClick()} className="mr-4" id="prev">
                             <Chevron className="rotate-180" color="white" />
                         </Btn>
                         <div className="flex flex-row gap-1 mt-6">
-                            Strona <div id="page-current">1</div> z <div id="page-total">-</div>
+                            Strona <div id="page-current"></div> z <div id="page-total">-</div>
                         </div>
                         <Btn className="ml-4" id="next">
                             <Chevron className="" color="white" />
