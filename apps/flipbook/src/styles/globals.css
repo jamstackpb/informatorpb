@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    overflow-x: hidden;
+    overflow: hidden;
 }
 .page-content {
     @apply prose;

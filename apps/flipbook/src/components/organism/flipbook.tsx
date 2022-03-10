@@ -29,12 +29,12 @@ enum SizeType {
 }
 
 export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy, whichPage }) => {
-    let pageFlip: PageFlip;
-    let router = useRouter();
-    const [state, setstate] = useState('');
-
+    const [pageFlip, setPageFlip] = useState<PageFlip>();
+    const router = useRouter();
+    const [currentPage, setCurrentPage] = useState(router.query.page ? parseInt(router.query.page as string) : 0);
+    const [totalPages, setTotalPages] = useState(0);
     useEffect(() => {
-        pageFlip = new PageFlip(document.getElementById('flipbook-container')!, {
+        const pf = new PageFlip(document.getElementById('flipbook-container')!, {
             width: 1280 / 2,
             height: 720,
             showCover: true,
@@ -48,16 +48,12 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             autoSize: true,
             size: SizeType.FIXED,
         });
-        let index = 0;
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
-        let loc = document.getElementById('page-storage');
         foStudy.map((g) => {
             AddFOSPage(g);
-            index++;
         });
         pages.map((p) => {
             AddPlainPage({ content: p.clean });
-            index++;
         });
         AddFrontPage(
             '',
@@ -66,11 +62,8 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             'Nasi Absolwenci',
             '',
         );
-        index++;
-
         graduate.map((g) => {
             AddPagesWithContent(g);
-            index++;
         });
 
         AddFrontPage(
@@ -80,48 +73,49 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             'Koła naukowe na naszej uczelni!',
             '',
         );
-        index++;
 
         science.map((g) => {
             AddPagesWithContent(g);
-            index++;
         });
-
-        pageFlip.on('changeState', () => {
-            loc = document.getElementById('page-current');
-            loc!.innerHTML = (pageFlip.getCurrentPageIndex() + 1).toString();
+        pf.on('changeState', () => {
+            console.log('change state');
+            setCurrentPage(pf.getCurrentPageIndex());
         });
-        pageFlip.on('init', () => {
-            loc = document.getElementById('page-total');
-            let loc1 = document.getElementById('page-current');
-            loc1!.innerHTML = (pageFlip.getCurrentPageIndex() + 1).toString();
-            loc!.innerHTML = pageFlip.getPageCount().toString();
-        });
-        let prev = document.getElementById('prev');
-        prev?.addEventListener('click', () => {
-            pageFlip.turnToPrevPage();
-            loc = document.getElementById('page-current');
-            loc!.innerHTML = (pageFlip.getCurrentPageIndex() + 1).toString();
-        });
-        let next = document.getElementById('next');
-        next?.addEventListener('click', () => {
-            if (pageFlip.getCurrentPageIndex() + 2 < pageFlip.getPageCount()) {
-                pageFlip.turnToNextPage();
-            }
-            loc = document.getElementById('page-current');
-            loc!.innerHTML = (pageFlip.getCurrentPageIndex() + 1).toString();
-        });
-        pageFlip.loadFromHTML(document.querySelectorAll('.page'));
-        router.query.page && pageFlip.turnToPage(parseInt(router.query.page as string));
-    }, [pages, graduate, science]);
+        pf.loadFromHTML(document.querySelectorAll('.page'));
+        setPageFlip(pf);
+        setTotalPages(pf.getPageCount());
+        return () => {
+            pf.destroy();
+        };
+    }, [setCurrentPage]);
 
     useEffect(() => {
-        setstate(router.query.page as string);
+        if (pageFlip) {
+            setCurrentPage(parseInt(router.query.page as string));
+        }
+    }, [router.query.page, pageFlip]);
 
-        pageFlip.turnToPage(parseInt(state));
-    }, [router.query.page]);
+    useEffect(() => {
+        if (pageFlip) {
+            pageFlip.turnToPage(currentPage);
+        }
+    }, [currentPage, pageFlip]);
 
-    const handleClick = () => {};
+    const nextPage = () => {
+        const performTurn = currentPage + 2 > (pageFlip?.getPageCount() || 1) ? false : true;
+        if (performTurn) {
+            pageFlip?.turnToNextPage();
+            setCurrentPage(pageFlip?.getCurrentPageIndex() || currentPage);
+        }
+    };
+    const prevPage = () => {
+        const performTurn = currentPage - 2 < 0 ? false : true;
+        if (performTurn) {
+            pageFlip?.turnToPrevPage();
+            setCurrentPage(pageFlip?.getCurrentPageIndex() || currentPage);
+        }
+    };
+
     return (
         <div>
             <WrapperMobile>
@@ -143,13 +137,13 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                         </div>
                     </div>
                     <div className="flex flex-row relative mt-10" id="page-counter">
-                        <Btn onClick={() => handleClick()} className="mr-4" id="prev">
+                        <Btn onClick={prevPage} className="mr-4" id="prev">
                             <Chevron className="rotate-180" color="white" />
                         </Btn>
                         <div className="flex flex-row gap-1 mt-6">
-                            Strona <div id="page-current"></div> z <div id="page-total">-</div>
+                            Strona <div id="page-current">{currentPage}</div> z <div id="page-total">{totalPages}</div>
                         </div>
-                        <Btn className="ml-4" id="next">
+                        <Btn onClick={nextPage} className="ml-4" id="next">
                             <Chevron className="" color="white" />
                         </Btn>
                     </div>
