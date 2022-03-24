@@ -16,23 +16,9 @@ export const Btn = styled.button`
         opacity: 0.5;
     }
 `;
-
-export const WrapperMobile = styled.div`
-    @media (min-width: 650px) {
-        display: none;
-    }
-`;
 export const Wrapper = styled.div`
     width: 100%;
     height: 100%;
-    @media (max-width: 650px) {
-        display: none;
-    }
-    .stop-scrolling {
-        @media (max-width: 1280px) {
-            overflow: hidden;
-        }
-    }
     #page-counter {
         display: flex;
         flex-direction: row;
@@ -50,7 +36,10 @@ export const Wrapper = styled.div`
 
     .page {
         background-color: white;
-        overflow: hidden;
+        @media (min-width: 768px) {
+            overflow: hidden;
+        }
+        overflow: auto;
         padding-left: 3ch;
         padding-right: 3ch;
         h1,

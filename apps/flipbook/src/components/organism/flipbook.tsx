@@ -4,7 +4,7 @@ import { Graduate } from '@/ssg/graduate';
 import { useRouter } from 'next/router';
 import { PageFlip } from 'page-flip';
 import React, { useEffect, useState } from 'react';
-import { Wrapper, Btn, LogoPB, WrapperMobile } from '../../styles/styleBook';
+import { Wrapper, Btn, LogoPB } from '../../styles/styleBook';
 import { AddFrontPage } from '../atoms/AddFrontPage';
 import { AddFOSPage, AddPagesWithContent, AddPlainPage } from '../atoms/AddPage';
 import { Chevron } from '../atoms/chevron';
@@ -117,15 +117,10 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     };
 
     return (
-        <div>
-            <WrapperMobile>
-                <div className="p-2 text-3xl font-bold">
-                    Niestety wersja mobilna flipbooka nie jest dostępna w tej chwili
-                </div>
-            </WrapperMobile>
-            <Wrapper className="container mx-auto">
+        <div className="w-full overflow-auto">
+            <Wrapper className="container mx-auto max-w-full xl:overflow-auto">
                 <div className="mt-12 max-w-full">
-                    <div id="flipbook-container" className="mt-[-2%] stop-scrolling">
+                    <div id="flipbook-container" className="mt-[-2%]">
                         <div className="page page-cover" data-density="hard">
                             <h1>
                                 <LogoPB src="/images/logo_PB.png" />
@@ -136,7 +131,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                             <div className="page-content"></div>
                         </div>
                     </div>
-                    <div className="flex flex-row relative mt-10" id="page-counter">
+                    <div className="flex flex-row relative mt-0 md:mt-10" id="page-counter">
                         <Btn onClick={prevPage} className="mr-4" id="prev">
                             <Chevron className="rotate-180" color="white" />
                         </Btn>
