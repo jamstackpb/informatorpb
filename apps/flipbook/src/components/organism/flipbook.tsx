@@ -19,7 +19,7 @@ interface IFlipBook {
     graduate: ReturnType<typeof Graduate>;
     science: Array<MatterInterface>;
     foStudy: ReturnType<typeof getFieldsOfStudy>;
-    whichPage?: string;
+    whichPage?: number;
 }
 enum SizeType {
     /** Dimensions are fixed */
