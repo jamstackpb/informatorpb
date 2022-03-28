@@ -44,16 +44,16 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             swipeDistance: 10,
             mobileScrollSupport: true,
             disableFlipByClick: true,
-            usePortrait: true,
-            autoSize: true,
+            // usePortrait: false,
+            // autoSize: true,
             size: SizeType.FIXED,
         });
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
-        foStudy.map((g) => {
-            AddFOSPage(g);
-        });
         pages.map((p) => {
             AddPlainPage({ content: p.clean });
+        });
+        foStudy.map((g) => {
+            AddFOSPage(g);
         });
         AddFrontPage(
             '',
@@ -62,6 +62,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             'Nasi Absolwenci',
             '',
         );
+
         graduate.map((g) => {
             AddPagesWithContent(g);
         });
@@ -102,10 +103,11 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     }, [currentPage, pageFlip]);
 
     const nextPage = () => {
-        const performTurn = currentPage + 2 > (pageFlip?.getPageCount() || 1) ? false : true;
+        const performTurn = currentPage + 2 > (pageFlip?.getPageCount() || 2) ? false : true;
         if (performTurn) {
             pageFlip?.turnToNextPage();
             setCurrentPage(pageFlip?.getCurrentPageIndex() || currentPage);
+            router.push(`/?page=${pageFlip!.getCurrentPageIndex()}`);
         }
     };
     const prevPage = () => {
@@ -113,14 +115,15 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         if (performTurn) {
             pageFlip?.turnToPrevPage();
             setCurrentPage(pageFlip?.getCurrentPageIndex() || currentPage);
-        }
+            router.push(`/?page=${pageFlip!.getCurrentPageIndex()}`);
+        } else router.push(`/?page=0`);
     };
 
     return (
-        <div className="w-full overflow-auto">
-            <Wrapper className="container mx-auto max-w-full xl:overflow-auto">
+        <div className="w-full ">
+            <Wrapper className="container mx-auto max-w-full  ">
                 <div className="mt-12 max-w-full">
-                    <div id="flipbook-container" className="mt-[-2%]">
+                    <div id="flipbook-container">
                         <div className="page page-cover" data-density="hard">
                             <h1>
                                 <LogoPB src="/images/logo_PB.png" />

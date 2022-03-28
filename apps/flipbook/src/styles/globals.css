@@ -8,3 +8,7 @@ body {
 .page-content {
     @apply prose;
 }
+.stf__wrapper.--portrait[style]{
+    padding-bottom: 0 !important;
+  
+}
