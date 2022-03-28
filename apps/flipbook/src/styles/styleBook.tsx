@@ -54,18 +54,13 @@ export const Wrapper = styled.div`
             // for left page (property will be added automatically)
             border-right: 2px solid rgba(0, 0, 0, 0.1);
             box-shadow: inset 5px 0px 0px 1px rgba(0, 0, 0, 0.1);
-            * {
-                justify-content: start;
-            }
         }
 
         &.--right {
             // for right page (property will be added automatically)
             border-left: 0;
             box-shadow: inset 5px 0px 0px 1px rgba(0, 0, 0, 0.1);
-            * {
-                justify-content: end;
-            }
+
             .page-footer {
                 text-align: right;
             }

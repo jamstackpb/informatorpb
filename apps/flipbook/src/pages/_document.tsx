@@ -4,9 +4,7 @@ export default class MyDocument extends Document {
     render(): JSX.Element {
         return (
             <Html lang="pl-PL">
-                <Head>
-                   
-                </Head>
+                <Head></Head>
                 <body style={{ margin: 0 }}>
                     <Main />
                     <NextScript />

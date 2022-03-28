@@ -164,7 +164,7 @@ const AddReactPage = ({ element }: { element: React.ReactElement<MatterInterface
     let loc = document.getElementById('page-storage');
     let page = document.createElement('div');
     page.innerHTML = ReactDOMServer.renderToString(element);
-    loc!.appendChild(page);
+    loc?.appendChild(page);
 };
 
 export const AddPagesWithContent = ({ matter, content }: MatterInterface) =>
