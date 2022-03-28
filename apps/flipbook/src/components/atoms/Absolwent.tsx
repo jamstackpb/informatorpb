@@ -1,32 +1,29 @@
-interface AbsolwentProps {
-    image: string;
-    faculty: string;
-    academicTitle: string;
-    name: string;
-    job: string;
-    content: string;
-}
+import { Graduate } from '@/ssg/graduate';
 
-export const Absolwent: React.FC<AbsolwentProps> = (props) => {
+type AbsolwentProps = Omit<ReturnType<typeof Graduate> extends Array<infer R> ? R : never, 'pageType'>;
+
+export const Absolwent: React.FC<AbsolwentProps> = ({
+    content,
+    matter: { academicTitle, faculty, image, job, name },
+}) => {
     return (
         <>
-            {' '}
             <div className="flex flex-row items-center">
-                <img width={250} height={250} src={props.image} />
+                <img width={250} height={250} src={image} />
                 <div className="pl-5">
                     <div>
-                        <span className="font-extrabold">{props.faculty}</span>{' '}
+                        <span className="font-extrabold">{faculty}</span>{' '}
                     </div>
                     <div>
-                        <span className="font-extrabold">{props.academicTitle}</span> {props.name}
+                        <span className="font-extrabold">{academicTitle}</span> {name}
                     </div>
 
                     <div>
-                        <span className="font-extrabold">Zawód:</span> {props.job}
+                        <span className="font-extrabold">Zawód:</span> {job}
                     </div>
-                </div>{' '}
+                </div>
             </div>
-            <div dangerouslySetInnerHTML={{ __html: props.content }}></div>
+            <div dangerouslySetInnerHTML={{ __html: content }}></div>
         </>
     );
 };

@@ -1,12 +1,13 @@
 import { MatterInterface } from '@/src/utils/matterInterface';
 import { getFieldsOfStudy } from '@/ssg/fieldofstudy';
 import { Graduate } from '@/ssg/graduate';
+import { getScienceContent } from '@/ssg/science';
 import { useRouter } from 'next/router';
 import { PageFlip } from 'page-flip';
 import React, { useEffect, useState } from 'react';
 import { Wrapper, Btn, LogoPB } from '../../styles/styleBook';
 import { AddFrontPage } from '../atoms/AddFrontPage';
-import { AddFOSPage, AddPagesWithContent, AddPlainPage } from '../atoms/AddPage';
+import { AddPagesWithContent, AddPlainPage } from '../atoms/AddPage';
 import { Chevron } from '../atoms/chevron';
 
 interface IFlipBook {
@@ -17,7 +18,7 @@ interface IFlipBook {
         clean: string;
     }>;
     graduate: ReturnType<typeof Graduate>;
-    science: Array<MatterInterface>;
+    science: ReturnType<typeof getScienceContent>;
     foStudy: ReturnType<typeof getFieldsOfStudy>;
     whichPage?: number;
 }
@@ -53,7 +54,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             AddPlainPage({ content: p.clean });
         });
         foStudy.map((g) => {
-            AddFOSPage(g);
+            AddPagesWithContent(g);
         });
         AddFrontPage(
             '',

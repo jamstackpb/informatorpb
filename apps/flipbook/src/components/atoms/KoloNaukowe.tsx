@@ -1,27 +1,23 @@
-interface KoloNaukoweProps {
-    video: string;
-    name: string;
-    website: string;
-    content: string;
-}
+import { getScienceContent } from '@/ssg/science';
 
-export const KoloNaukowe: React.FC<KoloNaukoweProps> = (props) => {
+type KoloNaukoweProps = Omit<ReturnType<typeof getScienceContent> extends Array<infer R> ? R : never, 'pageType'>;
+export const KoloNaukowe: React.FC<KoloNaukoweProps> = ({ content, matter: { name, video, website } }) => {
     return (
         <>
-            <h1 className="w-max mx-auto">{props.name}</h1>
+            <h1 className="w-max mx-auto">{name}</h1>
 
-            {props.video !== '---' && (
+            {video !== '---' && (
                 <div className="flex justify-center mx-auto">
-                    <iframe className="aspect-video" src={props.video} height={200} />
+                    <iframe className="aspect-video" src={video} height={200} />
                 </div>
             )}
-            {props.website !== '---' && (
+            {website !== '---' && (
                 <div className=" mx-auto">
                     {' '}
-                    Sprawdź nas na <a href={props.website}> {props.website}</a>
+                    Sprawdź nas na <a href={website}> {website}</a>
                 </div>
             )}
-            <div dangerouslySetInnerHTML={{ __html: props.content }} />
+            <div dangerouslySetInnerHTML={{ __html: content }} />
         </>
     );
 };

@@ -5,12 +5,12 @@ import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 import DOMPurify from 'isomorphic-dompurify';
-
+import { matterExport } from '@/ssg/models';
 
 export const Graduate = () => {
     const pathToFolderProjects = path.join(process.cwd(), '..', '..', 'content', '2021', 'absolwenci');
     const projectsDirectoryFiles = fs.readdirSync(pathToFolderProjects);
-   
+
     return projectsDirectoryFiles
         .filter((adf) => {
             return path.extname(adf) === '.md';
@@ -21,11 +21,6 @@ export const Graduate = () => {
             const { data, content } = matter(fileContents);
             const dirty = marked(content);
             const clean = DOMPurify.sanitize(dirty);
-            return {
-                 
-                    matter: data,
-                    content: clean
-                
-            } as MatterInterface;
+            return matterExport('absolwent', data, clean);
         });
 };
