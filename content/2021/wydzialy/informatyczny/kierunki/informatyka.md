@@ -19,7 +19,9 @@ jobPerspectives:
 maturaSubjects:
   - fizyka
   - informatyka
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR
+equation:
+  factor: [0.5, 1.25, 1.75, 0.25, 0.75]
+  name: ["MP", "MR", "FR", "OP", "OR"]
 ---
 
 Na tym kierunku zdobędziesz wiedzę z zakresu ogólnych zagadnień informatyki oraz systemów informatycznych. Poznasz zasady budowy systemów komputerowych, systemów operacyjnych, sieci komputerowych i baz danych. Nauczysz się programowania w stopniu umożliwiającym efektywną pracę w zespołach programistycznych, a także zdobędziesz podstawową wiedzę w zakresie algorytmów i struktur danych, sztucznej inteligencji, systemów mobilnych, internetowych i rozproszonych, zarządzania projektami informatycznymi, grafiki komputerowej oraz multimediów

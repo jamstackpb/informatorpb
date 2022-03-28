@@ -1,13 +1,12 @@
-import React, { ReactNode } from 'react';
-import { MatterInterface } from '@/src/utils/matterInterface';
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Absolwent } from './Absolwent';
 import { KoloNaukowe } from './KoloNaukowe';
 import { Kierunek } from '@/src/components/atoms/Kierunek';
 import { ContentPageProps } from '@/src/models';
-interface typOfStudy {
-    stationary: boolean;
-    partTime: boolean;
+export interface MatterInterface {
+    matter: { [key: string]: string };
+    content: string;
 }
 export const AddPage = (
     pageClass: string,

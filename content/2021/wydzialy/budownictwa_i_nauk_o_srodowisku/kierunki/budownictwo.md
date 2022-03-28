@@ -4,7 +4,7 @@ engineering:
   stationary: true
   partTime: true
 master:
-  stationary: true 
+  stationary: true
   partTime: true
 specialities:
   - name: brak
@@ -19,11 +19,14 @@ maturaSubjects:
   - fizyka
   - chemia
   - informatyka
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR
+equation:
+  factor: [0.5, 1.25, 1.75, 0.25, 0.75]
+  name: ["MP", "MR", "FR", "OP", "OR"]
 ---
 
 Na tym kierunku zdobędziesz wiedzę i umiejętności z zakresu realizowania różnego typu obiektów budowlanych, projektowania, technologii i organizacji
 budownictwa. Będziesz przygotowany do realizowania zadań inżynierskich związanych z wykonawstwem obiektów budowlanych, nadzorowania i kierowania robotami budowlanymi oraz projektowania obiektów budowlanych o małej kubaturze. Po zdobyciu odpowiedniej praktyki możesz uzyskać kolejne uprawnienia budowlane czy tytuł rzeczoznawcy budowlanego.
 
 ---
-Kierunek otrzymał Certyfikat *„Studia z Przyszłością”* przyznany przez Fundację Rozwoju Edukacji i Szkolnictwa Wyższego w IV edycji Ogólnopolskiego Programu Akredytacji Kierunków Studiów.
+
+Kierunek otrzymał Certyfikat _„Studia z Przyszłością”_ przyznany przez Fundację Rozwoju Edukacji i Szkolnictwa Wyższego w IV edycji Ogólnopolskiego Programu Akredytacji Kierunków Studiów.

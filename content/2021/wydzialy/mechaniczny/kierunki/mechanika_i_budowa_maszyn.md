@@ -21,6 +21,9 @@ maturaSubjects:
   - chemia
   - biologia
   - informatyka
-equation: 0.5*MP + 1.25*MR + WR*FR + 0.25*OP + 0.75*OR
+equation:
+  factor: [0.5, 1.25, -1, 0.25, 0.75]
+  name: ["MP", "MR", "FR", "OP", "OR"]
 ---
+
 Na tym kierunku zdobędziesz wiedzę i umiejętności konieczne do zrozumienia oraz praktycznego wykorzystania zagadnień z zakresu budowy, wytwarzania i eksploatacji maszyn. Poznasz zasady mechaniki, a także systemy komputerowe wspomagające projektowanie (CAD) i analizy inżynierskie (CAE). Będziesz przygotowany do realizacji procesów wytwarzania z użyciem systemu CAM i obrabiarek sterowanych numerycznie.

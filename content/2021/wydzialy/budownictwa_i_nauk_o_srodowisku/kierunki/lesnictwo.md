@@ -4,7 +4,7 @@ engineering:
   stationary: true
   partTime: true
 master:
-  stationary: true 
+  stationary: true
   partTime: true
 specialities:
   - name: Gospodarowanie na obszarach przyrodniczo cennych
@@ -16,7 +16,9 @@ maturaSubjects:
   - chemia
   - biologia
   - geografia
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR
+equation:
+  factor: [0.5, 1.25, 1.75, 0.25, 0.75]
+  name: ["MP", "MR", "FR", "OP", "OR"]
 ---
 
 Na tym kierunku zdobędziesz szeroką wiedzę (biologiczną, technologiczną i ekonomiczną) potrzebną do zrozumienia zjawisk przyrodniczych zachodzących w środowisku leśnym, a także umiejętności z zakresu zarządzania: projektowania, organizowania i prowadzenia gospodarstw leśnych, hodowli i ochrony lasu, gospodarki łowieckiej, pozyskania i transportu drewna, wykonywania i doskonalenia prac leśnych, inwentaryzacji zasobów leśnych, ochrony przyrody na obszarach leśnych oraz ekonomicznych analiz wyników działalności gospodarczej w leśnictwie.

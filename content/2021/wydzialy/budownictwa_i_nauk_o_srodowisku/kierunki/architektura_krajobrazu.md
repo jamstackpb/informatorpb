@@ -4,7 +4,7 @@ engineering:
   stationary: true
   partTime: true
 master:
-  stationary: true 
+  stationary: true
   partTime: true
 specialities:
   - name: brak
@@ -20,7 +20,9 @@ maturaSubjects:
   - geografia
   - historia
   - historia sztuki
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR
+equation:
+  factor: [0.5, 1.25, 1.75, 0.25, 0.75]
+  name: ["MP", "MR", "FR", "OP", "OR"]
 ---
 
 Na tym kierunku zdobędziesz wiedzę i umiejętności z zakresu kształtowania obiektów architektury krajobrazu. Będziesz przygotowany do współpracy z innymi specjalistami uczestniczącymi w projektowaniu, budowie i pielęgnowaniu obiektów architektury krajobrazu.

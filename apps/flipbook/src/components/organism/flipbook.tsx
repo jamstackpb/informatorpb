@@ -1,4 +1,3 @@
-import { MatterInterface } from '@/src/utils/matterInterface';
 import { getFieldsOfStudy } from '@/ssg/fieldofstudy';
 import { Graduate } from '@/ssg/graduate';
 import { getScienceContent } from '@/ssg/science';
@@ -29,7 +28,7 @@ enum SizeType {
     STRETCH = 'stretch',
 }
 
-export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy, whichPage }) => {
+export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy }) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
     const router = useRouter();
     const [currentPage, setCurrentPage] = useState(router.query.page ? parseInt(router.query.page as string) : 0);
@@ -80,7 +79,6 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             AddPagesWithContent(g);
         });
         pf.on('changeState', () => {
-            console.log('change state');
             setCurrentPage(pf.getCurrentPageIndex());
         });
         pf.loadFromHTML(document.querySelectorAll('.page'));
