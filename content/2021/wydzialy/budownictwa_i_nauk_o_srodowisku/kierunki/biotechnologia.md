@@ -4,7 +4,7 @@ engineering:
   stationary: true
   partTime: true
 master:
-  stationary: true 
+  stationary: true
   partTime: true
 specialities:
   - name: brak
@@ -16,7 +16,9 @@ maturaSubjects:
   - fizyka
   - chemia
   - biologia
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR
+equation:
+  factor: [0.5, 1.25, 1.75, 0.25, 0.75]
+  name: ["MP", "MR", "FR", "OP", "OR"]
 ---
 
 Na tym kierunku zdobędziesz wiedzę z zakresu nauk przyrodniczych, chemicznych i technicznych, współczesnych metod biologii eksperymentalnej oraz chemicznych procesów technologicznych i biotechnologicznych. Poznasz podstawowe zagadnienia biotechnologiczne istotne dla ochrony środowiska oraz przemysłu.

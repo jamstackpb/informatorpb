@@ -18,6 +18,9 @@ maturaSubjects:
   - chemia
   - biologia
   - informatyka
-equation: 0.5*MP + 1.25*MR + WR*FR + 0.25*OP + 0.75*OR
+equation:
+  factor: [0.5, 1.25, -1, 0.25, 0.75]
+  name: ["MP", "MR", "FR", "OP", "OR"]
 ---
+
 Na tym kierunku zdobędziesz wiedzę z zakresu automatyki i robotyki, programowania systemów wbudowanych i sterowników PLC, napędów elektrycznych i płynowych, cyfrowych systemów pomiarowych, automatyzacji, robotyzacji i wizualizacji procesów produkcyjnych, przemysłowych sieci komunikacyjnych, systemów sterowania w czasie rzeczywistym, nawigacji robotów mobilnych. Zdobędziesz umiejętności projektowania, budowania, uruchamiania i testowania układów automatycznego sterowania oraz systemów robotyki przemysłowej i usługowej. Będziesz potrafił projektować autonomiczne układy sterowania oparte na sieciach przemysłowych i programowalnych sterownikach logicznych

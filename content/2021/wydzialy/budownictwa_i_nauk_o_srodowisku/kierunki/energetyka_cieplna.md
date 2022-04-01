@@ -4,7 +4,7 @@ engineering:
   stationary: true
   partTime: false
 master:
-  stationary: false 
+  stationary: false
   partTime: false
 specialities:
   - name: technologie energetyczne
@@ -16,10 +16,13 @@ jobPerspectives:
 maturaSubjects:
   - fizyka
   - chemia
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR
+equation:
+  factor: [0.5, 1.25, 1.75, 0.25, 0.75]
+  name: ["MP", "MR", "FR", "OP", "OR"]
 ---
 
 Na tym kierunku zdobędziesz wiedzę z zakresu energetyki cieplnej, chłodnictwa i klimatyzacji. Zyskasz interdyscyplinarne kompetencje zawodowe w obszarze czystych technologii energetycznych, technologii wytwarzania chłodu oraz zagadnień cieplno-przepływowych występujących w nowoczesnym przemyśle, inżynierii środowiska i budownictwie. W ramach specjalności technologie energetyczne uzyskasz kompetencje związane z technologiami siłowni energetycznych, technologiami konwersji energii odnawialnych oraz zagospodarowania energii odpadowych w przemyśle, budownictwie i ochronie środowiska. W ramach specjalności chłodnictwo i klimatyzacja uzyskasz kompetencje z zakresu nowoczesnej techniki chłodniczej, klimatyzacyjnej, pomp ciepła oraz innowacyjnych technologii chłodniczych.
 
 ---
+
 Zajęcia prowadzone na Wydziale Budownictwa i Nauk o Środowisku oraz na Wydziale Mechanicznym.

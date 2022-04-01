@@ -17,6 +17,9 @@ maturaSubjects:
   - fizyka
   - chemia
   - informatyka
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR
+equation:
+  factor: [0.5, 1.25, 1.75, 0.25, 0.75]
+  name: ["MP", "MR", "FR", "OP", "OR"]
 ---
+
 Kierunek przypisany do dyscyplin: automatyka, elektronika i elektrotechnika (wiodąca), inżynieria mechaniczna, inżynieria środowiska, górnictwo i energetyka. Zajęcia prowadzone na Wydziale Budownictwa i Nauk o Środowisku, Wydziale Elektrycznym oraz Wydziale Mechanicznym. Na tym kierunku zdobędziesz wiedzę z zakresu elektroenergetyki, energetyki cieplnej oraz odnawialnych źródeł energii. Będziesz umiał ocenić efektywność energetyczną systemów i urządzeń, określić ekonomikę najbardziej energochłonnych procesów, np. oświetlenia, ogrzewnictwa i klimatyzacji, rozwiązać problemy związane z energetyką rozproszoną, w tym z ekologicznym wytwarzaniem, przesyłem i dystrybucją energii elektrycznej, zagadnieniami technologii OZE i gospodarki obiegu zamkniętego.

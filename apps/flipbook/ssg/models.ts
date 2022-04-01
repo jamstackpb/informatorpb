@@ -1,3 +1,5 @@
+import { equationType } from '@/src/components/atoms/Kalkulator';
+
 type PossiblePageType = 'kierunek' | 'absolwent' | 'kolo_naukowe';
 
 interface typeOfStudy {
@@ -12,7 +14,7 @@ export interface FieldOfStudy {
     specialities: string;
     jobPerspectives: string;
     maturaSubjects: string;
-    equation: string;
+    equation: equationType;
     faculty: string;
 }
 export interface AbsolwentProps {

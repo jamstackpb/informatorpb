@@ -1,4 +1,5 @@
 import type { getFieldsOfStudy } from '@/ssg/fieldofstudy';
+import { Kalkulator } from './Kalkulator';
 import React from 'react';
 
 type KierunekProps = ReturnType<typeof getFieldsOfStudy> extends Array<infer R> ? R : never;
@@ -11,7 +12,7 @@ export const Kierunek: React.FC<KierunekProps> = ({
         <>
             <h1>{name}</h1>
             <h2>{'Wydział ' + faculty}</h2>
-            <table>
+            <table className="mb-3">
                 <thead>
                     <tr>
                         <th colSpan={2}>Studia I stopnia Inżynierskie, Licencjackie</th>
@@ -31,6 +32,7 @@ export const Kierunek: React.FC<KierunekProps> = ({
                     <td>{master.partTime ? '✔' : ''}</td>
                 </tbody>
             </table>
+            <Kalkulator equation={equation} maturaSubjects={maturaSubjects} />
             <div>{content}</div>
         </>
     );

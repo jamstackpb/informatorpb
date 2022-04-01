@@ -4,7 +4,7 @@ engineering:
   stationary: true
   partTime: true
 master:
-  stationary: true 
+  stationary: true
   partTime: true
 specialities:
   - name: brak
@@ -16,7 +16,9 @@ maturaSubjects:
   - fizyka
   - biologia
   - chemia
-equation: 0.5*MP + 1.25*MR + 1.75*FR + 0.25*OP + 0.75*OR
+equation:
+  factor: [0.5, 1.25, 1.75, 0.25, 0.75]
+  name: ["MP", "MR", "FR", "OP", "OR"]
 ---
 
 Na tym kierunku przygotujesz się do wykonywania zadań inżynierskich ukierunkowanych na potrzeby przemysłu rolno-spożywczego i gospodarki leśnej. Zdobędziesz umiejętności w zakresie eksploatacji obiektów technicznych, a także nadzorowania procesów produkcyjnych w rolnictwie, przemyśle spożywczym i leśnictwie. Jako absolwent będziesz posiadać

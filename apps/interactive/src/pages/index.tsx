@@ -12,8 +12,6 @@ const ALink = styled.div`
     }
 `;
 
-console.log(process.env.NEXT_PUBLIC_HOST);
-
 const HomePage = () => {
     return (
         <Layout pageTitle="HomePage">

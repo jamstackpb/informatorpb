@@ -1,5 +1,3 @@
-import { MatterInterface } from './../src/utils/matterInterface';
-
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';

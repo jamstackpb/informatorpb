@@ -16,7 +16,6 @@ const projectsPage = ({ content, graduate, science, fos }: InferGetStaticPropsTy
     }, []);
     useEffect(() => {
         router.query.page && router.push(`/?page=${router.query.page}`, undefined, { shallow: true });
-        console.log(router.query.page);
     }, [router.query.page]);
     return (
         <>
