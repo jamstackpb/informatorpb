@@ -13,16 +13,29 @@ jobPerspectives:
   - pracownik firm realizujących i pielęgnujących obiekty architektury krajobrazu
   - urzędnik w jednostkach administracji publicznej
   - samodzielna praktyka projektowa
-maturaSubjects:
-  - fizyka
-  - chemia
-  - biologia
-  - geografia
-  - historia
-  - historia sztuki
-equation:
-  factor: [0.5, 1.25, 1.75, 0.25, 0.75]
-  name: ["MP", "MR", "FR", "OP", "OR"]
+equationSubjects:
+  - name: Matematyka Podstawowa
+    factor: 0.5
+  - name: Matematyka Rozszerzona
+    factor: 1.25
+  - name: Przedmiot rozszerzony
+    options:
+      - name: Fizyka
+        factor: 1.75
+      - name: Geografia
+        factor: 1.75
+      - name: Biologia
+        factor: 1.75
+      - name: Chemia
+        factor: 1.75
+      - name: Historia
+        factor: 1.75
+      - name: Historia sztuki
+        factor: 1.75
+  - name: j. Obcy Nowożytny Podstawowy
+    factor: 0.25
+  - name: j. Obcy Nowożytny Rozszerzony
+    factor: 0.75
 ---
 
 Na tym kierunku zdobędziesz wiedzę i umiejętności z zakresu kształtowania obiektów architektury krajobrazu. Będziesz przygotowany do współpracy z innymi specjalistami uczestniczącymi w projektowaniu, budowie i pielęgnowaniu obiektów architektury krajobrazu.

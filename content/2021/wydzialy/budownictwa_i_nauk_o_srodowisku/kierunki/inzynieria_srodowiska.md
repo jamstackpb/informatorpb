@@ -15,13 +15,23 @@ jobPerspectives:
   - urzędnik, inspektor sanitarny, inspektor ochrony środowiska w jednostkach administracji publicznej
   - biura projektowe – asystent projektanta
   - branżowe firmy handlowe – handlowiec, doradca techniczny
-maturaSubjects:
-  - fizyka
-  - biologia
-  - chemia
-equation:
-  factor: [0.5, 1.25, 1.75, 0.25, 0.75]
-  name: ["MP", "MR", "FR", "OP", "OR"]
+equationSubjects:
+  - name: Matematyka Podstawowa
+    factor: 0.5
+  - name: Matematyka Rozszerzona
+    factor: 1.25
+  - name: Przedmiot rozszerzony
+    options:
+      - name: Fizyka
+        factor: 1.75
+      - name: Biologia
+        factor: 1.75
+      - name: Chemia
+        factor: 1.75
+  - name: j. Obcy Nowożytny Podstawowy
+    factor: 0.25
+  - name: j. Obcy Nowożytny Rozszerzony
+    factor: 0.75
 ---
 
 Na tym kierunku uzyskasz wiedzę i kompetencje związane z systemami zaopatrzenia w wodę, oczyszczania i odprowadzania ścieków, sieci i instalacji gazowych, a także systemów wentylacji, klimatyzacji, urządzeń do oczyszczania powietrza i ciepłownictwa. Jako absolwent będziesz przygotowany do projektowania, wykonawstwa i eksploatacji urządzeń i obiektów technicznych, w tym do badań eksploatacyjnych, pomiarów diagnostycznych oraz kontroli jakości stosowanych technologii i urządzeń.
