@@ -5,7 +5,7 @@ import React from 'react';
 type KierunekProps = ReturnType<typeof getFieldsOfStudy> extends Array<infer R> ? R : never;
 
 export const Kierunek: React.FC<KierunekProps> = ({
-    matter: { faculty, engineering, equation, jobPerspectives, master, maturaSubjects, name, specialities },
+    matter: { faculty, engineering, equationSubjects, jobPerspectives, master, name, specialities },
     content,
 }) => {
     return (
@@ -32,7 +32,7 @@ export const Kierunek: React.FC<KierunekProps> = ({
                     <td>{master.partTime ? '✔' : ''}</td>
                 </tbody>
             </table>
-            <Kalkulator equation={equation} maturaSubjects={maturaSubjects} />
+            <Kalkulator equationSubjects={equationSubjects} />
             <div>{content}</div>
         </>
     );

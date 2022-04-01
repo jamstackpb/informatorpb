@@ -1,4 +1,4 @@
-import { equationType } from '@/src/components/atoms/Kalkulator';
+import { PartOfEquation } from '@/src/components/atoms/Kalkulator';
 
 type PossiblePageType = 'kierunek' | 'absolwent' | 'kolo_naukowe';
 
@@ -13,8 +13,7 @@ export interface FieldOfStudy {
     master: typeOfStudy;
     specialities: string;
     jobPerspectives: string;
-    maturaSubjects: string;
-    equation: equationType;
+    equationSubjects: PartOfEquation[];
     faculty: string;
 }
 export interface AbsolwentProps {
