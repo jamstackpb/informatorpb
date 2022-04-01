@@ -8,7 +8,12 @@ body {
 .page-content {
     @apply prose;
 }
-.stf__wrapper.--portrait[style]{
+.stf__wrapper.--portrait[style] {
     padding-bottom: 0 !important;
-  
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
 }

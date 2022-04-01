@@ -12,7 +12,7 @@ export const Kierunek: React.FC<KierunekProps> = ({
         <>
             <h1>{name}</h1>
             <h2>{'Wydział ' + faculty}</h2>
-            <table>
+            <table className="mb-3">
                 <thead>
                     <tr>
                         <th colSpan={2}>Studia I stopnia Inżynierskie, Licencjackie</th>

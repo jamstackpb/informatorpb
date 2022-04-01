@@ -44,6 +44,8 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             swipeDistance: 10,
             mobileScrollSupport: true,
             disableFlipByClick: true,
+            useMouseEvents: false,
+            clickEventForward: false,
             // usePortrait: false,
             // autoSize: true,
             size: SizeType.FIXED,
