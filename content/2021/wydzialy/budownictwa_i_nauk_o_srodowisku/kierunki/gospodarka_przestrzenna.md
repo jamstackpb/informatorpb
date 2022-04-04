@@ -14,14 +14,25 @@ jobPerspectives:
   - praca w instytucjach europejskich, zwłaszcza agencjach rozwoju regionalnego
   - praca w agencjach nieruchomości
   - praca w firmach konsultingowych i doradczych oraz innych firmach otoczenia biznesu
-maturaSubjects:
-  - fizyka
-  - biologia
-  - geografia
-  - informatyka
-equation:
-  factor: [0.5, 1.25, 1.75, 0.25, 0.75]
-  name: ["MP", "MR", "FR", "OP", "OR"]
+equationSubjects:
+  - name: Matematyka Podstawowa
+    factor: 0.5
+  - name: Matematyka Rozszerzona
+    factor: 1.25
+  - name: Przedmiot rozszerzony
+    options:
+      - name: Fizyka
+        factor: 1.75
+      - name: Geografia
+        factor: 1.75
+      - name: Biologia
+        factor: 1.75
+      - name: Informatyka
+        factor: 1.75
+  - name: j. Obcy Nowożytny Podstawowy
+    factor: 0.25
+  - name: j. Obcy Nowożytny Rozszerzony
+    factor: 0.75
 ---
 
 Na tym kierunku uzyskasz wiedzę z zakresu przestrzennej organizacji rozwoju społeczno-gospodarczego oraz technik modelowania i planowania przestrzeni. Dodatkowo otrzymasz wiadomości z zakresu zarządzania nieruchomościami.

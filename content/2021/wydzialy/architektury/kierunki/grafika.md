@@ -19,9 +19,27 @@ maturaSubjects:
   - geografia
   - historia
   - historia sztuki
-equation:
-  factor: [0.5, 1.25, 1.75, 0.25, 0.75, 4]
-  name: ["MP", "MR", "FR", "OP", "OR", "R"]
+equationSubjects:
+  - name: Matematyka Podstawowa
+    factor: 0.5
+  - name: Matematyka Rozszerzona
+    factor: 1.25
+  - name: Przedmiot rozszerzony
+    options:
+      - name: Fizyka
+        factor: 1.75
+      - name: Geografia
+        factor: 1.75
+      - name: Historia
+        factor: 1.75
+      - name: Historia sztuki
+        factor: 1.75
+  - name: j. Obcy Nowożytny Podstawowy
+    factor: 0.25
+  - name: j. Obcy Nowożytny Rozszerzony
+    factor: 0.75
+  - name: Rysunek
+    factor: 4
 ---
 
 Na tym kierunku zdobędziesz wiedzę z zakresu historii sztuki, grafiki, estetyki i tworzenia prac artystycznych oraz projektów graficznych. Zapoznasz się z różnorodnymi technikami graficznymi, warsztatowymi, rysunkowymi i malarskimi. Rozwiniesz indywidualne zdolności twórcze. Będziesz tworzyć artystyczne prace graficzne, rysunkowe, malarskie oraz projekty graficzne, w tym autorskie ilustracje, projekty wydawnicze, kreatywne identyfikacje wizualne, artystyczne animacje.

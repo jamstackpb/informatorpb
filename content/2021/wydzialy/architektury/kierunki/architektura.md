@@ -13,14 +13,27 @@ jobPerspectives:
   - pracownik w firmie deweloperskiej
   - w wykonawstwie i nadzorze budowlanym
   - urzędnik w jednostkach administracji publicznej
-maturaSubjects:
-  - fizyka
-  - geografia
-  - historia
-  - historia sztuki
-equation:
-  factor: [0.5, 1.25, 1.75, 0.25, 0.75, 4]
-  name: ["MP", "MR", "FR", "OP", "OR", "R"]
+equationSubjects:
+  - name: Matematyka Podstawowa
+    factor: 0.5
+  - name: Matematyka Rozszerzona
+    factor: 1.25
+  - name: Przedmiot rozszerzony
+    options:
+      - name: Fizyka
+        factor: 1.75
+      - name: Geografia
+        factor: 1.75
+      - name: Historia
+        factor: 1.75
+      - name: Historia sztuki
+        factor: 1.75
+  - name: j. Obcy Nowożytny Podstawowy
+    factor: 0.25
+  - name: j. Obcy Nowożytny Rozszerzony
+    factor: 0.75
+  - name: Rysunek
+    factor: 4
 ---
 
 Na tym kierunku zdobędziesz wiedzę i umiejętności w zakresie projektowania architektonicznego i urbanistycznego, teorii i historii architektury i urbanistyki, sztuk pięknych, budownictwa i technologii budowlanych, mechaniki, konstrukcji oraz fizyki budowli i infrastruktury. Poznasz uwarunkowania prawne i ekonomiczne działalności projektowej. Nauczysz się

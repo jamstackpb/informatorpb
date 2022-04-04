@@ -28,9 +28,9 @@ equationSubjects:
         factor: 1.5
       - name: biologia
         factor: 1.25
-  - name: Angielski Podstawowy
-    factor: 0.5
-  - name: Angielski Rozszerzony
+  - name: j. Obcy Nowożytny Podstawowy
+    factor: 0.25
+  - name: j. Obcy Nowożytny Rozszerzony
     factor: 0.75
 ---
 

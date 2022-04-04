@@ -15,12 +15,21 @@ jobPerspectives:
   - na stanowiskach obsługi i utrzymania ruchu systemów i urządzeń produkcyjnych
   - na stanowiskach obsługi energoelektronicznych układów zasilania energią elektryczną
   - praca na stanowiskach z zakresu projektowania, budowy i eksploatacji sieci, instalacji i urządzeń elektrycznych i elektroenergetycznych
-maturaSubjects:
-  - fizyka
-  - informatyka
-equation:
-  factor: [0.5, 1.25, 1.75, 0.25, 0.75]
-  name: ["MP", "MR", "FR", "OP", "OR"]
+equationSubjects:
+  - name: Matematyka Podstawowa
+    factor: 0.5
+  - name: Matematyka Rozszerzona
+    factor: 1.25
+  - name: Przedmiot rozszerzony
+    options:
+      - name: Fizyka
+        factor: 1.75
+      - name: Informatyka
+        factor: 1.75
+  - name: j. Obcy Nowożytny Podstawowy
+    factor: 0.25
+  - name: j. Obcy Nowożytny Rozszerzony
+    factor: 0.75
 ---
 
 Studia o profilu praktycznym, prowadzone z udziałem przedsiębiorstw – partnerów kształcenia praktycznego. Kształcenie odbywa się przemiennie w formie zajęć dydaktycznych realizowanych w uczelni i w formie płatnych praktyk odbywanych u pracodawcy:
