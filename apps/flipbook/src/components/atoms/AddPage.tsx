@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import ReactDOM from 'react-dom';
 import { Absolwent } from './Absolwent';
 import { KoloNaukowe } from './KoloNaukowe';
 import { Kierunek } from '@/src/components/atoms/Kierunek';
 import { ContentPageProps } from '@/src/models';
+import ReactDOM from 'react-dom';
+
 export interface MatterInterface {
     matter: { [key: string]: string };
     content: string;
@@ -78,9 +79,12 @@ const PagesSection: React.FC<ContentPageProps> = (props) => {
 };
 
 const AddReactPage = ({ element }: { element: React.ReactElement<MatterInterface> }) => {
-    const loc = document.getElementById('page-storage');
-    const page = document.createElement('div');
-    page.innerHTML = ReactDOMServer.renderToString(element);
+    let loc = document.getElementById('page-storage');
+    let page = document.createElement('div');
+    page.className = 'page';
+    const pageContent = document.createElement('div');
+    ReactDOM.render(element, pageContent);
+    page.appendChild(pageContent);
     loc?.appendChild(page);
 };
 

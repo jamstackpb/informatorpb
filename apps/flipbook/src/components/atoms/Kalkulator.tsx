@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useMemo, useState } from 'react';
 import { findDOMNode, render } from 'react-dom';
 
 export type PartOfEquation = { name: string } & (
@@ -17,6 +17,10 @@ export const PrzedmiotInput: React.FC<{ przedmiot: string; value: number; setVal
             <input
                 type="number"
                 value={value}
+                onMouseDown={(e) => {
+                    e.stopPropagation();
+                    return false;
+                }}
                 onChange={(e) => setValue(parseFloat(e.target.value))}
                 className="p-2"
                 step={0.01}
@@ -43,64 +47,75 @@ export const Kalkulator: React.FC<{ equationSubjects: Array<PartOfEquation> }> =
         setState((s) => ({
             ...s,
             [name]: {
+                ...(s[name] || {}),
                 factor,
                 value,
             },
         }));
     };
-    console.log(state);
+    const wynik = useMemo(() => {
+        return Object.values(state).reduce((a, b) => {
+            if (!b?.value || !b?.factor) {
+                return a;
+            }
+            return a + b.value * b.factor;
+        }, 0);
+    }, [state]);
     return (
-        <>
-            <form className="w-full">
-                {equationSubjects.map((es) => {
-                    if (es.name && 'factor' in es) {
-                        return (
-                            <PrzedmiotInput
-                                przedmiot={es.name}
-                                value={state[es.name]?.value || 0.0}
-                                setValue={(e) => {
-                                    setPrzedmiotValue(es.name, es.factor, e);
+        <div className="w-full">
+            {equationSubjects.map((es) => {
+                if (es.name && 'factor' in es) {
+                    return (
+                        <PrzedmiotInput
+                            przedmiot={es.name}
+                            value={state[es.name]?.value || 0.0}
+                            setValue={(e) => {
+                                setPrzedmiotValue(es.name, es.factor, e);
+                            }}
+                        />
+                    );
+                }
+                if (es.name && 'options' in es) {
+                    return (
+                        <>
+                            <select
+                                onMouseDown={(e) => {
+                                    e.stopPropagation();
+                                    return false;
                                 }}
-                            />
-                        );
-                    }
-                    if (es.name && 'options' in es) {
-                        return (
-                            <>
-                                <select
-                                    onChange={(e) => {
-                                        setState((s) => ({
-                                            ...s,
-                                            [es.name]: {
-                                                value: 0,
-                                                currentName: e.target.value,
-                                            },
-                                        }));
+                                onChange={(e) => {
+                                    setState((s) => ({
+                                        ...s,
+                                        [es.name]: {
+                                            value: 0,
+                                            currentName: e.target.value,
+                                        },
+                                    }));
+                                }}
+                            >
+                                {es.options.map((o) => {
+                                    return <option key={o.name} value={o.name}>{`${o.name} - ${o.factor}`}</option>;
+                                })}
+                            </select>
+                            {state[es.name]?.currentName && (
+                                <PrzedmiotInput
+                                    przedmiot={es.name}
+                                    value={state[es.name]?.value || 0.0}
+                                    setValue={(e) => {
+                                        setPrzedmiotValue(
+                                            es.name,
+                                            es.options.find((o) => o.name === state[es.name]?.currentName)?.factor ||
+                                                0.0,
+                                            e,
+                                        );
                                     }}
-                                >
-                                    {es.options.map((o) => {
-                                        return <option key={o.name} value={o.name}>{`${o.name} - ${o.factor}`}</option>;
-                                    })}
-                                </select>
-                                {state[es.name]?.currentName && (
-                                    <PrzedmiotInput
-                                        przedmiot={es.name}
-                                        value={state[es.name]?.value || 0.0}
-                                        setValue={(e) => {
-                                            setPrzedmiotValue(
-                                                es.name,
-                                                es.options.find((o) => o.name === state[es.name]?.currentName)
-                                                    ?.factor || 0.0,
-                                                e,
-                                            );
-                                        }}
-                                    />
-                                )}
-                            </>
-                        );
-                    }
-                })}
-            </form>
-        </>
+                                />
+                            )}
+                        </>
+                    );
+                }
+            })}
+            {!!wynik && <div className="py-2 text-green-500">{`Twój wynik to: ${wynik} punktów`}</div>}
+        </div>
     );
 };

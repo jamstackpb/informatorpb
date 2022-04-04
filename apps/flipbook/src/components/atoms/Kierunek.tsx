@@ -33,7 +33,7 @@ export const Kierunek: React.FC<KierunekProps> = ({
                 </tbody>
             </table>
             <Kalkulator equationSubjects={equationSubjects} />
-            <div>{content}</div>
+            <div dangerouslySetInnerHTML={{ __html: content }} />
         </>
     );
 };

@@ -15,25 +15,25 @@ export const Front = () => {
 };
 
 export const AddFrontPage = (
-        pageClass: string,
-        pageContentClass: string,
-        pageTextClass: string,
-        pageTextContent: string,
-        pageImgClass: string
-        ) => {
-            let loc = document.getElementById('page-storage')
-            let page = document.createElement('div');
-            let pageContent = document.createElement('div');
-            let pageText = document.createElement('div');
-            let pageImg = document.createElement('div');
-            page.className = 'page' + ' ' + pageClass;
-            pageContent.className = 'bg-green-900 max-w-full flex flex-col' + ' ' + pageContentClass;
-            pageText.className = 'text-white text-4xl text-center' + ' ' + pageTextClass;
-            pageText.innerHTML = pageTextContent;
-            pageImg.className = pageImgClass;
-            ReactDOM.render(<Front/>, pageImg)
-            pageText.append(pageImg)
-            pageContent.appendChild(pageText);
-            page.appendChild(pageContent);
-            loc!.appendChild(page);
-} 
+    pageClass: string,
+    pageContentClass: string,
+    pageTextClass: string,
+    pageTextContent: string,
+    pageImgClass: string,
+) => {
+    let loc = document.getElementById('page-storage');
+    let page = document.createElement('div');
+    let pageContent = document.createElement('div');
+    let pageText = document.createElement('div');
+    let pageImg = document.createElement('div');
+    page.className = 'page' + ' ' + pageClass;
+    pageContent.className = 'bg-green-900 max-w-full flex flex-col' + ' ' + pageContentClass;
+    pageText.className = 'text-white text-4xl text-center' + ' ' + pageTextClass;
+    pageText.innerHTML = pageTextContent;
+    pageImg.className = pageImgClass;
+    ReactDOM.render(<Front />, pageImg);
+    pageText.append(pageImg);
+    pageContent.appendChild(pageText);
+    page.appendChild(pageContent);
+    loc!.appendChild(page);
+};
