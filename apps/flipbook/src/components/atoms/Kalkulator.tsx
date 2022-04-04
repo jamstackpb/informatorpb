@@ -13,7 +13,7 @@ export const PrzedmiotInput: React.FC<{ przedmiot: string; value: number; setVal
 }) => {
     return (
         <div className="flex items-center text-sm border-b">
-            <label className="mr-4 font-bold">{przedmiot}</label>
+            <label className="w-1/2 font-bold">{przedmiot}</label>
             <input
                 type="number"
                 value={value}
@@ -22,7 +22,7 @@ export const PrzedmiotInput: React.FC<{ przedmiot: string; value: number; setVal
                     return false;
                 }}
                 onChange={(e) => setValue(parseFloat(e.target.value))}
-                className="p-2"
+                className="p-2 w-1/2"
                 step={0.01}
                 min={0}
                 max={100}
@@ -79,6 +79,7 @@ export const Kalkulator: React.FC<{ equationSubjects: Array<PartOfEquation> }> =
                     return (
                         <>
                             <select
+                                className="font-bold text-sm text-gray-800 py-2 px-0 border-b"
                                 onMouseDown={(e) => {
                                     e.stopPropagation();
                                     return false;
@@ -93,24 +94,27 @@ export const Kalkulator: React.FC<{ equationSubjects: Array<PartOfEquation> }> =
                                     }));
                                 }}
                             >
+                                <option value={''}>Wybierz przedmiot rozszerzony</option>
                                 {es.options.map((o) => {
                                     return <option key={o.name} value={o.name}>{`${o.name} - ${o.factor}`}</option>;
                                 })}
                             </select>
-                            {state[es.name]?.currentName && (
-                                <PrzedmiotInput
-                                    przedmiot={es.name}
-                                    value={state[es.name]?.value || 0.0}
-                                    setValue={(e) => {
-                                        setPrzedmiotValue(
-                                            es.name,
-                                            es.options.find((o) => o.name === state[es.name]?.currentName)?.factor ||
-                                                0.0,
-                                            e,
-                                        );
-                                    }}
-                                />
-                            )}
+                            <div className="pl-8">
+                                {state[es.name]?.currentName && (
+                                    <PrzedmiotInput
+                                        przedmiot={es.name}
+                                        value={state[es.name]?.value || 0.0}
+                                        setValue={(e) => {
+                                            setPrzedmiotValue(
+                                                es.name,
+                                                es.options.find((o) => o.name === state[es.name]?.currentName)
+                                                    ?.factor || 0.0,
+                                                e,
+                                            );
+                                        }}
+                                    />
+                                )}
+                            </div>
                         </>
                     );
                 }
