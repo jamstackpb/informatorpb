@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import ReactDOM from 'react-dom';
 import { Absolwent } from './Absolwent';
 import { KoloNaukowe } from './KoloNaukowe';
 import { Kierunek } from '@/src/components/atoms/Kierunek';
@@ -77,8 +78,8 @@ const PagesSection: React.FC<ContentPageProps> = (props) => {
 };
 
 const AddReactPage = ({ element }: { element: React.ReactElement<MatterInterface> }) => {
-    let loc = document.getElementById('page-storage');
-    let page = document.createElement('div');
+    const loc = document.getElementById('page-storage');
+    const page = document.createElement('div');
     page.innerHTML = ReactDOMServer.renderToString(element);
     loc?.appendChild(page);
 };

@@ -12,13 +12,13 @@ export const PrzedmiotInput: React.FC<{ przedmiot: string; value: number; setVal
     value,
 }) => {
     return (
-        <div className="flex">
-            <label className="mr-4 font-bold text-sm">{przedmiot}</label>
+        <div className="flex items-center text-sm border-b">
+            <label className="mr-4 font-bold">{przedmiot}</label>
             <input
                 type="number"
                 value={value}
                 onChange={(e) => setValue(parseFloat(e.target.value))}
-                className="h-6 w-8 bg-green-600 hover:bg-green-500 text-center"
+                className="p-2"
                 step={0.01}
                 min={0}
                 max={100}
@@ -31,11 +31,12 @@ export const Kalkulator: React.FC<{ equationSubjects: Array<PartOfEquation> }> =
     const [state, setState] = useState<
         Record<
             string,
-            {
-                factor?: number;
-                value?: number;
-                currentName?: string;
-            }
+            | {
+                  factor?: number;
+                  value?: number;
+                  currentName?: string;
+              }
+            | undefined
         >
     >({});
     const setPrzedmiotValue = (name: string, factor: number, value: number) => {
@@ -47,15 +48,16 @@ export const Kalkulator: React.FC<{ equationSubjects: Array<PartOfEquation> }> =
             },
         }));
     };
+    console.log(state);
     return (
         <>
-            <form className="bg-green-700 h-16 w-full">
+            <form className="w-full">
                 {equationSubjects.map((es) => {
                     if (es.name && 'factor' in es) {
                         return (
                             <PrzedmiotInput
                                 przedmiot={es.name}
-                                value={state[es.name].value || 0.0}
+                                value={state[es.name]?.value || 0.0}
                                 setValue={(e) => {
                                     setPrzedmiotValue(es.name, es.factor, e);
                                 }}
@@ -77,18 +79,18 @@ export const Kalkulator: React.FC<{ equationSubjects: Array<PartOfEquation> }> =
                                     }}
                                 >
                                     {es.options.map((o) => {
-                                        return <option value={o.name}>{`${o.name} - ${o.factor}`}</option>;
+                                        return <option key={o.name} value={o.name}>{`${o.name} - ${o.factor}`}</option>;
                                     })}
                                 </select>
-                                {state[es.name].currentName && (
+                                {state[es.name]?.currentName && (
                                     <PrzedmiotInput
                                         przedmiot={es.name}
-                                        value={state[es.name].value || 0.0}
+                                        value={state[es.name]?.value || 0.0}
                                         setValue={(e) => {
                                             setPrzedmiotValue(
                                                 es.name,
-                                                es.options.find((o) => o.name === state[es.name].currentName)?.factor ||
-                                                    0.0,
+                                                es.options.find((o) => o.name === state[es.name]?.currentName)
+                                                    ?.factor || 0.0,
                                                 e,
                                             );
                                         }}
