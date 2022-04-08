@@ -1,6 +1,5 @@
-import { getFieldsOfStudy } from '@/ssg/fieldofstudy';
-import { Graduate } from '@/ssg/graduate';
-import { getScienceContent } from '@/ssg/science';
+import { getFieldsOfStudy, Graduate, getScienceContent, getTableOfContents } from '@/ssg';
+
 import { useRouter } from 'next/router';
 import { PageFlip } from 'page-flip';
 import React, { useEffect, useState } from 'react';
@@ -19,6 +18,8 @@ interface IFlipBook {
     graduate: ReturnType<typeof Graduate>;
     science: ReturnType<typeof getScienceContent>;
     foStudy: ReturnType<typeof getFieldsOfStudy>;
+    tableOfContents: ReturnType<typeof getTableOfContents>;
+
     whichPage?: number;
 }
 enum SizeType {
@@ -28,7 +29,7 @@ enum SizeType {
     STRETCH = 'stretch',
 }
 
-export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy }) => {
+export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy, tableOfContents }) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
     const router = useRouter();
     const [currentPage, setCurrentPage] = useState(router.query.page ? parseInt(router.query.page as string) : 0);
@@ -49,6 +50,10 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             // usePortrait: false,
             // autoSize: true,
             size: SizeType.FIXED,
+        });
+
+        tableOfContents.map((g) => {
+            AddPagesWithContent(g);
         });
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
         pages.map((p) => {

@@ -4,6 +4,7 @@ import { Absolwent } from './Absolwent';
 import { KoloNaukowe } from './KoloNaukowe';
 import { Kierunek } from '@/src/components/atoms/Kierunek';
 import { ContentPageProps } from '@/src/models';
+import { TableOfContents } from './TableOfContents';
 import ReactDOM from 'react-dom';
 
 export interface MatterInterface {
@@ -32,6 +33,7 @@ enum PageType {
     ABSOLWENT = 'absolwent',
     KOLO_NAUKOWE = 'kolo_naukowe',
     KIERUNEK = 'kierunek',
+    SPIS_TRESCI = 'spis_tresci',
 }
 
 const FlipBookPage: React.FC = ({ children }) => {
@@ -71,6 +73,12 @@ const PagesSection: React.FC<ContentPageProps> = (props) => {
             return (
                 <FlipBookPage>
                     <Kierunek {...props} />
+                </FlipBookPage>
+            );
+        case PageType.SPIS_TRESCI:
+            return (
+                <FlipBookPage>
+                    <TableOfContents {...props} />
                 </FlipBookPage>
             );
         default:

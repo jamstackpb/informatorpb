@@ -2,14 +2,20 @@ import { getFlipBook } from '@/ssg/flipbookcontent';
 import { InferGetStaticPropsType } from 'next';
 import React from 'react';
 import { FlipBook } from '../components/organism/flipbook';
-import { Graduate } from '@/ssg/graduate';
-import { getScienceContent } from '@/ssg/science';
-import { getFieldsOfStudy } from '@/ssg/fieldofstudy';
+import { Graduate, getScienceContent, getFieldsOfStudy, getTableOfContents } from '@/ssg/';
+
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { TableOfContents } from '../components/atoms/TableOfContents';
 
-const projectsPage = ({ content, graduate, science, fos }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const projectsPage = ({
+    content,
+    graduate,
+    science,
+    fos,
+    tableOfContents,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
     const router = useRouter();
     useEffect(() => {
         router.push(`/?page=0`);
@@ -22,7 +28,14 @@ const projectsPage = ({ content, graduate, science, fos }: InferGetStaticPropsTy
             <Head>
                 <title>InformatorPB</title>
             </Head>
-            <FlipBook science={science} graduate={graduate} pages={content} foStudy={fos} />;
+            <FlipBook
+                science={science}
+                graduate={graduate}
+                pages={content}
+                foStudy={fos}
+                tableOfContents={tableOfContents}
+            />
+            ;
         </>
     );
 };
@@ -34,6 +47,7 @@ export const getStaticProps = () => {
             graduate: Graduate(),
             science: getScienceContent(),
             fos: getFieldsOfStudy(),
+            tableOfContents: getTableOfContents(),
         },
     };
 };
