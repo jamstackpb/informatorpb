@@ -6,7 +6,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import { matterExport } from '@/ssg/models';
 
 export const getTableOfContents = () => {
-    const contentPath = path.join(process.cwd(), '..', '..', 'content', '2021', 'tableOfContents');
+    const contentPath = path.join(process.cwd(), 'content/2021/tableOfContents');
 
     const tableOfContentsFile = fs.readdirSync(contentPath);
 

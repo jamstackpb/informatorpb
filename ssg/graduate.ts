@@ -6,7 +6,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import { matterExport } from '@/ssg/models';
 
 export const Graduate = () => {
-    const pathToFolderProjects = path.join(process.cwd(), '..', '..', 'content', '2021', 'absolwenci');
+    const pathToFolderProjects = path.join(process.cwd(), 'content/2021/absolwenci');
     const projectsDirectoryFiles = fs.readdirSync(pathToFolderProjects);
 
     return projectsDirectoryFiles

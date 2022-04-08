@@ -5,7 +5,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import remark from 'remark';
 import remarkHtml from 'remark-html';
 export const getFlipBook = () => {
-    const pathToFolderProjects = path.join(process.cwd(), '..', '..', 'content', '2021', 'pages');
+    const pathToFolderProjects = path.join(process.cwd(), 'content/2021/pages');
     const projectsDirectoryFiles = fs.readdirSync(pathToFolderProjects);
 
     const withGrayMatter = projectsDirectoryFiles

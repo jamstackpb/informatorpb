@@ -34,7 +34,7 @@ export interface TableOfContentsProps {
     section: string;
     bgcImage: string;
     pageNumber: string;
-    chapters: { [key: string]: string | number };
+    chapters: Array<{ section: string; page: number }>;
 }
 
 export const matterExport = <

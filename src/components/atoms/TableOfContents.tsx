@@ -1,15 +1,19 @@
+import { currentPageAtom } from '@/src/state';
 import { getTableOfContents } from '@/ssg/spistresci';
+import { useAtom } from 'jotai';
+import Link from 'next/link';
 
 type TableOfContentsProps = Omit<ReturnType<typeof getTableOfContents> extends Array<infer R> ? R : never, 'pageType'>;
 
 export const TableOfContents: React.FC<TableOfContentsProps> = ({ matter: { chapters } }) => {
+    const [, setPage] = useAtom(currentPageAtom);
     return (
         <>
             {chapters.map((chapter) => {
                 return (
-                    <div>
-                        <a href={`/?page=${chapter.page}`}> {chapter.section}</a>
-                    </div>
+                    <a className="block cursor-pointer text-sm mb-1" onClick={() => setPage(chapter.page)}>
+                        {chapter.section}
+                    </a>
                 );
             })}
 

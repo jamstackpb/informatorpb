@@ -1,4 +1,6 @@
+import { currentPageAtom } from '@/src/state';
 import { getFieldsOfStudy, Graduate, getScienceContent, getTableOfContents } from '@/ssg';
+import { useAtom } from 'jotai';
 
 import { useRouter } from 'next/router';
 import { PageFlip } from 'page-flip';
@@ -32,7 +34,7 @@ enum SizeType {
 export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy, tableOfContents }) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
     const router = useRouter();
-    const [currentPage, setCurrentPage] = useState(router.query.page ? parseInt(router.query.page as string) : 0);
+    const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
     const [totalPages, setTotalPages] = useState(0);
     useEffect(() => {
         const pf = new PageFlip(document.getElementById('flipbook-container')!, {
@@ -94,7 +96,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         return () => {
             pf.destroy();
         };
-    }, [setCurrentPage]);
+    }, []);
 
     useEffect(() => {
         if (pageFlip) {

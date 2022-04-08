@@ -6,7 +6,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import { matterExport } from '@/ssg/models';
 
 export const getFieldsOfStudy = () => {
-    const path1stage = path.join(process.cwd(), '..', '..', 'content', '2021', 'wydzialy');
+    const path1stage = path.join(process.cwd(), 'content/2021/wydzialy');
     const faculties = fs.readdirSync(path1stage);
 
     return faculties.flatMap((item) => {
