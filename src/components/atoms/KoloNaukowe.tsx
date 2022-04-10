@@ -1,9 +1,11 @@
 import { getScienceContent } from '@/ssg/science';
 
+
 type KoloNaukoweProps = Omit<ReturnType<typeof getScienceContent> extends Array<infer R> ? R : never, 'pageType'>;
 export const KoloNaukowe: React.FC<KoloNaukoweProps> = ({ content, matter: { name, video, website } }) => {
     return (
         <>
+           
             <h1 className="w-max mx-auto">{name}</h1>
 
             {video !== '---' && (

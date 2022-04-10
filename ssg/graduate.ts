@@ -19,6 +19,6 @@ export const Graduate = () => {
             const { data, content } = matter(fileContents);
             const dirty = marked(content);
             const clean = DOMPurify.sanitize(dirty);
-            return matterExport('absolwent', data, clean);
+            return matterExport('absolwent', data, clean, 0);
         });
 };

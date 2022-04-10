@@ -20,7 +20,7 @@ export const getScienceContent = () => {
                 const { data: changedToMatter, content } = matter(fileContents);
                 const dirty = marked(content);
                 const clean = DOMPurify.sanitize(dirty);
-                return matterExport('kolo_naukowe', changedToMatter, clean);
+                return matterExport('kolo_naukowe', changedToMatter, clean, 0);
             });
     });
 };

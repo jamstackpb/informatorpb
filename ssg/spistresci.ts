@@ -20,6 +20,6 @@ export const getTableOfContents = () => {
             const { data, content } = matter(fileContents);
             const dirty = marked(content);
             const clean = DOMPurify.sanitize(dirty);
-            return matterExport('spis_tresci', data, clean);
+            return matterExport('spis_tresci', data, clean, 0);
         });
 };

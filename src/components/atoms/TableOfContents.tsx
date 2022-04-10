@@ -1,6 +1,6 @@
 import { currentPageAtom } from '@/src/state';
-import { getTableOfContents } from '@/ssg/spistresci';
 import { useAtom } from 'jotai';
+import { getTableOfContents } from '@/ssg/spistresci';
 import Link from 'next/link';
 
 type TableOfContentsProps = Omit<ReturnType<typeof getTableOfContents> extends Array<infer R> ? R : never, 'pageType'>;
@@ -16,8 +16,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ matter: { chap
                     </a>
                 );
             })}
-
-            {console.log(chapters)}
+            {/* uzyc memo? */}
         </>
     );
 };
