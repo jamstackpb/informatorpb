@@ -65,6 +65,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             g.pagenumber = index;
             AddPagesWithContent(g, tableOfContent);
         });
+        index++;
         AddFrontPage(
             '',
             'prose w-full h-full flex flex-col py-[49%]',
@@ -73,8 +74,11 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             '',
         );
         science.map((g) => {
-            AddPagesWithContent(g);
+            index++;
+            g.pagenumber = index;
+            AddPagesWithContent(g, tableOfContent);
         });
+        index++;
         AddFrontPage(
             '',
             'prose h-full w-full flex flex-col py-[49%]',
@@ -84,11 +88,14 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         );
 
         graduate.map((g) => {
-            AddPagesWithContent(g);
+            index++;
+            g.pagenumber = index;
+            AddPagesWithContent(g, tableOfContent);
         });
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
         pages.map((p) => {
-            AddPlainPage({ content: p.clean });
+            index++;
+            AddPlainPage({ content: p.clean, pageNumber: index, table: tableOfContent });
         });
 
         pf.on('changeState', () => {

@@ -47,7 +47,7 @@ const FlipBookPage: React.FC<{
 }> = ({ children, pageNumber, table }) => {
     return (
         <div className="page">
-            {pageNumber && pageNumber % 2 !== 0 && <FancyTest table={table} />}
+            {typeof pageNumber !== 'undefined' && pageNumber % 2 !== 0 && <FancyTest table={table} />}
             <div className="max-w-none flex justify-center">
                 <div className={`prose flex flex-col w-max p-8 m-0`}>{children}</div>
             </div>

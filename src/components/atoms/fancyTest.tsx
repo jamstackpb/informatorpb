@@ -12,28 +12,35 @@ export const FancyTest: React.FC<{
     const [clicked, setClicked] = useState(false);
     const [, setPage] = useAtom(currentPageAtom);
     return (
-        <div
-            className={
-                (clicked &&
-                    ' absolute  bottom-0 right-0 border-2 border-cyan-900 cursor-pointer transition-all h-full w-full bg-green-700') ||
-                ' bottom-0 right-0 absolute border-2 border-cyan-900 cursor-pointer transition-all h-20 w-10 bg-green-700'
-            }
-            onClick={() => setClicked(!clicked)}
-        >
-            <div className={(clicked && 'text-center') || ''}>
-                {(clicked &&
-                    table.map((chapter) => {
-                        return (
-                            <a className="block cursor-pointer text-sm mb-1" onClick={() => setPage(chapter.page)}>
-                                {chapter.section}
-                            </a>
-                        );
-                    })) ||
-                    'SPIS'}
-            </div>
-
-            {/* uzyc memo? */}
-        </div>
+        <>
+            {clicked && (
+                <div
+                    className="absolute bottom-0 right-0 transition-all h-full w-full bg-white px-20 py-10"
+                    onClick={() => setClicked(!clicked)}
+                >
+                    <div className="mb-2">
+                        {table.map((chapter) => {
+                            return (
+                                <a
+                                    className="block cursor-pointer text-sm mb-1 text-gray-700 hover:text-black"
+                                    onClick={() => setPage(chapter.page)}
+                                >
+                                    {chapter.section}
+                                </a>
+                            );
+                        })}
+                    </div>
+                </div>
+            )}
+            {!clicked && (
+                <div
+                    className="rounded text-sm bottom-2 right-2 absolute cursor-pointer transition-all bg-green-100 inline-block p-2 font-bold"
+                    onClick={() => setClicked(!clicked)}
+                >
+                    <div className="">spis treści</div>
+                </div>
+            )}
+        </>
     );
 };
 (' ');
