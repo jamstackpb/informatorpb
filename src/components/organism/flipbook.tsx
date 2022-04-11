@@ -60,16 +60,20 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         tableOfContents.map((g) => {
             AddPagesWithContent(g, tableOfContent);
         });
-
-        pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
-        pages.map((p) => {
-            index++;
-            AddPlainPage({ content: p.clean, pageNumber: index, table: tableOfContent });
-        });
         foStudy.map((g) => {
             index++;
             g.pagenumber = index;
             AddPagesWithContent(g, tableOfContent);
+        });
+        AddFrontPage(
+            '',
+            'prose w-full h-full flex flex-col py-[49%]',
+            'text-white text-4xl text-center',
+            'Koła naukowe na naszej uczelni!',
+            '',
+        );
+        science.map((g) => {
+            AddPagesWithContent(g);
         });
         AddFrontPage(
             '',
@@ -78,27 +82,15 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             'Nasi Absolwenci',
             '',
         );
-        index++;
+
         graduate.map((g) => {
-            index++;
-            g.pagenumber = index;
-            AddPagesWithContent(g, tableOfContent);
+            AddPagesWithContent(g);
+        });
+        pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
+        pages.map((p) => {
+            AddPlainPage({ content: p.clean });
         });
 
-        AddFrontPage(
-            '',
-            'prose w-full h-full flex flex-col py-[49%]',
-            'text-white text-4xl text-center',
-            'Koła naukowe na naszej uczelni!',
-            '',
-        );
-        index++;
-        science.map((g) => {
-            index++;
-
-            g.pagenumber = index;
-            AddPagesWithContent(g, tableOfContent);
-        });
         pf.on('changeState', () => {
             setCurrentPage(pf.getCurrentPageIndex());
         });
