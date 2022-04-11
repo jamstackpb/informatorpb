@@ -57,11 +57,17 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         tableOfContents.map((g) => {
             AddPagesWithContent(g);
         });
-        pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
-        pages.map((p) => {
-            AddPlainPage({ content: p.clean });
-        });
         foStudy.map((g) => {
+            AddPagesWithContent(g);
+        });
+        AddFrontPage(
+            '',
+            'prose w-full h-full flex flex-col py-[49%]',
+            'text-white text-4xl text-center',
+            'Koła naukowe na naszej uczelni!',
+            '',
+        );
+        science.map((g) => {
             AddPagesWithContent(g);
         });
         AddFrontPage(
@@ -71,22 +77,14 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             'Nasi Absolwenci',
             '',
         );
-
         graduate.map((g) => {
             AddPagesWithContent(g);
         });
-
-        AddFrontPage(
-            '',
-            'prose w-full h-full flex flex-col py-[49%]',
-            'text-white text-4xl text-center',
-            'Koła naukowe na naszej uczelni!',
-            '',
-        );
-
-        science.map((g) => {
-            AddPagesWithContent(g);
+        pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
+        pages.map((p) => {
+            AddPlainPage({ content: p.clean });
         });
+
         pf.on('changeState', () => {
             setCurrentPage(pf.getCurrentPageIndex());
         });
