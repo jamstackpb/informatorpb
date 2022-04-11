@@ -1,5 +1,6 @@
 import { currentPageAtom } from '@/src/state';
 import { getFieldsOfStudy, Graduate, getScienceContent, getTableOfContents } from '@/ssg';
+import { max } from 'date-fns';
 import { useAtom } from 'jotai';
 
 import { useRouter } from 'next/router';
@@ -38,8 +39,10 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     const [totalPages, setTotalPages] = useState(0);
     useEffect(() => {
         const pf = new PageFlip(document.getElementById('flipbook-container')!, {
-            width: 1280 / 2,
-            height: 720,
+            width: 640, //470 proponuje
+            height: 740,
+            minWidth: 470,
+            minHeight: 528.75,
             showCover: true,
             drawShadow: true,
             flippingTime: 800,
@@ -50,8 +53,8 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             // useMouseEvents: false,
             clickEventForward: false,
             // usePortrait: false,
-            // autoSize: true,
-            size: SizeType.FIXED,
+            //autoSize: false,
+            size: SizeType.STRETCH,
         });
 
         tableOfContents.map((g) => {
@@ -128,33 +131,29 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     };
 
     return (
-        <div className="w-full ">
-            <Wrapper className="container mx-auto max-w-full  ">
-                <div className="mt-12 max-w-full">
-                    <div id="flipbook-container">
-                        <div className="page page-cover" data-density="hard">
-                            <h1>
-                                <LogoPB src="/images/logo_PB.png" />
-                            </h1>
-                        </div>
-                        <div id="page-storage"></div>
-                        <div className="page page-cover page-cover-bottom" data-density="hard">
-                            <div className="page-content"></div>
-                        </div>
-                    </div>
-                    <div className="flex flex-row relative mt-0 md:mt-10" id="page-counter">
-                        <Btn onClick={prevPage} className="mr-4" id="prev">
-                            <Chevron className="rotate-180" color="white" />
-                        </Btn>
-                        <div className="flex flex-row gap-1 mt-6">
-                            Strona <div id="page-current">{currentPage}</div> z <div id="page-total">{totalPages}</div>
-                        </div>
-                        <Btn onClick={nextPage} className="ml-4" id="next">
-                            <Chevron className="" color="white" />
-                        </Btn>
-                    </div>
+        <Wrapper>
+            <div id="flipbook-container">
+                <div className="page page-cover" data-density="hard">
+                    <h1>
+                        <LogoPB src="/images/logo_PB.png" />
+                    </h1>
                 </div>
-            </Wrapper>
-        </div>
+                <div id="page-storage"></div>
+                <div className="page page-cover page-cover-bottom" data-density="hard">
+                    <div className="page-content"></div>
+                </div>
+            </div>
+            <div className="flex flex-row relative mt-0 z-50" id="page-counter">
+                <Btn onClick={prevPage} className="mr-4" id="prev">
+                    <Chevron className="rotate-180" color="white" />
+                </Btn>
+                <div className="flex flex-row gap-1 mt-6">
+                    Strona <div id="page-current">{currentPage}</div> z <div id="page-total">{totalPages}</div>
+                </div>
+                <Btn onClick={nextPage} className="ml-4" id="next">
+                    <Chevron className="" color="white" />
+                </Btn>
+            </div>
+        </Wrapper>
     );
 };

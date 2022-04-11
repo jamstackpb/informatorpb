@@ -17,6 +17,13 @@ export const Btn = styled.button`
     }
 `;
 export const Wrapper = styled.div`
+    overflow: hidden;
+    max-height: 100vh;
+    max-width: 640px;
+    margin: auto;
+    @media (min-width: 940px) {
+        max-width: 1280px;
+    }
     width: 100%;
     height: 100%;
     #page-counter {
@@ -26,19 +33,21 @@ export const Wrapper = styled.div`
         gap: 4px;
     }
     #flipbook-container {
+        max-width: 640px;
+        margin: auto;
+        @media (min-width: 940px) {
+            max-width: 1280px;
+        }
         display: flex;
         background-size: cover;
-        margin: auto;
         height: 100%;
         width: 100%;
+        max-height: 90vh;
         box-shadow: 0px 5px 15px 15px rgba(0, 0, 0, 0.1);
     }
 
     .page {
         background-color: white;
-        @media (min-width: 768px) {
-            overflow: hidden;
-        }
         overflow: auto;
         padding-left: 3ch;
         padding-right: 3ch;
@@ -54,12 +63,14 @@ export const Wrapper = styled.div`
             // for left page (property will be added automatically)
             border-right: 2px solid rgba(0, 0, 0, 0.1);
             box-shadow: inset 5px 0px 0px 1px rgba(0, 0, 0, 0.1);
+            left: 0;
         }
 
         &.--right {
             // for right page (property will be added automatically)
             border-left: 0;
             box-shadow: inset 5px 0px 0px 1px rgba(0, 0, 0, 0.1);
+            right: 0;
 
             .page-footer {
                 text-align: right;
@@ -74,7 +85,9 @@ export const Wrapper = styled.div`
 
         &.page-cover {
             background-color: rgb(20 83 45);
+            padding: 0;
             color: white;
+            width: 100%;
             h1 {
                 width: 50%;
                 height: 50%;
