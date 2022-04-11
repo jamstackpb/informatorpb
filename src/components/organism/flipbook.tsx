@@ -37,13 +37,15 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     const router = useRouter();
     const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
     const [totalPages, setTotalPages] = useState(0);
+    let index = 0;
     useEffect(() => {
         const pf = new PageFlip(document.getElementById('flipbook-container')!, {
-            width: 640, //470 proponuje
+            width: 640,
             height: 740,
             minWidth: 470,
             minHeight: 528.75,
             showCover: true,
+
             drawShadow: true,
             flippingTime: 800,
             startZIndex: 0,
@@ -56,17 +58,31 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             //autoSize: false,
             size: SizeType.STRETCH,
         });
-
-        tableOfContents.map((g) => {
-            AddPagesWithContent(g);
+        const tableOfContent = tableOfContents.flatMap((g) => {
+            return g.matter.chapters;
         });
-        pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
-        pages.map((p) => {
-            AddPlainPage({ content: p.clean });
+        tableOfContents.map((g) => {
+            AddPagesWithContent(g, tableOfContent);
         });
         foStudy.map((g) => {
-            AddPagesWithContent(g);
+            index++;
+            g.pagenumber = index;
+            AddPagesWithContent(g, tableOfContent);
         });
+        index++;
+        AddFrontPage(
+            '',
+            'prose w-full h-full flex flex-col py-[49%]',
+            'text-white text-4xl text-center',
+            'Koła naukowe na naszej uczelni!',
+            '',
+        );
+        science.map((g) => {
+            index++;
+            g.pagenumber = index;
+            AddPagesWithContent(g, tableOfContent);
+        });
+        index++;
         AddFrontPage(
             '',
             'prose h-full w-full flex flex-col py-[49%]',
@@ -76,30 +92,31 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         );
 
         graduate.map((g) => {
-            AddPagesWithContent(g);
+            index++;
+            g.pagenumber = index;
+            AddPagesWithContent(g, tableOfContent);
+        });
+        pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
+        pages.map((p) => {
+            index++;
+            AddPlainPage({ content: p.clean, pageNumber: index, table: tableOfContent });
         });
 
-        AddFrontPage(
-            '',
-            'prose w-full h-full flex flex-col py-[49%]',
-            'text-white text-4xl text-center',
-            'Koła naukowe na naszej uczelni!',
-            '',
-        );
-
-        science.map((g) => {
-            AddPagesWithContent(g);
-        });
         pf.on('changeState', () => {
             setCurrentPage(pf.getCurrentPageIndex());
         });
         pf.loadFromHTML(document.querySelectorAll('.page'));
         setPageFlip(pf);
         setTotalPages(pf.getPageCount());
+
         return () => {
             pf.destroy();
         };
     }, []);
+    useEffect(() => {
+        let page = document.querySelector('page');
+        console.log(page);
+    }, [currentPage]);
 
     useEffect(() => {
         if (pageFlip) {
@@ -136,7 +153,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                 <div className="page page-cover" data-density="hard">
                     <h1>
                         <LogoPB src="/images/logo_PB.png" />
-                    </h1>
+                    </h1>        
                 </div>
                 <div id="page-storage"></div>
                 <div className="page page-cover page-cover-bottom" data-density="hard">

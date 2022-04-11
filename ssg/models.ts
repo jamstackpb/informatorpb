@@ -17,6 +17,7 @@ export interface FieldOfStudy {
     faculty: string;
 }
 export interface AbsolwentProps {
+    test: number;
     image: string;
     faculty: string;
     academicTitle: string;
@@ -50,10 +51,13 @@ export const matterExport = <
     pageType: PageType,
     matter: unknown,
     content: string,
+
+    pagenumber?: number,
 ) => {
     return {
         matter: matter as MatterType,
         pageType,
         content,
+        pagenumber,
     };
 };

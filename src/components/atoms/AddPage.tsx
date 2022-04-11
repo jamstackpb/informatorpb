@@ -6,11 +6,16 @@ import { Kierunek } from '@/src/components/atoms/Kierunek';
 import { ContentPageProps } from '@/src/models';
 import { TableOfContents } from './TableOfContents';
 import ReactDOM from 'react-dom';
+import { FancyTest } from './fancyTest';
 
 export interface MatterInterface {
     matter: { [key: string]: string };
     content: string;
 }
+export type TableOfContents = {
+    section: string;
+    page: number;
+}[];
 export const AddPage = (
     pageClass: string,
     pageContentClass: string,
@@ -36,9 +41,13 @@ enum PageType {
     SPIS_TRESCI = 'spis_tresci',
 }
 
-const FlipBookPage: React.FC = ({ children }) => {
+const FlipBookPage: React.FC<{
+    pageNumber?: number;
+    table: TableOfContents;
+}> = ({ children, pageNumber, table }) => {
     return (
         <div className="page">
+            {typeof pageNumber !== 'undefined' && pageNumber % 2 !== 0 && <FancyTest table={table} />}
             <div className="max-w-none flex justify-center">
                 <div className={`prose flex flex-col w-max p-8 m-0`}>{children}</div>
             </div>
@@ -46,39 +55,46 @@ const FlipBookPage: React.FC = ({ children }) => {
     );
 };
 
-const PlainPage: React.FC<{ content: string }> = ({ content }) => {
+const PlainPage: React.FC<{
+    content: string;
+    pageNumber: number;
+    table: TableOfContents;
+}> = ({ content, pageNumber, table }) => {
     return (
-        <FlipBookPage>
+        <FlipBookPage table={table} pageNumber={pageNumber}>
             <div dangerouslySetInnerHTML={{ __html: content }}></div>
         </FlipBookPage>
     );
 };
 
-const PagesSection: React.FC<ContentPageProps> = (props) => {
-    switch (props.pageType) {
+const PagesSection: React.FC<{
+    pageProps: ContentPageProps;
+    table: TableOfContents;
+}> = ({ pageProps, table }) => {
+    switch (pageProps.pageType) {
         case PageType.ABSOLWENT:
             return (
-                <FlipBookPage>
-                    <Absolwent {...props} />
+                <FlipBookPage table={table} pageNumber={pageProps.pagenumber}>
+                    <Absolwent {...pageProps} />
                 </FlipBookPage>
             );
 
         case PageType.KOLO_NAUKOWE:
             return (
-                <FlipBookPage>
-                    <KoloNaukowe {...props} />
+                <FlipBookPage table={table} pageNumber={pageProps.pagenumber}>
+                    <KoloNaukowe {...pageProps} />
                 </FlipBookPage>
             );
         case PageType.KIERUNEK:
             return (
-                <FlipBookPage>
-                    <Kierunek {...props} />
+                <FlipBookPage table={table} pageNumber={pageProps.pagenumber}>
+                    <Kierunek {...pageProps} />
                 </FlipBookPage>
             );
         case PageType.SPIS_TRESCI:
             return (
-                <FlipBookPage>
-                    <TableOfContents {...props} />
+                <FlipBookPage table={table} pageNumber={pageProps.pagenumber}>
+                    <TableOfContents {...pageProps} />
                 </FlipBookPage>
             );
         default:
@@ -96,8 +112,17 @@ const AddReactPage = ({ element }: { element: React.ReactElement<MatterInterface
     loc?.appendChild(page);
 };
 
-export const AddPagesWithContent = (props: ContentPageProps) => AddReactPage({ element: <PagesSection {...props} /> });
+export const AddPagesWithContent = (props: ContentPageProps, table: TableOfContents) =>
+    AddReactPage({ element: <PagesSection pageProps={props} table={table} /> });
 
-export const AddPlainPage = ({ content }: { content: string }) => {
-    AddReactPage({ element: <PlainPage content={content} /> });
+export const AddPlainPage = ({
+    content,
+    pageNumber,
+    table,
+}: {
+    content: string;
+    pageNumber: number;
+    table: TableOfContents;
+}) => {
+    AddReactPage({ element: <PlainPage table={table} content={content} pageNumber={pageNumber} /> });
 };
