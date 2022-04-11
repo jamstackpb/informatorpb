@@ -24,6 +24,7 @@ export const getFieldsOfStudy = () => {
                         faculty: item,
                     },
                     clean,
+                    0,
                 );
             });
     });

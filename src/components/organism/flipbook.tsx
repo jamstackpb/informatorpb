@@ -36,11 +36,12 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     const router = useRouter();
     const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
     const [totalPages, setTotalPages] = useState(0);
+    let index = 0;
     useEffect(() => {
         const pf = new PageFlip(document.getElementById('flipbook-container')!, {
             width: 1280 / 2,
             height: 720,
-            showCover: true,
+            showCover: false,
             drawShadow: true,
             flippingTime: 800,
             startZIndex: 0,
@@ -53,12 +54,16 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             // autoSize: true,
             size: SizeType.FIXED,
         });
-
+        const tableOfContent = tableOfContents.flatMap((g) => {
+            return g.matter.chapters;
+        });
         tableOfContents.map((g) => {
-            AddPagesWithContent(g);
+            AddPagesWithContent(g, tableOfContent);
         });
         foStudy.map((g) => {
-            AddPagesWithContent(g);
+            index++;
+            g.pagenumber = index;
+            AddPagesWithContent(g, tableOfContent);
         });
         AddFrontPage(
             '',
@@ -77,6 +82,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             'Nasi Absolwenci',
             '',
         );
+
         graduate.map((g) => {
             AddPagesWithContent(g);
         });
@@ -91,10 +97,15 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         pf.loadFromHTML(document.querySelectorAll('.page'));
         setPageFlip(pf);
         setTotalPages(pf.getPageCount());
+
         return () => {
             pf.destroy();
         };
     }, []);
+    useEffect(() => {
+        let page = document.querySelector('page');
+        console.log(page);
+    }, [currentPage]);
 
     useEffect(() => {
         if (pageFlip) {
@@ -129,27 +140,30 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         <div className="w-full ">
             <Wrapper className="container mx-auto max-w-full  ">
                 <div className="mt-12 max-w-full">
-                    <div id="flipbook-container">
-                        <div className="page page-cover" data-density="hard">
-                            <h1>
-                                <LogoPB src="/images/logo_PB.png" />
-                            </h1>
+                    <div className="z-10">
+                        <div id="flipbook-container">
+                            <div className="page page-cover" data-density="hard">
+                                <h1>
+                                    <LogoPB src="/images/logo_PB.png" />
+                                </h1>
+                            </div>
+                            <div id="page-storage"></div>
+                            <div className="page page-cover page-cover-bottom" data-density="hard">
+                                <div className="page-content"></div>
+                            </div>
                         </div>
-                        <div id="page-storage"></div>
-                        <div className="page page-cover page-cover-bottom" data-density="hard">
-                            <div className="page-content"></div>
+                        <div className="flex flex-row relative mt-0 md:mt-10" id="page-counter">
+                            <Btn onClick={prevPage} className="mr-4" id="prev">
+                                <Chevron className="rotate-180" color="white" />
+                            </Btn>
+                            <div className="flex flex-row gap-1 mt-6">
+                                Strona <div id="page-current">{currentPage}</div> z{' '}
+                                <div id="page-total">{totalPages}</div>
+                            </div>
+                            <Btn onClick={nextPage} className="ml-4" id="next">
+                                <Chevron className="" color="white" />
+                            </Btn>
                         </div>
-                    </div>
-                    <div className="flex flex-row relative mt-0 md:mt-10" id="page-counter">
-                        <Btn onClick={prevPage} className="mr-4" id="prev">
-                            <Chevron className="rotate-180" color="white" />
-                        </Btn>
-                        <div className="flex flex-row gap-1 mt-6">
-                            Strona <div id="page-current">{currentPage}</div> z <div id="page-total">{totalPages}</div>
-                        </div>
-                        <Btn onClick={nextPage} className="ml-4" id="next">
-                            <Chevron className="" color="white" />
-                        </Btn>
                     </div>
                 </div>
             </Wrapper>
