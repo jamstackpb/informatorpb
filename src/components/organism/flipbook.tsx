@@ -1,14 +1,13 @@
+import { insertMarkdownPage } from '@/src/bookflip';
+import { AddPagesWithContent, AddFrontPage } from '@/src/components/atoms/AddPage';
 import { currentPageAtom } from '@/src/state';
+import { Wrapper, LogoPB, Btn } from '@/src/styles/styleBook';
 import { getFieldsOfStudy, Graduate, getScienceContent, getTableOfContents } from '@/ssg';
-import { max } from 'date-fns';
 import { useAtom } from 'jotai';
 
 import { useRouter } from 'next/router';
 import { PageFlip } from 'page-flip';
 import React, { useEffect, useState } from 'react';
-import { Wrapper, Btn, LogoPB } from '../../styles/styleBook';
-import { AddFrontPage } from '../atoms/AddFrontPage';
-import { AddPagesWithContent, AddPlainPage } from '../atoms/AddPage';
 import { Chevron } from '../atoms/chevron';
 
 interface IFlipBook {
@@ -62,44 +61,32 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             return g.matter.chapters;
         });
         tableOfContents.map((g) => {
-            AddPagesWithContent(g, tableOfContent);
+            AddPagesWithContent(g);
         });
         foStudy.map((g) => {
             index++;
             g.pagenumber = index;
-            AddPagesWithContent(g, tableOfContent);
+            AddPagesWithContent(g);
         });
         index++;
-        AddFrontPage(
-            '',
-            'prose w-full h-full flex flex-col py-[49%]',
-            'text-white text-4xl text-center',
-            'Koła naukowe na naszej uczelni!',
-            '',
-        );
+        AddFrontPage({ title: 'Koła naukowe na naszej uczelni!' });
         science.map((g) => {
             index++;
             g.pagenumber = index;
-            AddPagesWithContent(g, tableOfContent);
+            AddPagesWithContent(g);
         });
         index++;
-        AddFrontPage(
-            '',
-            'prose h-full w-full flex flex-col py-[49%]',
-            'text-white text-4xl text-center',
-            'Nasi Absolwenci',
-            '',
-        );
+        AddFrontPage({ title: 'Nasi Absolwenci' });
 
         graduate.map((g) => {
             index++;
             g.pagenumber = index;
-            AddPagesWithContent(g, tableOfContent);
+            AddPagesWithContent(g);
         });
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
         pages.map((p) => {
             index++;
-            AddPlainPage({ content: p.clean, pageNumber: index, table: tableOfContent });
+            insertMarkdownPage({ content: p.clean });
         });
 
         pf.on('changeState', () => {
@@ -153,7 +140,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                 <div className="page page-cover" data-density="hard">
                     <h1>
                         <LogoPB src="/images/logo_PB.png" />
-                    </h1>        
+                    </h1>
                 </div>
                 <div id="page-storage"></div>
                 <div className="page page-cover page-cover-bottom" data-density="hard">

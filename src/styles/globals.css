@@ -8,3 +8,6 @@ body {
 .page-content {
     @apply prose;
 }
+.page-invert {
+    margin: 0 -3ch;
+}

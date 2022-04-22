@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { getTableOfContents } from '@/ssg';
 import { currentPageAtom } from '@/src/state';
 import { useAtom } from 'jotai';
 
