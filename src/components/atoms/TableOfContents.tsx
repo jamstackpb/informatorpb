@@ -4,9 +4,8 @@ import { useAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'react';
 interface TableOfContentProps {
     tableOfContentsArray: Array<{ [key: string]: string | number }>;
-    turnToPage: (page: number) => void;
 }
-export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContentsArray, turnToPage }) => {
+export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContentsArray }) => {
     const [, setPage] = useAtom(currentPageAtom);
     const [open, setOpen] = useState(false);
     const [tableOfContents, setTableOfContents] = useState<Array<{ [key: string]: string | number }>>();
@@ -55,7 +54,7 @@ export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContents
                                 <div className="flex flex-row pb-2">
                                     <div
                                         className="cursor-pointer align-bottom"
-                                        onClick={() => turnToPage(item.pageNumber as number)}
+                                        onClick={() => setPage(item.pageNumber as number)}
                                     >
                                         {item.section}
                                     </div>

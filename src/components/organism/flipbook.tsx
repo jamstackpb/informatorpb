@@ -180,10 +180,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                     </Btn>
                 </div>
             </div>
-            <TableOfContents
-                tableOfContentsArray={tableOfContentArray}
-                turnToPage={(number) => pageFlip?.turnToPage(number)}
-            />
+            <TableOfContents tableOfContentsArray={tableOfContentArray} />
         </Wrapper>
     );
 };
