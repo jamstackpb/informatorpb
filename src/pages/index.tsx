@@ -2,7 +2,7 @@ import { getFlipBook } from '@/ssg/flipbookcontent';
 import { InferGetStaticPropsType } from 'next';
 import React from 'react';
 import { FlipBook } from '../components/organism/flipbook';
-import { Graduate, getScienceContent, getFieldsOfStudy, getTableOfContents } from '@/ssg/';
+import { Graduate, getScienceContent, getFieldsOfStudy } from '@/ssg/';
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -14,8 +14,8 @@ const projectsPage = ({
     graduate,
     science,
     fos,
-    tableOfContents,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+}: // tableOfContents,
+InferGetStaticPropsType<typeof getStaticProps>) => {
     const router = useRouter();
     useEffect(() => {
         router.push(`/?page=0`);
@@ -33,7 +33,7 @@ const projectsPage = ({
                 graduate={graduate}
                 pages={content}
                 foStudy={fos}
-                tableOfContents={tableOfContents}
+                // tableOfContents={tableOfContents}
             />
             ;
         </>
@@ -47,7 +47,7 @@ export const getStaticProps = () => {
             graduate: Graduate(),
             science: getScienceContent(),
             fos: getFieldsOfStudy(),
-            tableOfContents: getTableOfContents(),
+            // tableOfContents: getTableOfContents(),
         },
     };
 };

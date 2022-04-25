@@ -24,11 +24,13 @@ export interface AbsolwentProps {
     name: string;
     job: string;
     content: string;
+    section: string;
 }
 export interface KoloProps {
     name: string;
     website: string;
     video: string;
+    section: string;
 }
 
 export interface TableOfContentsProps {

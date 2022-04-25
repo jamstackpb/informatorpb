@@ -9,7 +9,7 @@ export const Btn = styled.button`
     height: 2rem;
     width: 2rem;
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     border-radius: 1rem;
     justify-content: space-around;
     :hover {
@@ -28,8 +28,8 @@ export const Wrapper = styled.div`
     height: 100%;
     #page-counter {
         display: flex;
-        flex-direction: row;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
         gap: 4px;
     }
     #flipbook-container {
