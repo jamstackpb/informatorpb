@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { PageFlip } from 'page-flip';
 import React, { useEffect, useState } from 'react';
 import { Chevron } from '../atoms/chevron';
+import { ToCItem } from '@/src/bookflip/models';
 
 interface IFlipBook {
     pages: Array<{
@@ -33,17 +34,36 @@ enum SizeType {
 
 export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy }) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
-    const [tableOfContentArray, setTableOfContentArray] = useState<{ [key: string]: string | number }[]>([{}]);
+    const [tableOfContentArray, setTableOfContentArray] = useState<Array<ToCItem>>([]);
     const router = useRouter();
     const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
     const [totalPages, setTotalPages] = useState(0);
     let index = 0;
-    let arrayOfSectionsNames: Array<{ [key: string]: string | number }> = [];
 
-    useEffect(() => {
-        const pf = new PageFlip(document.getElementById('flipbook-container')!, {
+    const calculateRatio = () => {
+        if (typeof window !== 'undefined') {
+            if (window.innerWidth < window.innerHeight) {
+                return {
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                };
+            } else {
+                return {
+                    width: window.innerWidth / 2.0,
+                    height: window.innerHeight,
+                };
+            }
+        }
+        return {
             width: 640,
             height: 740,
+        };
+    };
+
+    useEffect(() => {
+        const arrayOfSectionsNames: Array<ToCItem> = [];
+        const pf = new PageFlip(document.getElementById('flipbook-container')!, {
+            ...calculateRatio(),
             minWidth: 470,
             minHeight: 528.75,
             showCover: true,
@@ -60,28 +80,21 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             //autoSize: false,
             size: SizeType.STRETCH,
         });
-
-        // const tableOfContent = tableOfContents.flatMap((g) => {
-        //     index++;
-        //     console.log(g.matter.section);
-
-        //     return g.matter.chapters;
-        // });
-        // tableOfContents.map((g) => {
-        //     AddPagesWithContent(g);
-        // });
         foStudy.map((g) => {
             index++;
-
             g.pagenumber = index;
+            arrayOfSectionsNames.push({
+                section: 'Kierunki',
+                pageNumber: index,
+                title: g.matter.name,
+            });
             AddPagesWithContent(g);
         });
         index++;
         AddFrontPage({ title: 'Koła naukowe na naszej uczelni!' });
         science.map((g) => {
             index++;
-            arrayOfSectionsNames = [...arrayOfSectionsNames, { section: g.matter.section, pageNumber: index }];
-
+            arrayOfSectionsNames.push({ section: g.matter.section, pageNumber: index, title: g.matter.name });
             AddPagesWithContent(g);
         });
         index++;
@@ -89,16 +102,23 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
 
         graduate.map((g) => {
             index++;
-            arrayOfSectionsNames = [...arrayOfSectionsNames, { section: g.matter.section, pageNumber: index }];
+            arrayOfSectionsNames.push({ section: g.matter.section, pageNumber: index, title: g.matter.name });
             g.pagenumber = index;
 
             AddPagesWithContent(g);
         });
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
+        const pageSections: string[] = [];
         pages.map((p) => {
             index++;
-            arrayOfSectionsNames = [...arrayOfSectionsNames, { section: p.changedToMatter.section, pageNumber: index }];
-
+            if (!pageSections.includes(p.changedToMatter.section)) {
+                pageSections.push(p.changedToMatter.section);
+                arrayOfSectionsNames.push({
+                    section: p.changedToMatter.section,
+                    pageNumber: index,
+                    title: p.changedToMatter.section,
+                });
+            }
             insertMarkdownPage({ content: p.clean });
         });
 
@@ -107,22 +127,12 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         });
         pf.loadFromHTML(document.querySelectorAll('.page'));
         setPageFlip(pf);
-        setTotalPages(pf.getPageCount());
-        // console.log(arrayOfSectionsNames);
-
-        arrayOfSectionsNames = arrayOfSectionsNames.filter(
-            (value, index, self) => index === self.findIndex((t) => t.section === value.section),
-        );
-
         setTableOfContentArray(arrayOfSectionsNames);
-        // console.log(arrayOfSectionsNames);
+        setTotalPages(index);
         return () => {
             pf.destroy();
         };
     }, []);
-    useEffect(() => {
-        let page = document.querySelector('page');
-    }, [currentPage]);
 
     useEffect(() => {
         if (pageFlip) {
@@ -167,20 +177,22 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                     <div className="page-content"></div>
                 </div>
             </div>
-            <div className="flex flex-row relative mt-0 " id="page-counter">
-                <div className="flex flex-row justify-center">
-                    <Btn onClick={prevPage} className="mr-4" id="prev">
-                        <Chevron className="rotate-180" color="white" />
-                    </Btn>
-                    <div className="flex flex-row gap-1 mt-6">
-                        Strona <div id="page-current">{currentPage}</div> z <div id="page-total">{totalPages}</div>
+            <div className="absolute z-10 bottom-10 w-full">
+                <div className="flex flex-row relative mt-0 " id="page-counter">
+                    <div className="flex flex-row justify-center">
+                        <Btn onClick={prevPage} className="mr-4" id="prev">
+                            <Chevron className="rotate-180" color="white" />
+                        </Btn>
+                        <div className="flex flex-row gap-1 mt-6">
+                            Strona <div id="page-current">{currentPage}</div> z <div id="page-total">{totalPages}</div>
+                        </div>
+                        <Btn onClick={nextPage} className="ml-4" id="next">
+                            <Chevron className="" color="white" />
+                        </Btn>
                     </div>
-                    <Btn onClick={nextPage} className="ml-4" id="next">
-                        <Chevron className="" color="white" />
-                    </Btn>
                 </div>
+                <TableOfContents tableOfContentsArray={tableOfContentArray} />
             </div>
-            <TableOfContents tableOfContentsArray={tableOfContentArray} />
         </Wrapper>
     );
 };

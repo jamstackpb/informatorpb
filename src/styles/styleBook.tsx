@@ -19,11 +19,7 @@ export const Btn = styled.button`
 export const Wrapper = styled.div`
     overflow: hidden;
     max-height: 100vh;
-    max-width: 640px;
     margin: auto;
-    @media (min-width: 940px) {
-        max-width: 1280px;
-    }
     width: 100%;
     height: 100%;
     #page-counter {
@@ -33,24 +29,19 @@ export const Wrapper = styled.div`
         gap: 4px;
     }
     #flipbook-container {
-        max-width: 640px;
         margin: auto;
-        @media (min-width: 940px) {
-            max-width: 1280px;
-        }
         display: flex;
         background-size: cover;
-        height: 100%;
-        width: 100%;
-        max-height: 90vh;
         box-shadow: 0px 5px 15px 15px rgba(0, 0, 0, 0.1);
     }
 
     .page {
         background-color: white;
         overflow: auto;
-        padding-left: 3ch;
-        padding-right: 3ch;
+        @media (max-width: 640px) {
+            padding-left: 0;
+            padding-right: 0;
+        }
         h1,
         h2,
         h3,

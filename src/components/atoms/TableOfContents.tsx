@@ -1,22 +1,23 @@
+import { ToCItem } from '@/src/bookflip/models';
 import { currentPageAtom } from '@/src/state';
 import { useAtom } from 'jotai';
 
 import { useEffect, useRef, useState } from 'react';
 interface TableOfContentProps {
-    tableOfContentsArray: Array<{ [key: string]: string | number }>;
+    tableOfContentsArray: Array<ToCItem>;
 }
 export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContentsArray }) => {
     const [, setPage] = useAtom(currentPageAtom);
     const [open, setOpen] = useState(false);
-    const [tableOfContents, setTableOfContents] = useState<Array<{ [key: string]: string | number }>>();
-
-    useEffect(() => {
-        setTableOfContents(tableOfContentsArray);
-    }, [tableOfContentsArray]);
-
+    const groupBySection = Object.entries(
+        tableOfContentsArray.reduce((a, b) => {
+            a[b.section] ||= [];
+            a[b.section].push(b);
+            return a;
+        }, {} as Record<string, ToCItem[]>),
+    );
     return (
         <div className="flex justify-center">
-            {console.log(tableOfContents)}
             <div className="">
                 <button
                     onClick={() => setOpen((prev) => (prev = !prev))}
@@ -33,10 +34,6 @@ export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContents
                         ? ' fixed top-0 left-0  w-full h-full outline-none overflow-x-hidden overflow-y-auto flex justify-center items-center bg-opacity-40 bg-black '
                         : ' fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto '
                 }
-                // id="exampleModalCenter"
-                // aria-labelledby="exampleModalCenterTitle"
-                // aria-modal="true"
-                // role="dialog"
             >
                 <div className=" relative w-auto pointer-events-none transition-all duration-1000">
                     <div className=" border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current z-50">
@@ -50,16 +47,32 @@ export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContents
                             ></button>
                         </div>
                         <div className=" relative p-4 max-h-96 overflow-auto">
-                            {tableOfContents?.map((item) => (
-                                <div className="flex flex-row pb-2">
+                            {groupBySection.map(([sectionName, items]) => (
+                                <div className="mb-4">
                                     <div
-                                        className="cursor-pointer align-bottom"
-                                        onClick={() => setPage(item.pageNumber as number)}
+                                        className="flex flex-row cursor-pointer"
+                                        onClick={() =>
+                                            setPage(items.length > 1 ? items[0]?.pageNumber - 1 : items[0]?.pageNumber)
+                                        }
                                     >
-                                        {item.section}
+                                        <div className=" align-bottom font-bold">{sectionName}</div>
+                                        <div className="ml-auto">
+                                            {items.length > 1 ? items[0]?.pageNumber - 1 : items[0]?.pageNumber}
+                                        </div>
                                     </div>
-                                    <div className="flex-1 flex items-center justify-end py-2 before:border-dotted before:border-b-2 before:border-black before:w-2/3 before:block" />
-                                    <div className="ml-2">{item.pageNumber}</div>
+                                    {items.length > 1 && (
+                                        <div className="ml-2">
+                                            {items.map((item) => (
+                                                <div
+                                                    className="flex flex-row cursor-pointer border-b"
+                                                    onClick={() => setPage(item.pageNumber)}
+                                                >
+                                                    <div className="cursor-pointer align-bottom">{item.title}</div>
+                                                    <div className="ml-auto">{item.pageNumber}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             ))}
                         </div>
