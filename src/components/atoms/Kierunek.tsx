@@ -69,7 +69,10 @@ export const Kierunek: React.FC<KierunekProps> = ({
                 </div>
             </div>
             {(!tab || tab === 'opis') && (
-                <div dangerouslySetInnerHTML={{ __html: content }} className="space-y-0 tracking-tight mt-0" />
+                <div
+                    dangerouslySetInnerHTML={{ __html: content }}
+                    className="leading-0 space-y-0 tracking-tight mt-0 text-base"
+                />
             )}
             {tab === 'kalkulator' && <Kalkulator equationSubjects={equationSubjects} />}
         </>
