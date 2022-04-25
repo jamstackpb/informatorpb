@@ -9,9 +9,11 @@ export const Kierunek: React.FC<KierunekProps> = ({
     content,
 }) => {
     const searchParam = name;
+
     const [tab, setTab] = useState(
         new URL(window.location.href).searchParams.get(searchParam) as 'opis' | 'kalkulator' | undefined,
     );
+
     const route = (r: typeof tab) => {
         setTab(r);
         const urlParams = new URL(window.location.href);
@@ -21,13 +23,18 @@ export const Kierunek: React.FC<KierunekProps> = ({
         }
         history.replaceState({}, '', '/' + urlParams.search);
     };
+
+    const Tabela: React.FC = ({ children }) => (
+        <table className="tracking-tight text-center text-sm mb-2 mt-0 font-bold">{children}</table>
+    );
+
     return (
         <>
             <div className="flex items-start">
-                <h2 className="mr-2">{name}</h2>
+                <h2 className="mr-2 mb-0">{name}</h2>
                 <h3 className="text-green-500">{'Wydział ' + faculty}</h3>
             </div>
-            <table className="mb-0 mt-0">
+            <Tabela>
                 <thead>
                     <tr>
                         <th colSpan={2}>
@@ -52,7 +59,7 @@ export const Kierunek: React.FC<KierunekProps> = ({
                     <td>{master.stationary ? '✔' : ''}</td>
                     <td>{master.partTime ? '✔' : ''}</td>
                 </tbody>
-            </table>
+            </Tabela>
             <div className="flex">
                 <div onClick={() => route('opis')} className="font-bold text-white bg-green-400 px-4 py-1 mr-2">
                     Opis
@@ -61,7 +68,12 @@ export const Kierunek: React.FC<KierunekProps> = ({
                     Kalkulator
                 </div>
             </div>
-            {(!tab || tab === 'opis') && <div dangerouslySetInnerHTML={{ __html: content }} />}
+            {(!tab || tab === 'opis') && (
+                <div
+                    dangerouslySetInnerHTML={{ __html: content }}
+                    className="leading-0 space-y-0 tracking-tight mt-0 text-base"
+                />
+            )}
             {tab === 'kalkulator' && <Kalkulator equationSubjects={equationSubjects} />}
         </>
     );
