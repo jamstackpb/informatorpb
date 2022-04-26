@@ -22,7 +22,6 @@ enum PageType {
     ABSOLWENT = 'absolwent',
     KOLO_NAUKOWE = 'kolo_naukowe',
     KIERUNEK = 'kierunek',
-    SPIS_TRESCI = 'spis_tresci',
 }
 
 const PagesSection: React.FC<{
@@ -46,12 +45,6 @@ const PagesSection: React.FC<{
             return (
                 <MarkdownPage>
                     <Kierunek {...pageProps} />
-                </MarkdownPage>
-            );
-        case PageType.SPIS_TRESCI:
-            return (
-                <MarkdownPage>
-                    <TableOfContents {...pageProps} />
                 </MarkdownPage>
             );
         default:
