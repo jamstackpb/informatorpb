@@ -41,6 +41,7 @@
         "autoprefixer": "^10.4.2",
         "graphql-zeus": "^3.1.0",
         "postcss": "^8.4.5",
+        "surge": "^0.23.1",
         "tailwindcss": "^3.0.13",
         "typescript": "^4.3.5"
     }

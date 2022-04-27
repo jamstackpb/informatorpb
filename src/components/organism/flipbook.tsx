@@ -165,7 +165,6 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
 
     return (
         <Wrapper>
-            {/* {console.log(tableOfContentArray)} */}
             <div id="flipbook-container">
                 <div className="page page-cover" data-density="hard">
                     <h1>

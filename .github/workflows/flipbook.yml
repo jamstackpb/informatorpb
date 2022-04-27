@@ -17,5 +17,4 @@ jobs:
             - run: >
                   npm i && 
                   npm run build:ci &&
-                  npm i surge &&
-                  npx surge --project ./out --domain informatorpb-flipbook.surge.sh
+                  npx surge --project ./out --domain informatorpb.surge.sh
