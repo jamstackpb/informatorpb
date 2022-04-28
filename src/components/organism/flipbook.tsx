@@ -142,12 +142,12 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     useEffect(() => {
         if (pageFlip) {
             pageFlip.turnToPage(currentPage);
-            var videos = document.querySelectorAll('iframe, video');
+            let videos = document.querySelectorAll('iframe, video');
             Array.prototype.forEach.call(videos, function (video) {
                 if (video.tagName.toLowerCase() === 'video') {
                     video.pause();
                 } else {
-                    var src = video.src;
+                    let src = video.src;
                     video.src = src;
                 }
             });
@@ -161,15 +161,6 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             setCurrentPage(pageFlip?.getCurrentPageIndex() || currentPage);
             router.push(`/?page=${pageFlip!.getCurrentPageIndex()}`);
         }
-        var videos = document.querySelectorAll('iframe, video');
-        Array.prototype.forEach.call(videos, function (video) {
-            if (video.tagName.toLowerCase() === 'video') {
-                video.pause();
-            } else {
-                var src = video.src;
-                video.src = src;
-            }
-        });
     };
     const prevPage = () => {
         const performTurn = currentPage - 2 < 0 ? false : true;
@@ -178,15 +169,6 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             setCurrentPage(pageFlip?.getCurrentPageIndex() || currentPage);
             router.push(`/?page=${pageFlip!.getCurrentPageIndex()}`);
         } else router.push(`/?page=0`);
-        var videos = document.querySelectorAll('iframe, video');
-        Array.prototype.forEach.call(videos, function (video) {
-            if (video.tagName.toLowerCase() === 'video') {
-                video.pause();
-            } else {
-                var src = video.src;
-                video.src = src;
-            }
-        });
     };
 
     return (
