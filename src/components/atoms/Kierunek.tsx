@@ -30,10 +30,8 @@ export const Kierunek: React.FC<KierunekProps> = ({
 
     return (
         <>
-            <div className="flex items-start">
-                <h2 className="mr-2 mb-0">{name}</h2>
-                <h3 className="text-green-500">{'Wydział ' + faculty}</h3>
-            </div>
+            <h2 className="mb-0">{name}</h2>
+            <h3 className="text-green-500">{'Wydział ' + faculty}</h3>
             <Tabela>
                 <thead>
                     <tr>
@@ -61,10 +59,16 @@ export const Kierunek: React.FC<KierunekProps> = ({
                 </tbody>
             </Tabela>
             <div className="flex">
-                <div onClick={() => route('opis')} className="font-bold text-white bg-green-400 px-4 py-1 mr-2">
+                <div
+                    onClick={() => route('opis')}
+                    className="font-bold cursor-pointer text-white bg-green-400 px-4 py-1 mr-2"
+                >
                     Opis
                 </div>
-                <div onClick={() => route('kalkulator')} className="font-bold text-white bg-green-400 px-4 py-1 mr-2">
+                <div
+                    onClick={() => route('kalkulator')}
+                    className="font-bold cursor-pointer  text-white bg-green-400 px-4 py-1 mr-2"
+                >
                     Kalkulator
                 </div>
             </div>

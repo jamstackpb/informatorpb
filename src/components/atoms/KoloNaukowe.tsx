@@ -7,7 +7,6 @@ export const KoloNaukowe: React.FC<KoloNaukoweProps> = ({ content, matter: { nam
             <h1 className="w-max mx-auto">{name}</h1>
 
             {video !== '---' && (
-                <>
                     <div id="player" className="flex justify-center mx-auto">
                         <iframe
                             id="video"
@@ -19,7 +18,6 @@ export const KoloNaukowe: React.FC<KoloNaukoweProps> = ({ content, matter: { nam
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         />
                     </div>
-                </>
             )}
             {website !== '---' && (
                 <div className=" mx-auto">

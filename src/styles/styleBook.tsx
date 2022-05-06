@@ -6,11 +6,12 @@ export const LogoPB: React.FC<{ src: string }> = ({ src }) => <Img src={src} />;
 export const Btn = styled.button`
     color: white;
     background-color: rgb(20 83 45);
-    height: 2rem;
-    width: 2rem;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 1rem;
+    height: 30px;
+    width: 30px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     justify-content: space-around;
     :hover {
         opacity: 0.5;
@@ -22,12 +23,6 @@ export const Wrapper = styled.div`
     margin: auto;
     width: 100%;
     height: 100%;
-    #page-counter {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-    }
     #flipbook-container {
         margin: auto;
         display: flex;
