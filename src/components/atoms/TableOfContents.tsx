@@ -22,7 +22,7 @@ export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContents
                 <button
                     onClick={() => setOpen((prev) => (prev = !prev))}
                     type="button"
-                    className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                    className="inline-block px-6 py-2.5 bg-white text-gray-700 font-bold text-sm leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
                     Spis treści
                 </button>
@@ -51,9 +51,10 @@ export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContents
                                 <div className="mb-4">
                                     <div
                                         className="flex flex-row cursor-pointer"
-                                        onClick={() =>
-                                            setPage(items.length > 1 ? items[0]?.pageNumber - 1 : items[0]?.pageNumber)
-                                        }
+                                        onClick={() => {
+                                            setPage(items.length > 1 ? items[0]?.pageNumber - 1 : items[0]?.pageNumber);
+                                            setOpen(false);
+                                        }}
                                     >
                                         <div className=" align-bottom font-bold">{sectionName}</div>
                                         <div className="ml-auto">
@@ -65,7 +66,10 @@ export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContents
                                             {items.map((item) => (
                                                 <div
                                                     className="flex flex-row cursor-pointer border-b"
-                                                    onClick={() => setPage(item.pageNumber)}
+                                                    onClick={() => {
+                                                        setPage(item.pageNumber);
+                                                        setOpen(false);
+                                                    }}
                                                 >
                                                     <div className="cursor-pointer align-bottom">{item.title}</div>
                                                     <div className="ml-auto">{item.pageNumber}</div>

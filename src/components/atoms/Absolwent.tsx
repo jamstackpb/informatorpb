@@ -8,9 +8,9 @@ export const Absolwent: React.FC<AbsolwentProps> = ({
 }) => {
     return (
         <>
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center flex-wrap md:flex-nowrap">
                 <img width={250} height={250} src={image} />
-                <div className="pl-5">
+                <div className="md:pl-5">
                     <div>
                         <span className="font-extrabold">{faculty}</span>{' '}
                     </div>

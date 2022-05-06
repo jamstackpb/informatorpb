@@ -7,7 +7,7 @@ const Godlo: React.FC<{ src: string }> = ({ src }) => <img className="mr-3 objec
 
 export const Front: React.FC<{ title: string }> = ({ title }) => {
     return (
-        <div className="bg-green-700 h-full w-full absolute items-center justify-center flex flex-col page-invert">
+        <div className="bg-green-700 h-full w-full absolute items-center justify-center flex flex-col">
             <h1 className="flex flex-row justify-center items-center mb-4">
                 <Godlo src={godlo} />
                 <div className="border-l-2 h-24"></div>

@@ -64,7 +64,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         const arrayOfSectionsNames: Array<ToCItem> = [];
         const pf = new PageFlip(document.getElementById('flipbook-container')!, {
             ...calculateRatio(),
-            minWidth: 470,
+            minWidth: 320,
             minHeight: 528.75,
             showCover: true,
 
@@ -176,13 +176,13 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                     <div className="page-content"></div>
                 </div>
             </div>
-            <div className="absolute z-10 bottom-10 w-full">
+            <div className="md:visible hidden absolute z-10 bottom-10 w-full">
                 <div className="flex flex-row relative mt-0 " id="page-counter">
-                    <div className="flex flex-row justify-center">
+                    <div className="flex flex-row justify-center items-center">
                         <Btn onClick={prevPage} className="mr-4" id="prev">
                             <Chevron className="rotate-180" color="white" />
                         </Btn>
-                        <div className="flex flex-row gap-1 mt-6">
+                        <div className="flex flex-row gap-1">
                             Strona <div id="page-current">{currentPage}</div> z <div id="page-total">{totalPages}</div>
                         </div>
                         <Btn onClick={nextPage} className="ml-4" id="next">
@@ -190,6 +190,22 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                         </Btn>
                     </div>
                 </div>
+                <TableOfContents tableOfContentsArray={tableOfContentArray} />
+            </div>
+            <div className="visible md:hidden absolute z-10 bottom-10 w-full">
+                <div className="flex flex-row justify-between items-center px-4">
+                    <Btn onClick={prevPage} className="mr-4" id="prev">
+                        <Chevron className="rotate-180" color="white" />
+                    </Btn>
+                    <div className="flex flex-row gap-1">
+                        Strona <div id="page-current">{currentPage}</div> z <div id="page-total">{totalPages}</div>
+                    </div>
+                    <Btn onClick={nextPage} className="ml-4" id="next">
+                        <Chevron className="" color="white" />
+                    </Btn>
+                </div>
+            </div>
+            <div className="absolute z-10 top-4 right-4">
                 <TableOfContents tableOfContentsArray={tableOfContentArray} />
             </div>
         </Wrapper>
