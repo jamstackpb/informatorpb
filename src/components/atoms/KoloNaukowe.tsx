@@ -4,12 +4,20 @@ type KoloNaukoweProps = Omit<ReturnType<typeof getScienceContent> extends Array<
 export const KoloNaukowe: React.FC<KoloNaukoweProps> = ({ content, matter: { name, video, website } }) => {
     return (
         <>
-            <h1 className="max-w-full mx-auto">{name}</h1>
+            <h1 className="w-max mx-auto">{name}</h1>
 
             {video !== '---' && (
-                <div className="flex justify-center mx-auto">
-                    <iframe className="aspect-video max-w-full " src={video} height={200} />
-                </div>
+                    <div id="player" className="flex justify-center mx-auto">
+                        <iframe
+                            id="video"
+                            className="aspect-video"
+                            src={video}
+                            height={200}
+                            frameBorder="0"
+                            allowFullScreen
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        />
+                    </div>
             )}
             {website !== '---' && (
                 <div className=" mx-auto">
