@@ -77,7 +77,6 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             }
             insertMarkdownPage({ content: p.clean });
         });
-
         setTableOfContentArray(arrayOfSectionsNames);
         setTotalPages(index);
     };
@@ -91,6 +90,15 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     useEffect(() => {
         if (bookFlip?.pageFlip) {
             bookFlip.pageFlip.turnToPage(bookFlip.currentPage);
+            let videos = document.querySelectorAll('iframe, video');
+            Array.prototype.forEach.call(videos, function (video) {
+                if (video.tagName.toLowerCase() === 'video') {
+                    video.pause();
+                } else {
+                    let src = video.src;
+                    video.src = src;
+                }
+            });
         }
     }, [bookFlip?.currentPage, bookFlip?.pageFlip]);
 
