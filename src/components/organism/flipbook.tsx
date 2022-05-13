@@ -31,7 +31,6 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     const router = useRouter();
     const [totalPages, setTotalPages] = useState(0);
     let index = 0;
-
     const [bookFlip, setRef] = useImperativeRef<BookFlipActions>();
 
     const createFlipBook = (pf: PageFlip) => {
@@ -107,15 +106,15 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             <BookFlip ref={setRef} createPages={createFlipBook} />
             <div className="md:visible hidden absolute z-10 bottom-10 w-full">
                 <div className="flex flex-row relative mt-0 " id="page-counter">
-                    <div className="flex flex-row justify-center items-center">
-                        <Btn onClick={bookFlip?.prevPage} className="mr-4" id="prev">
+                    <div className="flex flex-row justify-around items-center">
+                        <Btn onClick={bookFlip?.prevPage} id="prev">
                             <Chevron className="rotate-180" color="white" />
                         </Btn>
                         <div className="flex flex-row gap-1">
                             Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
                             <div id="page-total">{totalPages}</div>
                         </div>
-                        <Btn onClick={bookFlip?.nextPage} className="ml-4" id="next">
+                        <Btn onClick={bookFlip?.nextPage} id="next">
                             <Chevron className="" color="white" />
                         </Btn>
                     </div>
@@ -123,15 +122,15 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                 <TableOfContents tableOfContentsArray={tableOfContentArray} />
             </div>
             <div className="visible md:hidden absolute z-10 bottom-10 w-full">
-                <div className="flex flex-row justify-between items-center px-4">
-                    <Btn onClick={bookFlip?.prevPage} className="mr-4" id="prev">
+                <div className="flex flex-row justify-around items-center px-4">
+                    <Btn onClick={bookFlip?.prevPage} id="prev">
                         <Chevron className="rotate-180" color="white" />
                     </Btn>
                     <div className="flex flex-row gap-1">
                         Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
                         <div id="page-total">{totalPages}</div>
                     </div>
-                    <Btn onClick={bookFlip?.nextPage} className="ml-4" id="next">
+                    <Btn onClick={bookFlip?.nextPage} id="next">
                         <Chevron className="" color="white" />
                     </Btn>
                 </div>

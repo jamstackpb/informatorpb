@@ -34,11 +34,13 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
                 return {
                     width: window.innerWidth,
                     height: window.innerHeight,
+                    disableFlipByClick: true,
                 };
             } else {
                 return {
                     width: window.innerWidth / 2.0,
                     height: window.innerHeight,
+                    disableFlipByClick: false,
                 };
             }
         }
@@ -54,17 +56,14 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
             minWidth: 320,
             minHeight: 528.75,
             showCover: true,
-
             drawShadow: true,
             flippingTime: 800,
             startZIndex: 0,
-            swipeDistance: 10,
+            swipeDistance: 30,
             mobileScrollSupport: true,
-            disableFlipByClick: true,
-            // useMouseEvents: false,
+            useMouseEvents: true,
             clickEventForward: false,
-            // usePortrait: false,
-            //autoSize: false,
+            usePortrait: true,
             size: SizeType.STRETCH,
         });
         createPages(pf);
