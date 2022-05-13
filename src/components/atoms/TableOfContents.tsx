@@ -5,9 +5,9 @@ import { useAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'react';
 interface TableOfContentProps {
     tableOfContentsArray: Array<ToCItem>;
+    setPage: (pageNumber: number) => void;
 }
-export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContentsArray }) => {
-    const [, setPage] = useAtom(currentPageAtom);
+export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContentsArray, setPage }) => {
     const [open, setOpen] = useState(false);
     const groupBySection = Object.entries(
         tableOfContentsArray.reduce((a, b) => {
@@ -29,6 +29,7 @@ export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContents
             </div>
 
             <div
+                onClick={() => setOpen(false)}
                 className={
                     open
                         ? ' fixed top-0 left-0  w-full h-full outline-none overflow-x-hidden overflow-y-auto flex justify-center items-center bg-opacity-40 bg-black '

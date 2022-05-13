@@ -32,11 +32,13 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     const [totalPages, setTotalPages] = useState(0);
     let index = 0;
     const [bookFlip, setRef] = useImperativeRef<BookFlipActions>();
+    const [queryLoaded, setQueryLoaded] = useState(false);
 
     const createFlipBook = (pf: PageFlip) => {
         const arrayOfSectionsNames: Array<ToCItem> = [];
+        AddFrontPage({ title: 'Informator PB' });
+        index++;
         foStudy.map((g) => {
-            index++;
             g.pagenumber = index;
             arrayOfSectionsNames.push({
                 section: 'Kierunki',
@@ -44,16 +46,17 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                 title: g.matter.name,
             });
             AddPagesWithContent(g);
+            index++;
         });
-        index++;
         AddFrontPage({ title: 'Koła naukowe na naszej uczelni!' });
+        index++;
         science.map((g) => {
             index++;
             arrayOfSectionsNames.push({ section: g.matter.section, pageNumber: index, title: g.matter.name });
             AddPagesWithContent(g);
         });
-        index++;
         AddFrontPage({ title: 'Nasi Absolwenci' });
+        index++;
 
         graduate.map((g) => {
             index++;
@@ -81,14 +84,20 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     };
 
     useEffect(() => {
-        if (bookFlip?.pageFlip) {
-            bookFlip.setCurrentPage(parseInt(router.query.page as string));
+        if (router.query.page === undefined) {
+            return;
         }
-    }, [router.query.page, bookFlip?.pageFlip]);
+        if (bookFlip?.pageFlip && !queryLoaded) {
+            const pageNumber = parseInt(router.query.page as string);
+            if (pageNumber !== bookFlip.currentPage) {
+                bookFlip.setCurrentPage(pageNumber);
+                setQueryLoaded(true);
+            }
+        }
+    }, [router.query.page, bookFlip?.pageFlip, queryLoaded]);
 
     useEffect(() => {
         if (bookFlip?.pageFlip) {
-            bookFlip.pageFlip.turnToPage(bookFlip.currentPage);
             let videos = document.querySelectorAll('iframe, video');
             Array.prototype.forEach.call(videos, function (video) {
                 if (video.tagName.toLowerCase() === 'video') {
@@ -103,7 +112,13 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
 
     return (
         <Wrapper>
-            <BookFlip ref={setRef} createPages={createFlipBook} />
+            <BookFlip
+                ref={setRef}
+                createPages={createFlipBook}
+                onChangePage={(pageNumber) => {
+                    router.push(`/?page=${pageNumber}`);
+                }}
+            />
             <div className="md:visible hidden absolute z-10 bottom-10 w-full">
                 <div className="flex flex-row relative mt-0 " id="page-counter">
                     <div className="flex flex-row justify-around items-center">
@@ -119,7 +134,10 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                         </Btn>
                     </div>
                 </div>
-                <TableOfContents tableOfContentsArray={tableOfContentArray} />
+                <TableOfContents
+                    setPage={(pn) => bookFlip?.setCurrentPage(pn)}
+                    tableOfContentsArray={tableOfContentArray}
+                />
             </div>
             <div className="visible md:hidden absolute z-10 bottom-10 w-full">
                 <div className="flex flex-row justify-around items-center px-4">
@@ -136,7 +154,10 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                 </div>
             </div>
             <div className="absolute z-10 top-4 right-4">
-                <TableOfContents tableOfContentsArray={tableOfContentArray} />
+                <TableOfContents
+                    setPage={(pn) => bookFlip?.setCurrentPage(pn)}
+                    tableOfContentsArray={tableOfContentArray}
+                />
             </div>
         </Wrapper>
     );

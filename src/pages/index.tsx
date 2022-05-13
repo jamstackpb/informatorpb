@@ -4,10 +4,7 @@ import React from 'react';
 import { FlipBook } from '../components/organism/flipbook';
 import { Graduate, getScienceContent, getFieldsOfStudy } from '@/ssg/';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { TableOfContents } from '../components/atoms/TableOfContents';
 
 const projectsPage = ({
     content,
@@ -16,13 +13,6 @@ const projectsPage = ({
     fos,
 }: // tableOfContents,
 InferGetStaticPropsType<typeof getStaticProps>) => {
-    const router = useRouter();
-    useEffect(() => {
-        router.push(`/?page=0`);
-    }, []);
-    useEffect(() => {
-        router.query.page && router.push(`/?page=${router.query.page}`, undefined, { shallow: true });
-    }, [router.query.page]);
     return (
         <>
             <Head>

@@ -9,6 +9,7 @@ interface IBookFlip {
     //     clean: string;
     // }>;
     createPages: (pageFlip: PageFlip) => void;
+    onChangePage: (pageNumber: number) => void;
 }
 enum SizeType {
     /** Dimensions are fixed */
@@ -25,7 +26,7 @@ export interface BookFlipActions {
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPages }, ref) => {
+export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPages, onChangePage }, ref) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
     const [currentPage, setCurrentPage] = useState(0);
     const calculateRatio = () => {
@@ -68,7 +69,7 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
         });
         createPages(pf);
         pf.on('changeState', () => {
-            setCurrentPage(pf.getCurrentPageIndex());
+            setCurrentPage(pf.getCurrentPageIndex() || 0);
         });
         pf.loadFromHTML(document.querySelectorAll('.page'));
         setPageFlip(pf);
@@ -76,6 +77,13 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
             pf.destroy();
         };
     }, []);
+
+    useEffect(() => {
+        onChangePage(currentPage);
+        if (pageFlip && pageFlip.getCurrentPageIndex() !== currentPage) {
+            pageFlip?.flip(currentPage);
+        }
+    }, [currentPage]);
 
     const nextPage = () => {
         const performTurn = currentPage + 2 > (pageFlip?.getPageCount() || 2) ? false : true;
