@@ -81,6 +81,21 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         setTotalPages(index);
     };
 
+    // const onKeyPress = (e: KeyboardEvent) => {
+    //     const { key } = e;
+
+    //     if (bookFlip && bookFlip.pageFlip) {
+    //         if (key == 'ArrowRight') {
+    //             if (bookFlip.currentPage + 2 < bookFlip?.pageFlip?.getPageCount())
+    //                 router.push({ pathname: '/', query: { page: bookFlip.currentPage + 2 } });
+    //         }
+    //         if (key == 'ArrowLeft') {
+    //             if (bookFlip.currentPage - 2 >= 0)
+    //                 router.push({ pathname: '/', query: { page: bookFlip.currentPage - 2 } });
+    //         }
+    //     }
+    // };
+
     useEffect(() => {
         if (bookFlip?.pageFlip) {
             bookFlip.setCurrentPage(parseInt(router.query.page as string));
@@ -101,6 +116,13 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             });
         }
     }, [bookFlip?.currentPage, bookFlip?.pageFlip]);
+
+    useEffect(() => {
+        // window.addEventListener('keydown', onKeyPress);
+        return () => {
+            // window.removeEventListener('keydown', onKeyPress);
+        };
+    }, []);
 
     return (
         <Wrapper>
