@@ -10,6 +10,7 @@ interface IBookFlip {
     //     clean: string;
     // }>;
     createPages: (pageFlip: PageFlip) => void;
+    onChangePage: (pageNumber: number) => void;
 }
 enum SizeType {
     /** Dimensions are fixed */
@@ -26,7 +27,7 @@ export interface BookFlipActions {
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPages }, ref) => {
+export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPages, onChangePage }, ref) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
     const [currentPage, setCurrentPage] = useState(0);
     const onKeyPress = (e: KeyboardEvent) => {
@@ -50,11 +51,13 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
                 return {
                     width: window.innerWidth,
                     height: window.innerHeight,
+                    disableFlipByClick: true,
                 };
             } else {
                 return {
                     width: window.innerWidth / 2.0,
                     height: window.innerHeight,
+                    disableFlipByClick: false,
                 };
             }
         }
@@ -70,22 +73,19 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
             minWidth: 320,
             minHeight: 528.75,
             showCover: true,
-
             drawShadow: true,
             flippingTime: 800,
             startZIndex: 0,
-            swipeDistance: 10,
+            swipeDistance: 30,
             mobileScrollSupport: true,
-            disableFlipByClick: true,
-            // useMouseEvents: false,
+            useMouseEvents: true,
             clickEventForward: false,
-            // usePortrait: false,
-            //autoSize: false,
+            usePortrait: true,
             size: SizeType.STRETCH,
         });
         createPages(pf);
         pf.on('changeState', () => {
-            setCurrentPage(pf.getCurrentPageIndex());
+            setCurrentPage(pf.getCurrentPageIndex() || 0);
         });
         pf.loadFromHTML(document.querySelectorAll('.page'));
         setPageFlip(pf);
@@ -96,6 +96,13 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
             window.removeEventListener('keydown', onKeyPress);
         };
     }, []);
+
+    useEffect(() => {
+        onChangePage(currentPage);
+        if (pageFlip && pageFlip.getCurrentPageIndex() !== currentPage) {
+            pageFlip?.flip(currentPage);
+        }
+    }, [currentPage]);
 
     const nextPage = () => {
         const performTurn = currentPage + 2 > (pageFlip?.getPageCount() || 2) ? false : true;

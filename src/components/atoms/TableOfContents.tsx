@@ -5,9 +5,9 @@ import { useAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'react';
 interface TableOfContentProps {
     tableOfContentsArray: Array<ToCItem>;
+    setPage: (pageNumber: number) => void;
 }
-export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContentsArray }) => {
-    const [, setPage] = useAtom(currentPageAtom);
+export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContentsArray, setPage }) => {
     const [open, setOpen] = useState(false);
     const groupBySection = Object.entries(
         tableOfContentsArray.reduce((a, b) => {
@@ -22,13 +22,14 @@ export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContents
                 <button
                     onClick={() => setOpen((prev) => (prev = !prev))}
                     type="button"
-                    className="inline-block px-6 py-2.5 bg-white text-gray-700 font-bold text-sm leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                    className="inline-block px-6 py-2.5 bg-white text-gray-700 font-bold text-sm leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg hover:text-white focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 focus:text-white active:bg-blue-800 active:shadow-lg active:text-white transition duration-150 ease-in-out"
                 >
                     Spis treści
                 </button>
             </div>
 
             <div
+                onClick={() => setOpen(false)}
                 className={
                     open
                         ? ' fixed top-0 left-0  w-full h-full outline-none overflow-x-hidden overflow-y-auto flex justify-center items-center bg-opacity-40 bg-black '
