@@ -30,20 +30,20 @@ export interface BookFlipActions {
 export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPages, onChangePage }, ref) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
     const [currentPage, setCurrentPage] = useState(0);
+    const [pageNumber, setPageNumber] = useState<number>();
     const onKeyPress = (e: KeyboardEvent) => {
         const { key } = e;
 
         if (Router.query.page) {
-            const page = parseInt(Router.query.page as string);
+            const pageNumber = pageFlip?.getPageCount();
+
             if (key == 'ArrowRight') {
-                // if (page + 2 < pageFlip?.getPageCount())
-                Router.push({ pathname: '/', query: { page: page + 2 } });
+                setCurrentPage((prev) => (prev = prev + 2));
             }
             if (key == 'ArrowLeft') {
-                if (page - 2 >= 0) Router.push({ pathname: '/', query: { page: page - 2 } });
+                if (currentPage - 2 >= 0) setCurrentPage((prev) => (prev = prev - 2));
             }
         }
-        console.log(pageFlip);
     };
     const calculateRatio = () => {
         if (typeof window !== 'undefined') {
@@ -89,7 +89,7 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
         });
         pf.loadFromHTML(document.querySelectorAll('.page'));
         setPageFlip(pf);
-
+        console.log(pageFlip?.getPageCount());
         window.addEventListener('keydown', onKeyPress);
         return () => {
             pf.destroy();
