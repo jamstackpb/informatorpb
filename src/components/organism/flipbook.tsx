@@ -90,7 +90,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         if (bookFlip?.pageFlip && !queryLoaded) {
             const pageNumber = parseInt(router.query.page as string);
             if (pageNumber !== bookFlip.currentPage) {
-                bookFlip.setCurrentPage(pageNumber);
+                bookFlip.pageFlip.flip(pageNumber);
                 setQueryLoaded(true);
             }
         }
@@ -123,43 +123,39 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                     router.push(`/?page=${pageNumber}`);
                 }}
             />
-            <div className="md:visible hidden absolute z-10 bottom-10 w-full">
-                <div className="flex flex-row relative mt-0 " id="page-counter">
+            <div className="md:block hidden absolute z-10 bottom-10 w-full">
+                <div className="flex flex-row relative mt-0 justify-center items-center" id="page-counter">
                     <div className="flex flex-row justify-around items-center">
-                        <Btn onClick={bookFlip?.prevPage} id="prev">
+                        <Btn onClick={() => bookFlip?.pageFlip?.flipPrev()} id="prev">
                             <Chevron className="rotate-180" color="white" />
                         </Btn>
-                        <div className="flex flex-row gap-1">
+                        <div className="flex flex-row gap-1 mx-5">
                             Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
                             <div id="page-total">{totalPages}</div>
                         </div>
-                        <Btn onClick={bookFlip?.nextPage} id="next">
+                        <Btn onClick={() => bookFlip?.pageFlip?.flipNext()} id="next">
                             <Chevron className="" color="white" />
                         </Btn>
                     </div>
                 </div>
-                <TableOfContents
-                    setPage={(pn) => bookFlip?.setCurrentPage(pn)}
-                    tableOfContentsArray={tableOfContentArray}
-                />
             </div>
-            <div className="visible md:hidden absolute z-10 bottom-10 w-full">
+            <div className="block md:hidden absolute z-10 bottom-10 w-full">
                 <div className="flex flex-row justify-around items-center px-4">
-                    <Btn onClick={bookFlip?.prevPage} id="prev">
+                    <Btn onClick={() => bookFlip?.pageFlip?.flipPrev()} id="prev">
                         <Chevron className="rotate-180" color="white" />
                     </Btn>
                     <div className="flex flex-row gap-1">
                         Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
                         <div id="page-total">{totalPages}</div>
                     </div>
-                    <Btn onClick={bookFlip?.nextPage} id="next">
+                    <Btn onClick={() => bookFlip?.pageFlip?.flipNext()} id="next">
                         <Chevron className="" color="white" />
                     </Btn>
                 </div>
             </div>
             <div className="absolute z-10 top-4 right-4">
                 <TableOfContents
-                    setPage={(pn) => bookFlip?.setCurrentPage(pn)}
+                    setPage={(pn) => bookFlip?.pageFlip?.flip(pn)}
                     tableOfContentsArray={tableOfContentArray}
                 />
             </div>

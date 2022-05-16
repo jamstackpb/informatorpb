@@ -1,4 +1,3 @@
-import Router from 'next/router';
 import { PageFlip } from 'page-flip';
 import React, { useEffect, useImperativeHandle, useState } from 'react';
 
@@ -20,31 +19,13 @@ enum SizeType {
 }
 
 export interface BookFlipActions {
-    prevPage: () => void;
-    nextPage: () => void;
     pageFlip?: PageFlip;
     currentPage: number;
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPages, onChangePage }, ref) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
     const [currentPage, setCurrentPage] = useState(0);
-    const [pageNumber, setPageNumber] = useState<number>();
-    const onKeyPress = (e: KeyboardEvent) => {
-        const { key } = e;
-
-        if (Router.query.page) {
-            const pageNumber = pageFlip?.getPageCount();
-
-            if (key == 'ArrowRight') {
-                setCurrentPage((prev) => (prev = prev + 2));
-            }
-            if (key == 'ArrowLeft') {
-                if (currentPage - 2 >= 0) setCurrentPage((prev) => (prev = prev - 2));
-            }
-        }
-    };
     const calculateRatio = () => {
         if (typeof window !== 'undefined') {
             if (window.innerWidth < window.innerHeight) {
@@ -84,18 +65,31 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
             size: SizeType.STRETCH,
         });
         createPages(pf);
-        pf.on('changeState', () => {
-            setCurrentPage(pf.getCurrentPageIndex() || 0);
+        pf.on('flip', (e) => {
+            setCurrentPage(e.data.valueOf() as number);
         });
         pf.loadFromHTML(document.querySelectorAll('.page'));
         setPageFlip(pf);
         console.log(pageFlip?.getPageCount());
-        window.addEventListener('keydown', onKeyPress);
         return () => {
             pf.destroy();
-            window.removeEventListener('keydown', onKeyPress);
         };
     }, []);
+    useEffect(() => {
+        const onKeyPress = (e: KeyboardEvent) => {
+            const { key } = e;
+            if (key == 'ArrowRight') {
+                pageFlip?.flipNext();
+            }
+            if (key == 'ArrowLeft') {
+                pageFlip?.flipPrev();
+            }
+        };
+        window.addEventListener('keydown', onKeyPress);
+        return () => {
+            window.removeEventListener('keydown', onKeyPress);
+        };
+    }, [pageFlip]);
 
     useEffect(() => {
         onChangePage(currentPage);
@@ -104,29 +98,11 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
         }
     }, [currentPage]);
 
-    const nextPage = () => {
-        const performTurn = currentPage + 2 > (pageFlip?.getPageCount() || 2) ? false : true;
-        if (performTurn) {
-            pageFlip?.turnToNextPage();
-            setCurrentPage(pageFlip?.getCurrentPageIndex() || currentPage);
-        }
-    };
-    const prevPage = () => {
-        const performTurn = currentPage - 2 < 0 ? false : true;
-        if (performTurn) {
-            pageFlip?.turnToPrevPage();
-            setCurrentPage(pageFlip?.getCurrentPageIndex() || currentPage);
-        }
-    };
-
     useImperativeHandle(
         ref,
         () => ({
-            nextPage,
-            prevPage,
             pageFlip,
             currentPage,
-            setCurrentPage,
         }),
         [currentPage, pageFlip],
     );
