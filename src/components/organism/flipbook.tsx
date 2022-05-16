@@ -110,6 +110,10 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         }
     }, [bookFlip?.currentPage, bookFlip?.pageFlip]);
 
+    useEffect(() => {
+        return () => {};
+    }, []);
+
     return (
         <Wrapper>
             <BookFlip

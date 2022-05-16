@@ -35,6 +35,7 @@ export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContents
                         ? ' fixed top-0 left-0  w-full h-full outline-none overflow-x-hidden overflow-y-auto flex justify-center items-center bg-opacity-40 bg-black '
                         : ' fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto '
                 }
+                onClick={() => setOpen((prev) => (prev = false))}
             >
                 <div className=" relative w-auto pointer-events-none transition-all duration-1000">
                     <div className=" border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current z-50">
