@@ -23,7 +23,12 @@ export const Wrapper = styled.div`
     margin: auto;
     width: 100%;
     height: 100%;
+    background-image: url('images/background.webp');
+    background-size: cover;
+    background-position: center;
     #flipbook-container {
+        width: 100%;
+        height: 100%;
         margin: auto;
         display: flex;
         background-size: cover;
