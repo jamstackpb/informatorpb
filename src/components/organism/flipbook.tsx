@@ -150,6 +150,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                                 <div id="page-total">{totalPages}</div>
                             </div>
                         )}{' '}
+
                         <Btn onClick={() => bookFlip?.pageFlip?.flipNext()} id="next">
                             <Chevron className="" color="white" />
                         </Btn>
