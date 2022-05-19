@@ -49,7 +49,7 @@ export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContents
                         </div>
                         <div className=" relative p-4 max-h-96 overflow-auto">
                             {groupBySection.map(([sectionName, items]) => (
-                                <div className="mb-4">
+                                <div className="mb-4" key={sectionName}>
                                     <div
                                         className="flex flex-row cursor-pointer"
                                         onClick={() => {
@@ -66,6 +66,7 @@ export const TableOfContents: React.FC<TableOfContentProps> = ({ tableOfContents
                                         <div className="ml-2">
                                             {items.map((item) => (
                                                 <div
+                                                    key={item.pageNumber}
                                                     className="flex flex-row cursor-pointer border-b"
                                                     onClick={() => {
                                                         setPage(item.pageNumber);

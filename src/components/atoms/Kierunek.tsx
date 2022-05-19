@@ -58,15 +58,31 @@ export const Kierunek: React.FC<KierunekProps> = ({
                     <td>{master.partTime ? '✔' : ''}</td>
                 </tbody>
             </Tabela>
-            <div className="flex">
+            <div
+                className="flex"
+                onMouseMove={(e) => {
+                    if (!e.button) {
+                        e.stopPropagation();
+                        return false;
+                    }
+                }}
+            >
                 <div
                     onClick={() => route('opis')}
+                    onMouseDown={(e) => {
+                        e.stopPropagation();
+                        return false;
+                    }}
                     className="font-bold cursor-pointer text-white bg-green-400 px-4 py-1 mr-2"
                 >
                     Opis
                 </div>
                 <div
                     onClick={() => route('kalkulator')}
+                    onMouseDown={(e) => {
+                        e.stopPropagation();
+                        return false;
+                    }}
                     className="font-bold cursor-pointer  text-white bg-green-400 px-4 py-1 mr-2"
                 >
                     Kalkulator
