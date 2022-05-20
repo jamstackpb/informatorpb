@@ -1,4 +1,4 @@
-import { PageFlip } from 'page-flip';
+import { FlipSetting, PageFlip } from 'page-flip';
 import React, { useEffect, useImperativeHandle, useState } from 'react';
 
 interface IBookFlip {
@@ -26,19 +26,21 @@ export interface BookFlipActions {
 export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPages, onChangePage }, ref) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
     const [currentPage, setCurrentPage] = useState(0);
-    const calculateRatio = () => {
+    const calculateRatio = (): Partial<FlipSetting> => {
         if (typeof window !== 'undefined') {
             if (window.innerWidth < window.innerHeight) {
                 return {
                     width: window.innerWidth,
                     height: window.innerHeight,
                     disableFlipByClick: true,
+                    useMouseEvents: false,
                 };
             } else {
                 return {
                     width: window.innerWidth / 2.0,
                     height: window.innerHeight,
                     disableFlipByClick: false,
+                    useMouseEvents: true,
                 };
             }
         }
@@ -55,11 +57,10 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
             minHeight: 528.75,
             showCover: true,
             drawShadow: true,
-            flippingTime: 800,
+            flippingTime: 400,
             startZIndex: 0,
             swipeDistance: 30,
             mobileScrollSupport: true,
-            useMouseEvents: true,
             clickEventForward: false,
             usePortrait: true,
             size: SizeType.STRETCH,

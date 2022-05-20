@@ -126,14 +126,14 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             <div className="md:block hidden absolute z-10 bottom-10 w-full">
                 <div className="flex flex-row relative mt-0 justify-center items-center" id="page-counter">
                     <div className="flex flex-row justify-around items-center">
-                        <Btn onClick={() => bookFlip?.pageFlip?.flipPrev()} id="prev">
+                        <Btn onClick={() => bookFlip?.pageFlip?.flipPrev()}>
                             <Chevron className="rotate-180" color="white" />
                         </Btn>
                         <div className="flex flex-row gap-1 mx-5">
                             Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
                             <div id="page-total">{totalPages}</div>
                         </div>
-                        <Btn onClick={() => bookFlip?.pageFlip?.flipNext()} id="next">
+                        <Btn onClick={() => bookFlip?.pageFlip?.flipNext()}>
                             <Chevron className="" color="white" />
                         </Btn>
                     </div>
@@ -141,14 +141,14 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
             </div>
             <div className="block md:hidden absolute z-10 bottom-10 w-full">
                 <div className="flex flex-row justify-around items-center px-4">
-                    <Btn onClick={() => bookFlip?.pageFlip?.flipPrev()} id="prev">
+                    <Btn onClick={() => bookFlip?.pageFlip?.turnToPrevPage()}>
                         <Chevron className="rotate-180" color="white" />
                     </Btn>
                     <div className="flex flex-row gap-1">
                         Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
                         <div id="page-total">{totalPages}</div>
                     </div>
-                    <Btn onClick={() => bookFlip?.pageFlip?.flipNext()} id="next">
+                    <Btn onClick={() => bookFlip?.pageFlip?.turnToNextPage()}>
                         <Chevron className="" color="white" />
                     </Btn>
                 </div>
