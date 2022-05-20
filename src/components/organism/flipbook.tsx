@@ -31,9 +31,9 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     const router = useRouter();
     const [totalPages, setTotalPages] = useState(0);
     let index = 0;
+    const [secondPage, setSecondPage] = useState(-1);
     const [bookFlip, setRef] = useImperativeRef<BookFlipActions>();
     const [queryLoaded, setQueryLoaded] = useState(false);
-
     const createFlipBook = (pf: PageFlip) => {
         const arrayOfSectionsNames: Array<ToCItem> = [];
         AddFrontPage({ title: 'Informator PB' });
@@ -107,6 +107,13 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                     video.src = src;
                 }
             });
+            if (typeof window !== 'undefined') {
+                if (window.innerWidth > window.innerHeight) {
+                    setSecondPage(bookFlip?.currentPage ? bookFlip?.currentPage + 1 : -1);
+                } else {
+                    setSecondPage(-1);
+                }
+            }
         }
     }, [bookFlip?.currentPage, bookFlip?.pageFlip]);
 
@@ -129,11 +136,22 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                         <Btn onClick={() => bookFlip?.pageFlip?.flipPrev()}>
                             <Chevron className="rotate-180" color="white" />
                         </Btn>
-                        <div className="flex flex-row gap-1 mx-5">
-                            Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
-                            <div id="page-total">{totalPages}</div>
-                        </div>
-                        <Btn onClick={() => bookFlip?.pageFlip?.flipNext()}>
+                        {secondPage != -1 ? (
+                            <div className="flex flex-row gap-1 mx-5">
+                                Strony{' '}
+                                <div id="page-current">
+                                    {bookFlip?.currentPage} - {secondPage}
+                                </div>
+                                z <div id="page-total">{totalPages}</div>
+                            </div>
+                        ) : (
+                            <div className="flex flex-row gap-1 mx-5">
+                                Strona <div id="page-current">{bookFlip?.currentPage}</div>z{' '}
+                                <div id="page-total">{totalPages}</div>
+                            </div>
+                        )}{' '}
+
+                        <Btn onClick={() => bookFlip?.pageFlip?.flipNext()} id="next">
                             <Chevron className="" color="white" />
                         </Btn>
                     </div>
