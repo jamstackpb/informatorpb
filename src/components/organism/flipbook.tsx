@@ -2,7 +2,7 @@ import { insertMarkdownPage } from '@/src/bookflip';
 import { AddPagesWithContent, AddFrontPage } from '@/src/components/atoms/AddPage';
 import { Wrapper, LogoPB, Btn } from '@/src/styles/styleBook';
 import { getFieldsOfStudy, Graduate, getScienceContent } from '@/ssg';
-import { TableOfContents } from '../atoms/TableOfContents';
+import { TableOfContents } from '../molecules/TableOfContents';
 import { useRouter } from 'next/router';
 import { PageFlip } from 'page-flip';
 import React, { useEffect, useState } from 'react';
@@ -150,7 +150,6 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                                 <div id="page-total">{totalPages}</div>
                             </div>
                         )}{' '}
-
                         <Btn onClick={() => bookFlip?.pageFlip?.flipNext()} id="next">
                             <Chevron className="" color="white" />
                         </Btn>
