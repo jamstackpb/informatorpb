@@ -3,7 +3,7 @@ import { Absolwent } from './Absolwent';
 import { KoloNaukowe } from './KoloNaukowe';
 import { Kierunek } from '@/src/components/atoms/Kierunek';
 import { ContentPageProps } from '@/src/models';
-import { TableOfContents } from './TableOfContents';
+import { TableOfContents } from '../molecules/TableOfContents';
 import { MarkdownPage } from '@/src/bookflip/MarkdownPage';
 import { FlipBookPage } from '@/src/bookflip/FlipBookPage';
 import { Front } from '@/src/components/atoms/FrontPage';
