@@ -1,4 +1,5 @@
 import { FlipBookRender } from '@/src/bookflip/FlipBookBook';
+import styled from '@emotion/styled';
 import { FlipSetting, PageFlip } from 'page-flip';
 import React, { useEffect, useImperativeHandle, useState } from 'react';
 
@@ -23,30 +24,26 @@ enum SizeType {
 export interface BookFlipActions {
     pageFlip?: PageFlip;
     currentPage: number;
+    fullscreen?: boolean;
+    setFullscreen?: (e: boolean) => void;
 }
 
 export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPages, onChangePage, children }, ref) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
     const [currentPage, setCurrentPage] = useState(0);
-    const calculateRatio = (): Partial<FlipSetting> => {
+    const [fullscreen, setFullscreen] = useState(false);
+
+    const calculateRatio = (fs?: boolean): Partial<FlipSetting> => {
         let width = 640;
         let height = 740;
         let disableFlipByClick = false;
         let useMouseEvents = true;
         if (typeof window !== 'undefined') {
             if (window.innerWidth > window.innerHeight) {
-                if (document.getElementById('wrapper')) {
-                    width = document.getElementById('wrapper')?.offsetWidth!;
-                    height = document.getElementById('wrapper')?.offsetHeight!;
-                    width = width / 2;
-                    disableFlipByClick = false;
-                    useMouseEvents = true;
-                } else {
-                    width = window.innerWidth / 2.0;
-                    height = window.innerHeight;
-                    disableFlipByClick = false;
-                    useMouseEvents = true;
-                }
+                width = ((fs ? 1.0 : 0.9) * window.innerWidth) / 2.0;
+                height = (fs ? 1.0 : 0.9) * window.innerHeight;
+                disableFlipByClick = false;
+                useMouseEvents = true;
             } else {
                 width = window.innerWidth;
                 height = window.innerHeight;
@@ -62,10 +59,11 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
         };
     };
     useEffect(() => {
+        const calc = calculateRatio(fullscreen);
         const pf = new PageFlip(document.getElementById('flipbook-container')!, {
             width: 640,
             height: 740,
-            ...calculateRatio(),
+            ...calc,
             minWidth: 320,
             minHeight: 528.75,
             showCover: true,
@@ -86,7 +84,7 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
         return () => {
             pf.destroy();
         };
-    }, []);
+    }, [fullscreen]);
     useEffect(() => {
         const onKeyPress = (e: KeyboardEvent) => {
             const { key } = e;
@@ -115,6 +113,8 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
         () => ({
             pageFlip,
             currentPage,
+            setFullscreen,
+            fullscreen,
         }),
         [currentPage, pageFlip],
     );
@@ -124,19 +124,23 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
             {pageFlip && (
                 <FlipBookRender
                     onRender={() => {
-                        console.log(document.querySelectorAll('.page'));
                         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
                     }}
                 >
                     {children}
                 </FlipBookRender>
             )}
-            <div id="flipbook-container">
+            <FlipBookContainer fullscreen={fullscreen} id="flipbook-container">
                 <div id="page-storage"></div>
                 <div className="page page-cover page-cover-bottom" data-density="hard">
                     <div className="page-content"></div>
                 </div>
-            </div>
+            </FlipBookContainer>
         </>
     );
 });
+
+const FlipBookContainer = styled.div<{ fullscreen?: boolean }>`
+    width: 100vw;
+    height: 100vh;
+`;

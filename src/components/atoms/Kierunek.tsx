@@ -64,9 +64,15 @@ export const Kierunek: React.FC<KierunekProps> = ({
                         return false;
                     }
                 }}
+                onMouseEnter={(e) => {
+                    if (!e.button) {
+                        e.stopPropagation();
+                        return false;
+                    }
+                }}
             >
                 <div
-                    onClick={() => route('opis')}
+                    onClick={(e) => route('opis')}
                     onMouseDown={(e) => {
                         e.stopPropagation();
                         return false;
@@ -78,7 +84,10 @@ export const Kierunek: React.FC<KierunekProps> = ({
                     Opis
                 </div>
                 <div
-                    onClick={() => route('kalkulator')}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        route('kalkulator');
+                    }}
                     onMouseDown={(e) => {
                         e.stopPropagation();
                         return false;
