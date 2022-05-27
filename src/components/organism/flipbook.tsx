@@ -1,15 +1,14 @@
 import { insertMarkdownPage } from '@/src/bookflip';
-import { AddPagesWithContent, AddFrontPage } from '@/src/components/atoms/AddPage';
-import { Wrapper, LogoPB, Btn } from '@/src/styles/styleBook';
+import { Wrapper, Background, Btn } from '@/src/styles/styleBook';
 import { getFieldsOfStudy, Graduate, getScienceContent } from '@/ssg';
 import { TableOfContents } from '../molecules/TableOfContents';
 import { useRouter } from 'next/router';
 import { PageFlip } from 'page-flip';
-import React, { useEffect, useState } from 'react';
-import { Chevron } from '../atoms/chevron';
+import React, { useEffect, useState, useRef } from 'react';
 import { ToCItem } from '@/src/bookflip/models';
 import { BookFlip, BookFlipActions } from '@/src/bookflip/BookFlip';
 import { useImperativeRef } from '@/src/hooks/useImperativeRef';
+import { FullScreen, Chevron, AddPagesWithContent, AddFrontPage } from '../atoms';
 
 interface IFlipBook {
     pages: Array<{
@@ -27,13 +26,14 @@ interface IFlipBook {
 }
 
 export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStudy }) => {
+    let index = 0;
     const [tableOfContentArray, setTableOfContentArray] = useState<Array<ToCItem>>([]);
     const router = useRouter();
-    const [totalPages, setTotalPages] = useState(0);
-    let index = 0;
-    const [secondPage, setSecondPage] = useState(-1);
     const [bookFlip, setRef] = useImperativeRef<BookFlipActions>();
     const [queryLoaded, setQueryLoaded] = useState(false);
+    const [totalPages, setTotalPages] = useState(0);
+    const [fullscreen, setFullscreen] = useState(false);
+    const [secondPage, setSecondPage] = useState(-1);
     const createFlipBook = (pf: PageFlip) => {
         const arrayOfSectionsNames: Array<ToCItem> = [];
         AddFrontPage({ title: 'Informator PB' });
@@ -122,60 +122,71 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     }, []);
 
     return (
-        <Wrapper>
-            <BookFlip
-                ref={setRef}
-                createPages={createFlipBook}
-                onChangePage={(pageNumber) => {
-                    router.push(`/?page=${pageNumber}`);
-                }}
-            />
-            <div className="md:block hidden absolute z-10 bottom-10 w-full">
-                <div className="flex flex-row relative mt-0 justify-center items-center" id="page-counter">
-                    <div className="flex flex-row justify-around items-center">
-                        <Btn onClick={() => bookFlip?.pageFlip?.flipPrev()}>
+        <Background>
+            <Wrapper
+                id="wrapper"
+                className={secondPage != -1 && fullscreen == false ? 'w-[90%] h-[90%]' : 'w-full h-full'}
+            >
+                <BookFlip
+                    ref={setRef}
+                    createPages={createFlipBook}
+                    onChangePage={(pageNumber) => {
+                        router.push(`/?page=${pageNumber}`);
+                    }}
+                />
+                <div className="md:block hidden absolute z-10 bottom-10 w-full">
+                    <div className="flex flex-row relative mt-0 justify-center items-center" id="page-counter">
+                        <div className="flex flex-row justify-around items-center">
+                            <Btn onClick={() => bookFlip?.pageFlip?.flipPrev()}>
+                                <Chevron className="rotate-180" color="white" />
+                            </Btn>
+                            <Btn
+                                onClick={() => setFullscreen(!fullscreen)}
+                                className={secondPage != -1 ? 'mx-2' : 'mx-2 hidden'}
+                            >
+                                <FullScreen color="white" fullScreenmModeOn={fullscreen} />
+                            </Btn>
+                            {secondPage != -1 ? (
+                                <div className="flex flex-row gap-1 mx-5">
+                                    Strony{' '}
+                                    <div id="page-current">
+                                        {bookFlip?.currentPage} - {secondPage}
+                                    </div>
+                                    z <div id="page-total">{totalPages}</div>
+                                </div>
+                            ) : (
+                                <div className="flex flex-row gap-1 mx-5">
+                                    Strona <div id="page-current">{bookFlip?.currentPage}</div>z{' '}
+                                    <div id="page-total">{totalPages}</div>
+                                </div>
+                            )}{' '}
+                            <Btn onClick={() => bookFlip?.pageFlip?.flipNext()} id="next">
+                                <Chevron className="" color="white" />
+                            </Btn>
+                        </div>
+                    </div>
+                </div>
+                <div className="block md:hidden absolute z-10 bottom-10 w-full">
+                    <div className="flex flex-row justify-around items-center px-4">
+                        <Btn onClick={() => bookFlip?.pageFlip?.turnToPrevPage()}>
                             <Chevron className="rotate-180" color="white" />
                         </Btn>
-                        {secondPage != -1 ? (
-                            <div className="flex flex-row gap-1 mx-5">
-                                Strony{' '}
-                                <div id="page-current">
-                                    {bookFlip?.currentPage} - {secondPage}
-                                </div>
-                                z <div id="page-total">{totalPages}</div>
-                            </div>
-                        ) : (
-                            <div className="flex flex-row gap-1 mx-5">
-                                Strona <div id="page-current">{bookFlip?.currentPage}</div>z{' '}
-                                <div id="page-total">{totalPages}</div>
-                            </div>
-                        )}{' '}
-                        <Btn onClick={() => bookFlip?.pageFlip?.flipNext()} id="next">
+                        <div className="flex flex-row gap-1">
+                            Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
+                            <div id="page-total">{totalPages}</div>
+                        </div>
+                        <Btn onClick={() => bookFlip?.pageFlip?.turnToNextPage()}>
                             <Chevron className="" color="white" />
                         </Btn>
                     </div>
                 </div>
-            </div>
-            <div className="block md:hidden absolute z-10 bottom-10 w-full">
-                <div className="flex flex-row justify-around items-center px-4">
-                    <Btn onClick={() => bookFlip?.pageFlip?.turnToPrevPage()}>
-                        <Chevron className="rotate-180" color="white" />
-                    </Btn>
-                    <div className="flex flex-row gap-1">
-                        Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
-                        <div id="page-total">{totalPages}</div>
-                    </div>
-                    <Btn onClick={() => bookFlip?.pageFlip?.turnToNextPage()}>
-                        <Chevron className="" color="white" />
-                    </Btn>
+                <div className="absolute z-10 top-4 right-4">
+                    <TableOfContents
+                        setPage={(pn) => bookFlip?.pageFlip?.flip(pn)}
+                        tableOfContentsArray={tableOfContentArray}
+                    />
                 </div>
-            </div>
-            <div className="absolute z-10 top-4 right-4">
-                <TableOfContents
-                    setPage={(pn) => bookFlip?.pageFlip?.flip(pn)}
-                    tableOfContentsArray={tableOfContentArray}
-                />
-            </div>
-        </Wrapper>
+            </Wrapper>
+        </Background>
     );
 };

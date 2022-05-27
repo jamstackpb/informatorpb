@@ -1,7 +1,16 @@
+import React from 'react';
 import { Img } from '@/src/components/atoms/img';
 import styled from '@emotion/styled';
 
 export const LogoPB: React.FC<{ src: string }> = ({ src }) => <Img src={src} />;
+
+export const Background = styled.div`
+    width: 100%;
+    height: 100%;
+    background-image: url('images/background.webp');
+    background-size: cover;
+    background-position: center;
+`;
 
 export const Btn = styled.button`
     color: white;
@@ -21,11 +30,6 @@ export const Wrapper = styled.div`
     overflow: hidden;
     max-height: 100vh;
     margin: auto;
-    width: 100%;
-    height: 100%;
-    background-image: url('images/background.webp');
-    background-size: cover;
-    background-position: center;
     #flipbook-container {
         width: 100%;
         height: 100%;
