@@ -7,6 +7,7 @@ export * from './Kierunek';
 export * from './KoloNaukowe';
 export * from './MobileTableOfContents';
 export * from './chevron';
+export * from './FullScreen';
 
 export * from './footer';
 export * from './header';
