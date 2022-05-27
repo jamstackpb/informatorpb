@@ -36,12 +36,10 @@ export const Kierunek: React.FC<KierunekProps> = ({
                 <thead>
                     <tr>
                         <th colSpan={2}>
-                            <div>Studia I stopnia</div>
-                            <div>Inżynierskie, Licencjackie</div>
+                            <div>Studia Inżynierskie/Licencjackie</div>
                         </th>
                         <th colSpan={2}>
-                            <div>Studia II stopnia</div>
-                            <div>Magisterskie</div>
+                            <div>Studia Magisterskie</div>
                         </th>
                     </tr>
                     <tr>
@@ -59,7 +57,7 @@ export const Kierunek: React.FC<KierunekProps> = ({
                 </tbody>
             </Tabela>
             <div
-                className="flex"
+                className="flex "
                 onMouseMove={(e) => {
                     if (!e.button) {
                         e.stopPropagation();
@@ -73,7 +71,9 @@ export const Kierunek: React.FC<KierunekProps> = ({
                         e.stopPropagation();
                         return false;
                     }}
-                    className="font-bold cursor-pointer text-white bg-green-400 px-4 py-1 mr-2"
+                    className={`font-bold cursor-pointer px-4 py-1 border-b-2 border-current ${
+                        !tab || tab === 'opis' ? 'text-green-600' : 'text-gray-600'
+                    }`}
                 >
                     Opis
                 </div>
@@ -83,7 +83,9 @@ export const Kierunek: React.FC<KierunekProps> = ({
                         e.stopPropagation();
                         return false;
                     }}
-                    className="font-bold cursor-pointer  text-white bg-green-400 px-4 py-1 mr-2"
+                    className={`font-bold cursor-pointer px-4 py-1 border-b-2 border-current ${
+                        tab === 'kalkulator' ? 'text-green-600' : 'text-gray-600'
+                    }`}
                 >
                     Kalkulator
                 </div>

@@ -1,4 +1,4 @@
-import { insertMarkdownPage } from '@/src/bookflip';
+import { insertMarkdownPage, PlainPage } from '@/src/bookflip';
 import { Wrapper, Background, Btn } from '@/src/styles/styleBook';
 import { getFieldsOfStudy, Graduate, getScienceContent } from '@/ssg';
 import { TableOfContents } from '../molecules/TableOfContents';
@@ -8,7 +8,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { ToCItem } from '@/src/bookflip/models';
 import { BookFlip, BookFlipActions } from '@/src/bookflip/BookFlip';
 import { useImperativeRef } from '@/src/hooks/useImperativeRef';
-import { FullScreen, Chevron, AddPagesWithContent, AddFrontPage } from '../atoms';
+import { FullScreen, Chevron, AddPagesWithContent, AddFrontPage, Absolwent, Front, Kierunek, KoloNaukowe, PagesSection } from '../atoms';
+import { FlipBookRender } from '@/src/bookflip/FlipBookBook';
 
 interface IFlipBook {
     pages: Array<{
@@ -36,7 +37,6 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     const [secondPage, setSecondPage] = useState(-1);
     const createFlipBook = (pf: PageFlip) => {
         const arrayOfSectionsNames: Array<ToCItem> = [];
-        AddFrontPage({ title: 'Informator PB' });
         index++;
         foStudy.map((g) => {
             g.pagenumber = index;
@@ -45,25 +45,18 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                 pageNumber: index,
                 title: g.matter.name,
             });
-            AddPagesWithContent(g);
             index++;
         });
-        AddFrontPage({ title: 'Koła naukowe na naszej uczelni!' });
         index++;
         science.map((g) => {
             index++;
             arrayOfSectionsNames.push({ section: g.matter.section, pageNumber: index, title: g.matter.name });
-            AddPagesWithContent(g);
         });
-        AddFrontPage({ title: 'Nasi Absolwenci' });
         index++;
-
         graduate.map((g) => {
             index++;
             arrayOfSectionsNames.push({ section: g.matter.section, pageNumber: index, title: g.matter.name });
             g.pagenumber = index;
-
-            AddPagesWithContent(g);
         });
         pages.sort((a, b) => a?.changedToMatter.pageNumber - b?.changedToMatter.pageNumber);
         const pageSections: string[] = [];
@@ -77,7 +70,6 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                     title: p.changedToMatter.section,
                 });
             }
-            insertMarkdownPage({ content: p.clean });
         });
         setTableOfContentArray(arrayOfSectionsNames);
         setTotalPages(index);
@@ -131,9 +123,25 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                     ref={setRef}
                     createPages={createFlipBook}
                     onChangePage={(pageNumber) => {
-                        router.push(`/?page=${pageNumber}`);
-                    }}
-                />
+                    router.push(`/?page=${pageNumber}`);
+                }}
+            >
+                {[<Front title="Informator PB" />]}
+                {foStudy.map((g) => {
+                    return <PagesSection key={g.pagenumber} {...g} />;
+                })}
+                {[<Front title="Koła naukowe na naszej uczelni!" />]}
+                {science.map((g) => {
+                    return <PagesSection key={g.pagenumber} {...g} />;
+                })}
+                {[<Front title="Nasi Absolwenci" />]}
+                {graduate.map((g) => {
+                    return <PagesSection key={g.pagenumber} {...g} />;
+                })}
+                {pages.map((p) => {
+                    return <PlainPage content={p.clean} />;
+                })}
+            </BookFlip>
                 <div className="md:block hidden absolute z-10 bottom-10 w-full">
                     <div className="flex flex-row relative mt-0 justify-center items-center" id="page-counter">
                         <div className="flex flex-row justify-around items-center">

@@ -2,7 +2,7 @@ import React from 'react';
 import { MarkdownPage } from '@/src/bookflip/MarkdownPage';
 import { FlipBookPage } from '@/src/bookflip/FlipBookPage';
 
-const PlainPage: React.FC<{
+export const PlainPage: React.FC<{
     content: string;
 }> = ({ content }) => {
     return (

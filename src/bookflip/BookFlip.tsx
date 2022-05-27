@@ -1,3 +1,4 @@
+import { FlipBookRender } from '@/src/bookflip/FlipBookBook';
 import { FlipSetting, PageFlip } from 'page-flip';
 import React, { useEffect, useImperativeHandle, useState } from 'react';
 
@@ -9,6 +10,7 @@ interface IBookFlip {
     //     clean: string;
     // }>;
     createPages: (pageFlip: PageFlip) => void;
+    children: React.ReactNode;
     onChangePage: (pageNumber: number) => void;
 }
 enum SizeType {
@@ -23,7 +25,7 @@ export interface BookFlipActions {
     currentPage: number;
 }
 
-export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPages, onChangePage }, ref) => {
+export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPages, onChangePage, children }, ref) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
     const [currentPage, setCurrentPage] = useState(0);
     const calculateRatio = (): Partial<FlipSetting> => {
@@ -80,9 +82,7 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
         pf.on('flip', (e) => {
             setCurrentPage(e.data.valueOf() as number);
         });
-        pf.loadFromHTML(document.querySelectorAll('.page'));
         setPageFlip(pf);
-        console.log(pageFlip?.getPageCount());
         return () => {
             pf.destroy();
         };
@@ -120,11 +120,23 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
     );
 
     return (
-        <div id="flipbook-container">
-            <div id="page-storage"></div>
-            <div className="page page-cover page-cover-bottom" data-density="hard">
-                <div className="page-content"></div>
+        <>
+            {pageFlip && (
+                <FlipBookRender
+                    onRender={() => {
+                        console.log(document.querySelectorAll('.page'));
+                        pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+                    }}
+                >
+                    {children}
+                </FlipBookRender>
+            )}
+            <div id="flipbook-container">
+                <div id="page-storage"></div>
+                <div className="page page-cover page-cover-bottom" data-density="hard">
+                    <div className="page-content"></div>
+                </div>
             </div>
-        </div>
+        </>
     );
 });

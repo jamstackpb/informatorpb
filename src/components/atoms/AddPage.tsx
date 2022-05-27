@@ -24,27 +24,25 @@ enum PageType {
     KIERUNEK = 'kierunek',
 }
 
-const PagesSection: React.FC<{
-    pageProps: ContentPageProps;
-}> = ({ pageProps }) => {
-    switch (pageProps.pageType) {
+export const PagesSection: React.FC<ContentPageProps> = (props) => {
+    switch (props.pageType) {
         case PageType.ABSOLWENT:
             return (
                 <MarkdownPage>
-                    <Absolwent {...pageProps} />
+                    <Absolwent {...props} />
                 </MarkdownPage>
             );
 
         case PageType.KOLO_NAUKOWE:
             return (
                 <MarkdownPage>
-                    <KoloNaukowe {...pageProps} />
+                    <KoloNaukowe {...props} />
                 </MarkdownPage>
             );
         case PageType.KIERUNEK:
             return (
                 <MarkdownPage>
-                    <Kierunek {...pageProps} />
+                    <Kierunek {...props} />
                 </MarkdownPage>
             );
         default:
@@ -52,7 +50,6 @@ const PagesSection: React.FC<{
     }
 };
 
-export const AddPagesWithContent = (props: ContentPageProps) =>
-    FlipBookPage({ element: <PagesSection pageProps={props} /> });
+export const AddPagesWithContent = (props: ContentPageProps) => FlipBookPage({ element: <PagesSection {...props} /> });
 
 export const AddFrontPage = (props: { title: string }) => FlipBookPage({ element: <Front title={props.title} /> });
