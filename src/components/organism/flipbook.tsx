@@ -31,7 +31,6 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     const [bookFlip, setRef] = useImperativeRef<BookFlipActions>();
     const [queryLoaded, setQueryLoaded] = useState(false);
     const [totalPages, setTotalPages] = useState(0);
-    const [fullscreen, setFullscreen] = useState(false);
     const [secondPage, setSecondPage] = useState(-1);
     const createFlipBook = (_pf: PageFlip) => {
         const arrayOfSectionsNames: Array<ToCItem> = [];
@@ -140,10 +139,10 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                                 <Chevron className="rotate-180" color="white" />
                             </Btn>
                             <Btn
-                                onClick={() => setFullscreen(!fullscreen)}
+                                onClick={() => bookFlip?.setFullscreen?.(!bookFlip?.fullscreen)}
                                 className={secondPage != -1 ? 'mx-2' : 'mx-2 hidden'}
                             >
-                                <FullScreen color="white" fullScreenmModeOn={fullscreen} />
+                                <FullScreen color="white" fullScreenmModeOn={!!bookFlip?.fullscreen} />
                             </Btn>
                             {secondPage != -1 ? (
                                 <div className="flex flex-row gap-1 mx-5">

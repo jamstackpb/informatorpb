@@ -1,4 +1,5 @@
 import { FlipBookRender } from '@/src/bookflip/FlipBookBook';
+import styled from '@emotion/styled';
 import { FlipSetting, PageFlip } from 'page-flip';
 import React, { useEffect, useImperativeHandle, useState } from 'react';
 
@@ -23,11 +24,14 @@ enum SizeType {
 export interface BookFlipActions {
     pageFlip?: PageFlip;
     currentPage: number;
+    fullscreen?: boolean;
+    setFullscreen?: (e: boolean) => void;
 }
 
 export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPages, onChangePage, children }, ref) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
     const [currentPage, setCurrentPage] = useState(0);
+
     const calculateRatio = (): Partial<FlipSetting> => {
         if (window.innerWidth > window.innerHeight) {
             return {
@@ -39,9 +43,11 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
                 disableFlipByClick: true,
                 useMouseEvents: false,
             };
+
         }
     };
     useEffect(() => {
+        const calc = calculateRatio(fullscreen);
         const pf = new PageFlip(document.getElementById('flipbook-container')!, {
             ...calculateRatio(),
             width: 640,
@@ -94,6 +100,8 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
         () => ({
             pageFlip,
             currentPage,
+            setFullscreen,
+            fullscreen,
         }),
         [currentPage, pageFlip],
     );
@@ -109,12 +117,17 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
                     {children}
                 </FlipBookRender>
             )}
-            <div id="flipbook-container">
+            <FlipBookContainer fullscreen={fullscreen} id="flipbook-container">
                 <div id="page-storage"></div>
                 <div className="page page-cover page-cover-bottom" data-density="hard">
                     <div className="page-content"></div>
                 </div>
-            </div>
+            </FlipBookContainer>
         </>
     );
 });
+
+const FlipBookContainer = styled.div<{ fullscreen?: boolean }>`
+    width: 100vw;
+    height: 100vh;
+`;

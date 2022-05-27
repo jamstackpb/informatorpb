@@ -67,6 +67,7 @@ export const Kalkulator: React.FC<{ equationSubjects: Array<PartOfEquation> }> =
                 if (es.name && 'factor' in es) {
                     return (
                         <PrzedmiotInput
+                            key={es.name}
                             przedmiot={es.name}
                             value={state[es.name]?.value || 0.0}
                             setValue={(e) => {
