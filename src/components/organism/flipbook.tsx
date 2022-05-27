@@ -8,8 +8,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { ToCItem } from '@/src/bookflip/models';
 import { BookFlip, BookFlipActions } from '@/src/bookflip/BookFlip';
 import { useImperativeRef } from '@/src/hooks/useImperativeRef';
-import { FullScreen, Chevron, AddPagesWithContent, AddFrontPage, Absolwent, Front, Kierunek, KoloNaukowe, PagesSection } from '../atoms';
-import { FlipBookRender } from '@/src/bookflip/FlipBookBook';
+import { FullScreen, Chevron, Front, PagesSection } from '../atoms';
+import Link from 'next/link';
 
 interface IFlipBook {
     pages: Array<{
@@ -21,8 +21,6 @@ interface IFlipBook {
     graduate: ReturnType<typeof Graduate>;
     science: ReturnType<typeof getScienceContent>;
     foStudy: ReturnType<typeof getFieldsOfStudy>;
-    // tableOfContents: ReturnType<typeof getTableOfContents>;
-
     whichPage?: number;
 }
 
@@ -35,7 +33,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     const [totalPages, setTotalPages] = useState(0);
     const [fullscreen, setFullscreen] = useState(false);
     const [secondPage, setSecondPage] = useState(-1);
-    const createFlipBook = (pf: PageFlip) => {
+    const createFlipBook = (_pf: PageFlip) => {
         const arrayOfSectionsNames: Array<ToCItem> = [];
         index++;
         foStudy.map((g) => {
@@ -109,42 +107,35 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         }
     }, [bookFlip?.currentPage, bookFlip?.pageFlip]);
 
-    useEffect(() => {
-        return () => {};
-    }, []);
-
     return (
         <Background>
-            <Wrapper
-                id="wrapper"
-                className={secondPage != -1 && fullscreen == false ? 'w-[90%] h-[90%]' : 'w-full h-full'}
-            >
+            <Wrapper id="wrapper" className={fullscreen == true ? 'scale-100' : 'md:scale-90 scale-100'}>
                 <BookFlip
                     ref={setRef}
                     createPages={createFlipBook}
                     onChangePage={(pageNumber) => {
-                    router.push(`/?page=${pageNumber}`);
-                }}
-            >
-                {[<Front title="Informator PB" />]}
-                {foStudy.map((g) => {
-                    return <PagesSection key={g.pagenumber} {...g} />;
-                })}
-                {[<Front title="Koła naukowe na naszej uczelni!" />]}
-                {science.map((g) => {
-                    return <PagesSection key={g.pagenumber} {...g} />;
-                })}
-                {[<Front title="Nasi Absolwenci" />]}
-                {graduate.map((g) => {
-                    return <PagesSection key={g.pagenumber} {...g} />;
-                })}
-                {pages.map((p) => {
-                    return <PlainPage content={p.clean} />;
-                })}
-            </BookFlip>
-                <div className="md:block hidden absolute z-10 bottom-10 w-full">
+                        router.push(`/?page=${pageNumber}`);
+                    }}
+                >
+                    {[<Front title="Informator PB" />]}
+                    {foStudy.map((g) => {
+                        return <PagesSection key={g.pagenumber} {...g} />;
+                    })}
+                    {[<Front title="Koła naukowe na naszej uczelni!" />]}
+                    {science.map((g) => {
+                        return <PagesSection key={g.pagenumber} {...g} />;
+                    })}
+                    {[<Front title="Nasi Absolwenci" />]}
+                    {graduate.map((g) => {
+                        return <PagesSection key={g.pagenumber} {...g} />;
+                    })}
+                    {pages.map((p) => {
+                        return <PlainPage content={p.clean} />;
+                    })}
+                </BookFlip>
+                <div className="md:block hidden absolute z-10 bottom-12 w-full ">
                     <div className="flex flex-row relative mt-0 justify-center items-center" id="page-counter">
-                        <div className="flex flex-row justify-around items-center">
+                        <div className="flex flex-row justify-around items-center bg-[#22c55e] rounded-full">
                             <Btn onClick={() => bookFlip?.pageFlip?.flipPrev()}>
                                 <Chevron className="rotate-180" color="white" />
                             </Btn>
@@ -174,19 +165,36 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                         </div>
                     </div>
                 </div>
-                <div className="block md:hidden absolute z-10 bottom-10 w-full">
+                <div className="block md:hidden absolute z-10 bottom-12 w-full">
                     <div className="flex flex-row justify-around items-center px-4">
-                        <Btn onClick={() => bookFlip?.pageFlip?.turnToPrevPage()}>
-                            <Chevron className="rotate-180" color="white" />
-                        </Btn>
-                        <div className="flex flex-row gap-1">
-                            Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
-                            <div id="page-total">{totalPages}</div>
+                        <div className="flex flex-row justify-around items-center bg-[#22c55e] rounded-full">
+                            <Btn onClick={() => bookFlip?.pageFlip?.turnToPrevPage()}>
+                                <Chevron className="rotate-180" color="white" />
+                            </Btn>
+                            <div className="flex flex-row gap-1 m-2">
+                                Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
+                                <div id="page-total">{totalPages}</div>
+                            </div>
+                            <Btn onClick={() => bookFlip?.pageFlip?.turnToNextPage()}>
+                                <Chevron className="" color="white" />
+                            </Btn>
                         </div>
-                        <Btn onClick={() => bookFlip?.pageFlip?.turnToNextPage()}>
-                            <Chevron className="" color="white" />
-                        </Btn>
                     </div>
+                </div>
+                <div className="block absolute z-10 bottom-0 w-full text-[#7e849d] font-normal text-center">
+                    <p className="">
+                        Created by{' '}
+                        <Link href="https://jamstackpb.github.io/main/">
+                            <a>Koło Naukowe JAMSTACK</a>
+                        </Link>{' '}
+                    </p>
+                    <p>
+                        {' '}
+                        Copyright &#169; 2022{' '}
+                        <Link href="https://pb.edu.pl/">
+                            <a>Politechnika Białostocka</a>
+                        </Link>{' '}
+                    </p>
                 </div>
                 <div className="absolute z-10 top-4 right-4">
                     <TableOfContents
