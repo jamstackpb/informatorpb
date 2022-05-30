@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const logo = 'https://pb.edu.pl/wp-content/themes/pb/assets/img/logo-pb-w.png';
 const godlo = 'https://pb.edu.pl/wp-content/themes/pb/assets/img/godlo.png';
@@ -14,6 +15,21 @@ export const Front: React.FC<{ title: string }> = ({ title }) => {
                 <LogoPB src={logo} />
             </h1>
             <h2 className="text-white font-bold text-2xl">{title}</h2>
+            <div className="block relative z-10 bottom-0 w-full text-[#eee] font-normal text-center">
+                <p className="">
+                    Created by{' '}
+                    <Link href="https://jamstackpb.github.io/main/">
+                        <a>Koło Naukowe JAMSTACK</a>
+                    </Link>{' '}
+                </p>
+                <p>
+                    {' '}
+                    Copyright &#169; 2022{' '}
+                    <Link href="https://pb.edu.pl/">
+                        <a>Politechnika Białostocka</a>
+                    </Link>{' '}
+                </p>
+            </div>
         </div>
     );
 };

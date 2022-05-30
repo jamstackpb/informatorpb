@@ -1,4 +1,4 @@
-import { insertMarkdownPage, PlainPage } from '@/src/bookflip';
+import { insertMarkdownPage, PlainPage, LastPage } from '@/src/bookflip';
 import { Wrapper, Background, Btn } from '@/src/styles/styleBook';
 import { getFieldsOfStudy, Graduate, getScienceContent } from '@/ssg';
 import { TableOfContents } from '../molecules/TableOfContents';
@@ -9,7 +9,6 @@ import { ToCItem } from '@/src/bookflip/models';
 import { BookFlip, BookFlipActions } from '@/src/bookflip/BookFlip';
 import { useImperativeRef } from '@/src/hooks/useImperativeRef';
 import { FullScreen, Chevron, Front, PagesSection } from '../atoms';
-import Link from 'next/link';
 
 interface IFlipBook {
     pages: Array<{
@@ -132,6 +131,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                     {pages.map((p) => {
                         return <PlainPage content={p.clean} />;
                     })}
+                    <LastPage />
                 </BookFlip>
                 <div className="md:block hidden absolute z-10 bottom-12 w-full ">
                     <div className="flex flex-row relative mt-0 justify-center items-center" id="page-counter">
@@ -180,21 +180,6 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                             </Btn>
                         </div>
                     </div>
-                </div>
-                <div className="block absolute z-10 bottom-0 w-full text-[#7e849d] font-normal text-center">
-                    <p className="">
-                        Created by{' '}
-                        <Link href="https://jamstackpb.github.io/main/">
-                            <a>Koło Naukowe JAMSTACK</a>
-                        </Link>{' '}
-                    </p>
-                    <p>
-                        {' '}
-                        Copyright &#169; 2022{' '}
-                        <Link href="https://pb.edu.pl/">
-                            <a>Politechnika Białostocka</a>
-                        </Link>{' '}
-                    </p>
                 </div>
                 <div className="absolute z-10 top-4 right-4">
                     <TableOfContents
