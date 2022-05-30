@@ -7,9 +7,7 @@ import fs from 'fs';
 
 // export const getTableOfContents = () => {
 //     const contentPath = path.join(process.cwd(), 'content/2021/tableOfContents');
-
 //     const tableOfContentsFile = fs.readdirSync(contentPath);
-
 //     return tableOfContentsFile
 //         .filter((adf) => {
 //             return path.extname(adf) === '.md';
