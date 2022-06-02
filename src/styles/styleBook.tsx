@@ -6,7 +6,7 @@ export const LogoPB: React.FC<{ src: string }> = ({ src }) => <Img src={src} />;
 
 export const Background = styled.div`
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-image: url('images/background.webp');
     background-size: cover;
     background-position: center;
