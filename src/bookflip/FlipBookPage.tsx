@@ -1,4 +1,3 @@
-import { MatterInterface } from '@/src/bookflip/models';
 import ReactDOM from 'react-dom';
 
 export const FlipBookPage = ({ element }: { element: React.ReactElement }) => {

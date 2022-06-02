@@ -57,14 +57,8 @@ export const Kierunek: React.FC<KierunekProps> = ({
                 </tbody>
             </Tabela>
             <div
-                className="flex "
+                className="flex"
                 onMouseMove={(e) => {
-                    if (!e.button) {
-                        e.stopPropagation();
-                        return false;
-                    }
-                }}
-                onMouseEnter={(e) => {
                     if (!e.button) {
                         e.stopPropagation();
                         return false;
@@ -72,7 +66,7 @@ export const Kierunek: React.FC<KierunekProps> = ({
                 }}
             >
                 <div
-                    onClick={(e) => route('opis')}
+                    onClick={() => route('opis')}
                     onMouseDown={(e) => {
                         e.stopPropagation();
                         return false;
@@ -84,10 +78,7 @@ export const Kierunek: React.FC<KierunekProps> = ({
                     Opis
                 </div>
                 <div
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        route('kalkulator');
-                    }}
+                    onClick={() => route('kalkulator')}
                     onMouseDown={(e) => {
                         e.stopPropagation();
                         return false;

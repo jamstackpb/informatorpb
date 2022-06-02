@@ -1,4 +1,3 @@
-import React from 'react';
 import { Img } from '@/src/components/atoms/img';
 import styled from '@emotion/styled';
 
