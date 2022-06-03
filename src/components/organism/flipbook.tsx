@@ -1,4 +1,4 @@
-import { insertMarkdownPage, PlainPage } from '@/src/bookflip';
+import { PlainPage, LastPage } from '@/src/bookflip';
 import { Wrapper, Background, Btn } from '@/src/styles/styleBook';
 import { getFieldsOfStudy, Graduate, getScienceContent } from '@/ssg';
 import { TableOfContents } from '../molecules/TableOfContents';
@@ -8,18 +8,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { ToCItem } from '@/src/bookflip/models';
 import { BookFlip, BookFlipActions } from '@/src/bookflip/BookFlip';
 import { useImperativeRef } from '@/src/hooks/useImperativeRef';
-import {
-    FullScreen,
-    Chevron,
-    AddPagesWithContent,
-    AddFrontPage,
-    Absolwent,
-    Front,
-    Kierunek,
-    KoloNaukowe,
-    PagesSection,
-} from '../atoms';
-import { FlipBookRender } from '@/src/bookflip/FlipBookBook';
+import { FullScreen, Chevron, Front, PagesSection } from '../atoms';
+import { FlipBookPage } from '@/src/bookflip/FlipBookPage';
 
 interface IFlipBook {
     pages: Array<{
@@ -31,8 +21,6 @@ interface IFlipBook {
     graduate: ReturnType<typeof Graduate>;
     science: ReturnType<typeof getScienceContent>;
     foStudy: ReturnType<typeof getFieldsOfStudy>;
-    // tableOfContents: ReturnType<typeof getTableOfContents>;
-
     whichPage?: number;
 }
 
@@ -43,6 +31,7 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
     const [bookFlip, setRef] = useImperativeRef<BookFlipActions>();
     const [queryLoaded, setQueryLoaded] = useState(false);
     const [totalPages, setTotalPages] = useState(0);
+    const [fullscreen, setFullscreen] = useState(false);
     const [secondPage, setSecondPage] = useState(-1);
     const createFlipBook = (pf: PageFlip) => {
         const arrayOfSectionsNames: Array<ToCItem> = [];
@@ -80,6 +69,14 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                 });
             }
         });
+        if (index % 2 == 0) {
+            FlipBookPage({ element: <PlainPage content="" /> });
+            index++;
+        }
+        FlipBookPage({
+            element: <LastPage />,
+        });
+        index++;
         setTableOfContentArray(arrayOfSectionsNames);
         setTotalPages(index);
     };
@@ -118,13 +115,9 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
         }
     }, [bookFlip?.currentPage, bookFlip?.pageFlip]);
 
-    useEffect(() => {
-        return () => {};
-    }, []);
-
     return (
         <Background>
-            <Wrapper>
+            <Wrapper id="wrapper" className={fullscreen == true ? 'scale-100' : 'md:scale-90 scale-100'}>
                 <BookFlip
                     ref={setRef}
                     createPages={createFlipBook}
@@ -147,18 +140,19 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                     {pages.map((p, i) => {
                         return <PlainPage key={`plain-${i}`} content={p.clean} />;
                     })}
+                    {[<LastPage />]}
                 </BookFlip>
-                <div className="md:block hidden absolute z-10 bottom-10 w-full">
+                <div className="md:block hidden absolute z-10 bottom-12 w-full ">
                     <div className="flex flex-row relative mt-0 justify-center items-center" id="page-counter">
-                        <div className="flex flex-row justify-around items-center">
+                        <div className="flex flex-row justify-around items-center bg-[#22c55e] rounded-full">
                             <Btn onClick={() => bookFlip?.pageFlip?.flipPrev()}>
                                 <Chevron className="rotate-180" color="white" />
                             </Btn>
                             <Btn
-                                onClick={() => bookFlip?.setFullscreen?.(!bookFlip?.fullscreen)}
+                                onClick={() => setFullscreen(!fullscreen)}
                                 className={secondPage != -1 ? 'mx-2' : 'mx-2 hidden'}
                             >
-                                <FullScreen color="white" fullScreenmModeOn={!!bookFlip?.fullscreen} />
+                                <FullScreen color="white" fullScreenmModeOn={fullscreen} />
                             </Btn>
                             {secondPage != -1 ? (
                                 <div className="flex flex-row gap-1 mx-5">
@@ -180,18 +174,20 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                         </div>
                     </div>
                 </div>
-                <div className="block md:hidden absolute z-10 bottom-10 w-full">
+                <div className="block md:hidden absolute z-10 bottom-12 w-full">
                     <div className="flex flex-row justify-around items-center px-4">
-                        <Btn onClick={() => bookFlip?.pageFlip?.turnToPrevPage()}>
-                            <Chevron className="rotate-180" color="white" />
-                        </Btn>
-                        <div className="flex flex-row gap-1">
-                            Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
-                            <div id="page-total">{totalPages}</div>
+                        <div className="flex flex-row justify-around items-center bg-[#22c55e] rounded-full">
+                            <Btn onClick={() => bookFlip?.pageFlip?.turnToPrevPage()}>
+                                <Chevron className="rotate-180" color="white" />
+                            </Btn>
+                            <div className="flex flex-row gap-1 m-2">
+                                Strona <div id="page-current">{bookFlip?.currentPage}</div> z{' '}
+                                <div id="page-total">{totalPages}</div>
+                            </div>
+                            <Btn onClick={() => bookFlip?.pageFlip?.turnToNextPage()}>
+                                <Chevron className="" color="white" />
+                            </Btn>
                         </div>
-                        <Btn onClick={() => bookFlip?.pageFlip?.turnToNextPage()}>
-                            <Chevron className="" color="white" />
-                        </Btn>
                     </div>
                 </div>
                 <div className="absolute z-10 top-4 right-4">
