@@ -10,6 +10,7 @@ import { BookFlip, BookFlipActions } from '@/src/bookflip/BookFlip';
 import { useImperativeRef } from '@/src/hooks/useImperativeRef';
 import { FullScreen, Chevron, Front, PagesSection } from '../atoms';
 import { FlipBookPage } from '@/src/bookflip/FlipBookPage';
+import { FlipBookPageWithRef } from '@/src/bookflip/FlipBookBook';
 
 interface IFlipBook {
     pages: Array<{
@@ -69,13 +70,6 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                 });
             }
         });
-        if (index % 2 == 0) {
-            FlipBookPage({ element: <PlainPage content="" /> });
-            index++;
-        }
-        FlipBookPage({
-            element: <LastPage />,
-        });
         index++;
         setTableOfContentArray(arrayOfSectionsNames);
         setTotalPages(index);
@@ -125,22 +119,46 @@ export const FlipBook: React.FC<IFlipBook> = ({ pages, graduate, science, foStud
                         router.push(`/?page=${pageNumber}`);
                     }}
                 >
-                    {[<Front key="Informator PB" title="Informator PB" />]}
-                    {foStudy.map((g) => {
-                        return <PagesSection key={g.pagenumber} {...g} />;
+                    <FlipBookPageWithRef key="Informator PB">
+                        <Front title="Informator PB" />
+                    </FlipBookPageWithRef>
+                    {foStudy.map((g, i) => {
+                        return (
+                            <FlipBookPageWithRef key={'study' + i}>
+                                <PagesSection {...g} />
+                            </FlipBookPageWithRef>
+                        );
                     })}
-                    {[<Front key="Koła naukowe na naszej uczelni!" title="Koła naukowe na naszej uczelni!" />]}
-                    {science.map((g) => {
-                        return <PagesSection key={g.pagenumber} {...g} />;
+                    <FlipBookPageWithRef key="Koła naukowe na naszej uczelni!">
+                        <Front title="Koła naukowe na naszej uczelni!" />
+                    </FlipBookPageWithRef>
+                    {science.map((g, i) => {
+                        return (
+                            <FlipBookPageWithRef key={'science' + i}>
+                                <PagesSection {...g} />
+                            </FlipBookPageWithRef>
+                        );
                     })}
-                    {[<Front key="Nasi Absolwenci" title="Nasi Absolwenci" />]}
-                    {graduate.map((g) => {
-                        return <PagesSection key={g.pagenumber} {...g} />;
+                    <FlipBookPageWithRef>
+                        <Front key="Nasi Absolwenci" title="Nasi Absolwenci" />
+                    </FlipBookPageWithRef>
+                    {graduate.map((g, i) => {
+                        return (
+                            <FlipBookPageWithRef key={'absolwenci' + i}>
+                                <PagesSection {...g} />
+                            </FlipBookPageWithRef>
+                        );
                     })}
                     {pages.map((p, i) => {
-                        return <PlainPage key={`plain-${i}`} content={p.clean} />;
+                        return (
+                            <FlipBookPageWithRef key={`plain-${i}`}>
+                                <PlainPage content={p.clean} />
+                            </FlipBookPageWithRef>
+                        );
                     })}
-                    {[<LastPage />]}
+                    <FlipBookPageWithRef key="Last page">
+                        <LastPage />
+                    </FlipBookPageWithRef>
                 </BookFlip>
                 <div className="md:block hidden absolute z-10 bottom-12 w-full ">
                     <div className="flex flex-row relative mt-0 justify-center items-center" id="page-counter">

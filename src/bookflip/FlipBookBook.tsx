@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useEffect } from 'react';
+import React, { ReactElement, ReactNode, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 export const FlipBookBook: React.FC = ({ children }) => {
@@ -11,11 +11,29 @@ export const FlipBookBook: React.FC = ({ children }) => {
                             {cc}
                         </div>
                     ));
+                } else {
+                    return (
+                        <div key={`${i}`} className="page">
+                            {children}
+                        </div>
+                    );
                 }
-                return [c];
             })}
         </>
     );
+};
+
+export const FlipBookPageWithRef: React.FC = ({ children }) => {
+    useEffect(() => {
+        const loc = document.getElementById('page-storage');
+        const page = document.createElement('div');
+        page.className = 'page';
+        const pageContent = document.createElement('div');
+        ReactDOM.render(<>{children}</>, pageContent);
+        page.appendChild(pageContent);
+        loc?.appendChild(page);
+    }, []);
+    return <></>;
 };
 
 export const FlipBookRender: React.FC<{ onRender: () => void }> = ({ children, onRender }) => {

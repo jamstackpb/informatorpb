@@ -1,6 +1,6 @@
 import { FlipBookRender } from '@/src/bookflip/FlipBookBook';
 import { FlipSetting, PageFlip } from 'page-flip';
-import React, { useEffect, useImperativeHandle, useState } from 'react';
+import React, { useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
 
 interface IBookFlip {
     // pages: Array<{
@@ -28,43 +28,57 @@ export interface BookFlipActions {
 export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPages, onChangePage, children }, ref) => {
     const [pageFlip, setPageFlip] = useState<PageFlip>();
     const [currentPage, setCurrentPage] = useState(0);
+    const mainRef = useRef<HTMLDivElement>(null);
 
     const calculateRatio = (): Partial<FlipSetting> => {
-        if (window.innerWidth > window.innerHeight) {
-            return {
-                disableFlipByClick: false,
-                useMouseEvents: true,
-            };
-        } else {
-            return {
-                disableFlipByClick: true,
-                useMouseEvents: false,
-            };
+        let width = 640;
+        let height = 740;
+        let disableFlipByClick = false;
+        let useMouseEvents = true;
+        if (typeof window !== 'undefined') {
+            if (window.innerWidth > window.innerHeight) {
+                width = window.innerWidth / 2.0;
+                height = window.innerHeight;
+                disableFlipByClick = false;
+                useMouseEvents = true;
+            } else {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                disableFlipByClick = true;
+                useMouseEvents = false;
+            }
         }
+        return {
+            width,
+            height,
+            disableFlipByClick,
+            useMouseEvents,
+        };
     };
     useEffect(() => {
-        const pf = new PageFlip(document.getElementById('flipbook-container')!, {
-            ...calculateRatio(),
-            width: 640,
-            height: 740,
-            minWidth: 320,
-            minHeight: 528.75,
-            showCover: true,
-            drawShadow: true,
-            flippingTime: 400,
-            startZIndex: 0,
-            swipeDistance: 30,
-            mobileScrollSupport: true,
-            clickEventForward: false,
-            usePortrait: true,
-            size: SizeType.STRETCH,
-        });
-        createPages(pf);
-        pf.on('flip', (e) => {
-            setCurrentPage(e.data.valueOf() as number);
-        });
-        setPageFlip(pf);
-    }, []);
+        if (mainRef.current) {
+            const pf = new PageFlip(mainRef.current, {
+                width: 640,
+                height: 740,
+                minWidth: 320,
+                minHeight: 528.75,
+                showCover: true,
+                drawShadow: true,
+                flippingTime: 400,
+                startZIndex: 0,
+                swipeDistance: 30,
+                mobileScrollSupport: true,
+                clickEventForward: false,
+                usePortrait: true,
+                size: SizeType.STRETCH,
+                ...calculateRatio(),
+            });
+            pf.on('flip', (e) => {
+                setCurrentPage(e.data.valueOf() as number);
+            });
+            setPageFlip(pf);
+        }
+    }, [mainRef]);
     useEffect(() => {
         const onKeyPress = (e: KeyboardEvent) => {
             const { key } = e;
@@ -97,18 +111,17 @@ export const BookFlip = React.forwardRef<BookFlipActions, IBookFlip>(({ createPa
         [currentPage, pageFlip],
     );
 
+    useEffect(() => {
+        if (pageFlip) {
+            pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+            createPages(pageFlip);
+        }
+    }, [pageFlip]);
+
     return (
         <>
-            {pageFlip && (
-                <FlipBookRender
-                    onRender={() => {
-                        pageFlip.loadFromHTML(document.querySelectorAll('.page'));
-                    }}
-                >
-                    {children}
-                </FlipBookRender>
-            )}
-            <div id="flipbook-container">
+            {pageFlip && children}
+            <div ref={mainRef} id="flipbook-container">
                 <div id="page-storage"></div>
                 <div className="page page-cover page-cover-bottom" data-density="hard">
                     <div className="page-content"></div>
