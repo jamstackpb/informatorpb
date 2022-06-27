@@ -6,7 +6,7 @@ pageNumber: 37
 
 Jakie są koszty utrzymania studenta, gdy ten uczy się poza domem? Największe wiążą się z zakwaterowaniem. Kolejne – opłaty za wyżywienie korzystanie z komunikacji miejskiej czy rozrywkę – w przypadku Białegostoku są niższe niż w większych miastach w Polsce.
 
-W Białymstoku można znaleźć pokoje do wynajęcia już od 400 zł za miesiąc. Wynajem kawalerki to koszt 600–1500 zł. Za większe mieszkanie trzeba będzie zapłacić około 2000 zł za miesiąc.
+W Białymstoku można znaleźć pokoje do wynajęcia już od 400 zł za miesiąc. Wynajem kawalerki to koszt 600 – 1500 zł. Za większe mieszkanie trzeba będzie zapłacić około 2000 zł za miesiąc.
 
 ### Akademiki Politechniki Białostockiej
 
